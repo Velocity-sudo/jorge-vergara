@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Contenido — Jorge Vergara | Tax Season 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1D32;
+            --navy-light: #142A42;
+            --navy-alt: #1D3249;
+            --gold: #D4A853;
+            --gold-light: #E8C879;
+            --teal: #00C4CC;
+            --red: #FF4757;
+            --green: #2ED573;
+            --white: #FFFFFF;
+            --off-white: #F5F7FA;
+            --text-muted: #8B9BB4;
+            --text-light: #6B7B8D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: radial-gradient(circle at center top, rgba(0, 196, 204, 0.12), var(--navy) 60%);
+        }
+
+        .header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 168, 83, 0.12);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .header h1 span {
+            color: var(--gold);
+        }
+
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header .date {
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        /* COUNTDOWN */
+        .countdown-bar {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.15), rgba(212, 168, 83, 0.15));
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .countdown-bar h3 {
+            color: var(--red);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .countdown-bar .days {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .countdown-bar .days span {
+            color: var(--gold);
+        }
+
+        .countdown-bar p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 50px 0;
+        }
+
+        .section-light {
+            background: var(--off-white);
+            color: #1a1a2e;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section h2 .emoji {
+            margin-right: 8px;
+        }
+
+        .section .section-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-light .section-subtitle {
+            color: var(--text-light);
+        }
+
+        /* STRATEGY DIAGRAM */
+        .funnel-diagram {
+            background: var(--navy-light);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+        }
+
+        .funnel-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .funnel-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .funnel-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            font-weight: 800;
+        }
+
+        .funnel-icon.source {
+            background: rgba(0, 196, 204, 0.15);
+            border: 1px solid rgba(0, 196, 204, 0.3);
+        }
+
+        .funnel-icon.content {
+            background: rgba(212, 168, 83, 0.15);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+        }
+
+        .funnel-icon.vsl {
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        .funnel-icon.convert {
+            background: rgba(46, 213, 115, 0.15);
+            border: 1px solid rgba(46, 213, 115, 0.3);
+        }
+
+        .funnel-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .funnel-text p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .funnel-arrow {
+            text-align: center;
+            color: var(--gold);
+            font-size: 20px;
+            padding-left: 20px;
+        }
+
+        /* CONTENT TYPE CARDS */
+        .type-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .type-card {
+            background: var(--navy-light);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        .type-card.viral::before {
+            background: linear-gradient(90deg, var(--teal), transparent);
+        }
+
+        .type-card.news::before {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .type-card .type-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .type-card.viral .type-label {
+            background: rgba(0, 196, 204, 0.15);
+            color: var(--teal);
+        }
+
+        .type-card.news .type-label {
+            background: rgba(212, 168, 83, 0.15);
+            color: var(--gold);
+        }
+
+        .type-card h4 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .type-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .type-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+        }
+
+        .type-card ul li {
+            color: var(--text-muted);
+            font-size: 13px;
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .type-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: 700;
+        }
+
+        /* CTA CARD */
+        .cta-highlight {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.1), rgba(0, 196, 204, 0.05));
+            border: 2px solid rgba(212, 168, 83, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin: 32px 0;
+        }
+
+        .cta-highlight .cta-label {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .cta-highlight .cta-text {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .cta-highlight .cta-text span {
+            color: var(--gold);
+        }
+
+        /* CALENDAR TABLE */
+        .calendar-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0;
+        }
+
+        .calendar-table thead th {
+            background: var(--navy-alt);
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .calendar-table tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        .calendar-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .calendar-table .day-num {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .calendar-table .title-cell {
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-viral {
+            background: rgba(0, 196, 204, 0.15);
+            color: var(--teal);
+        }
+
+        .tag-cta {
+            background: rgba(46, 213, 115, 0.15);
+            color: var(--green);
+        }
+
+        .tag-news {
+            background: rgba(212, 168, 83, 0.15);
+            color: var(--gold);
+        }
+
+        .tag-urgente {
+            background: rgba(255, 71, 87, 0.15);
+            color: var(--red);
+        }
+
+        .week-header td {
+            background: var(--navy-alt) !important;
+            font-weight: 800 !important;
+            color: var(--gold) !important;
+            font-size: 13px !important;
+            letter-spacing: 1px;
+            padding: 10px 16px !important;
+        }
+
+        /* METRICS GOALS */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: var(--navy-light);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .metric-card .metric-num {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), var(--white));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-card .metric-label {
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .footer .brand {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .type-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-table {
+                font-size: 12px;
+            }
+
+            .funnel-row {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="badge">⚡ Estrategia de Contenido Orgánico</div>
+            <h1>Plan de Contenido<br><span>Tax Season 2026</span></h1>
+            <p class="subtitle">Estrategia completa de contenido viral para calentar la cuenta,
+                generar confianza y llevar tráfico al VSL antes del deadline del 15 de abril.</p>
+            <p class="date">Preparado para Jorge Vergara — Lugo Insurance Advisors</p>
+        </div>
+    </header>
+
+    <!-- COUNTDOWN -->
+    <div class="container">
+        <div class="countdown-bar">
+            <h3>⏰ Ventana de Oportunidad</h3>
+            <div class="days"><span>42</span> días</div>
+            <p>Del 4 de marzo al 15 de abril — Cada día cuenta</p>
+        </div>
+    </div>
+
+    <!-- ESTRATEGIA: EL EMBUDO -->
+    <section class="section">
+        <div class="container">
+            <h2><span class="emoji">🎯</span> La Estrategia</h2>
+            <p class="section-subtitle">Un embudo simple: contenido viral → VSL → cliente</p>
+
+            <div class="funnel-diagram">
+                <div class="funnel-row">
+                    <div class="funnel-icon source">📱</div>
+                    <div class="funnel-text">
+                        <h4>Contenido Viral en Redes</h4>
+                        <p>Videos cortos (45-90s) que entregan valor inmediato con hacks, números y noticias de taxes.
+                            Diseñados para que la gente guarde, comparta y comente.</p>
+                    </div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-row">
+                    <div class="funnel-icon content">💬</div>
+                    <div class="funnel-text">
+                        <h4>CTA: "Comenta TAX para ver la clase"</h4>
+                        <p>Cada video cierra con un CTA natural que invita a comentar. El comentario dispara engagement
+                            algorítmico y abre la puerta al VSL.</p>
+                    </div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-row">
+                    <div class="funnel-icon vsl">🎬</div>
+                    <div class="funnel-text">
+                        <h4>VSL — Página de Entrada Orgánica</h4>
+                        <p>Copia exclusiva del VSL para tráfico orgánico (URL separada). Pixel aislado del de ads para
+                            no contaminar Custom Audiences ni optimización de campañas pagas.</p>
+                    </div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-row">
+                    <div class="funnel-icon convert">✅</div>
+                    <div class="funnel-text">
+                        <h4>Encuesta + Agenda Llamada</h4>
+                        <p>El lead llena la pre-calificación y agenda con el equipo de Jorge. Pipeline automatizado en
+                            GHL para seguimiento inmediato.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA UNIVERSAL -->
+            <div class="cta-highlight">
+                <div class="cta-label">CTA Universal de Todos los Videos</div>
+                <div class="cta-text">"Comenta <span>TAX</span> para que te envíe la clase<br>que puede evitarte errores
+                    que cuestan miles"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPOS DE CONTENIDO -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <h2><span class="emoji">📹</span> 2 Fuentes de Contenido</h2>
+            <p class="section-subtitle">Todo el contenido se nutre de estas dos líneas</p>
+
+            <div class="type-grid">
+                <div class="type-card viral">
+                    <div class="type-label">Fuente 1</div>
+                    <h4>Contenido Viral Inspirado</h4>
+                    <p>Videos inspirados en contenidos que ya son virales en el nicho de finanzas/taxes. Formato
+                        probado, adaptado a la voz de Jorge.</p>
+                    <ul>
+                        <li>Hacks de taxes con números concretos</li>
+                        <li>Checklists guardables (do's & don'ts)</li>
+                        <li>Errores comunes con cifras reales</li>
+                        <li>Tips de ahorro fáciles de entender</li>
+                        <li>Datos que sorprenden y se comparten</li>
+                    </ul>
+                </div>
+                <div class="type-card news">
+                    <div class="type-label">Fuente 2</div>
+                    <h4>Noticias que Impactan</h4>
+                    <p>Temas del momento que afectan el bolsillo: taxes, seguros, nuevas leyes, finanzas del día a día.
+                        Jorge como tu "noticiero financiero".</p>
+                    <ul>
+                        <li>Noticias del IRS en tiempo real</li>
+                        <li>Cambios en seguros médicos y ACA</li>
+                        <li>Nuevas leyes fiscales que afectan latinos</li>
+                        <li>Alertas de estafas y fraudes de temporada</li>
+                        <li>Temas financieros del día a día</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRINCIPIOS DEL CONTENIDO -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <h2><span class="emoji">💡</span> Principios del Contenido</h2>
+            <p class="section-subtitle">Cada video debe cumplir con estas reglas</p>
+
+            <div class="funnel-diagram">
+                <div class="funnel-row">
+                    <div class="funnel-icon source">🎯</div>
+                    <div class="funnel-text">
+                        <h4>Fácil de entender</h4>
+                        <p>Cero tecnicismos. Como explicarle a un amigo en el trabajo cómo funciona algo.</p>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-icon content">💰</div>
+                    <div class="funnel-text">
+                        <h4>Valor inmediato con números</h4>
+                        <p>Porcentajes, montos, cifras reales. "Te puede ahorrar $3,000" > "te puede ahorrar dinero".
+                        </p>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-icon vsl">📲</div>
+                    <div class="funnel-text">
+                        <h4>Dan ganas de guardar y compartir</h4>
+                        <p>Si alguien no piensa "esto lo necesita mi prima" al verlo, el contenido falló.</p>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-icon convert">🙅</div>
+                    <div class="funnel-text">
+                        <h4>No se siente como venta</h4>
+                        <p>0% vendedor. Jorge es el amigo financiero que sabe cosas que nadie te dice. El CTA siempre es
+                            natural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARQUITECTURA DE TRÁFICO -->
+    <section class="section"
+        style="background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);">
+        <div class="container">
+            <h2><span class="emoji">🔀</span> Arquitectura de Tráfico</h2>
+            <p class="section-subtitle">Dos entradas separadas para mantener el Pixel limpio</p>
+
+            <div class="type-grid">
+                <div class="type-card viral">
+                    <div class="type-label">Flujo Orgánico (nuevo)</div>
+                    <h4>📱 Redes Sociales → VSL B</h4>
+                    <p style="margin-bottom: 12px;">Landing page copia del VSL con URL exclusiva para orgánico.</p>
+                    <ul>
+                        <li>URL: /invitacion (separada de ads)</li>
+                        <li>Pixel: evento OrganicLead</li>
+                        <li>GHL Tag: [Source] Organic</li>
+                        <li>Audiences aisladas</li>
+                    </ul>
+                </div>
+                <div class="type-card news">
+                    <div class="type-label">Flujo Ads (existente)</div>
+                    <h4>📊 Meta Ads → VSL A</h4>
+                    <p style="margin-bottom: 12px;">Landing page actual optimizada para tráfico frío pagado.</p>
+                    <ul>
+                        <li>URL: /clase (ya activa)</li>
+                        <li>Pixel: evento Lead</li>
+                        <li>GHL Tag: [Source] Paid</li>
+                        <li>Optimización limpia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALENDARIO SEMANAL -->
+    <section class="section">
+        <div class="container">
+            <h2><span class="emoji">📅</span> Calendario de Contenido</h2>
+            <p class="section-subtitle">32 videos — De lunes a viernes hasta el 15 de abril. Urgencia creciente.</p>
+
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>Título</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- SEMANA 1 -->
+                    <tr class="week-header">
+                        <td colspan="3">📌 SEMANA 1 — Construir Confianza</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D1 Lun</td>
+                        <td class="title-cell">5 hacks de taxes que te pueden ahorrar $3,000 o más</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D2 Mar</td>
+                        <td class="title-cell">📰 Child Tax Credit — familias con ITIN pierden beneficios</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D3 Mié</td>
+                        <td class="title-cell">4 señales de que tu preparador te está robando (checklist)</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D4 Jue</td>
+                        <td class="title-cell">📰 Tu seguro médico podría DUPLICARSE de precio</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D5 Vie</td>
+                        <td class="title-cell">Tu papá trabajó toda su vida sin plan financiero</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- SEMANA 2 -->
+                    <tr class="week-header">
+                        <td colspan="3">📌 SEMANA 2 — Generar Autoridad</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D6 Lun</td>
+                        <td class="title-cell">📰 El IRS cobra 7% de interés — casi nadie lo sabe</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D7 Mar</td>
+                        <td class="title-cell">Tienes W2 — revisa estos 5 números antes de firmar</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D8 Mié</td>
+                        <td class="title-cell">Si algo te pasa mañana, ¿tu familia sabe tus taxes?</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D9 Jue</td>
+                        <td class="title-cell">3 créditos que no reclamas = $3,000 menos</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D10 Vie</td>
+                        <td class="title-cell">Cómo mi fe en Dios cambió mi relación con el dinero</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- SEMANA 3 -->
+                    <tr class="week-header">
+                        <td colspan="3">📌 SEMANA 3 — Educar con Urgencia</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D11 Lun</td>
+                        <td class="title-cell">Head of Household = $7,500 más de deducción</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D12 Mar</td>
+                        <td class="title-cell">📰 Estafas de taxes 2026 — más agresivas que nunca</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D13 Mié</td>
+                        <td class="title-cell">1099 y no pagas estimated taxes — la multa que viene</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D14 Jue</td>
+                        <td class="title-cell">Mezclas gastos personales y de negocio — el IRS lo nota</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D15 Vie</td>
+                        <td class="title-cell">Cuánto cuestan las multas del IRS vs un boleto de avión</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- SEMANA 4 -->
+                    <tr class="week-header">
+                        <td colspan="3">⚠️ SEMANA 4 — Acelerar</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D16 Lun</td>
+                        <td class="title-cell">Tuviste un bebé este año — estos créditos son tuyos</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D17 Mar</td>
+                        <td class="title-cell">📰 [NOTICIA FRESCA — semana del 24 marzo]</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D18 Mié</td>
+                        <td class="title-cell">TurboTax vs profesional si ganas +$50K</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D19 Jue</td>
+                        <td class="title-cell">LLC para pagar menos taxes — probablemente la usas MAL</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D20 Vie</td>
+                        <td class="title-cell">Viniste a USA para un mejor futuro — empieza con tus taxes</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- SEMANA 5 -->
+                    <tr class="week-header">
+                        <td colspan="3">🔥 SEMANA 5 — Urgencia Alta</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D21 Lun</td>
+                        <td class="title-cell">3 deducciones que el 85% de independientes NO reclaman</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D22 Mar</td>
+                        <td class="title-cell">📰 [NOTICIA FRESCA — semana del 31 marzo]</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D23 Mié</td>
+                        <td class="title-cell">He ayudado a 5,000 familias — este es el consejo #1</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D24 Jue</td>
+                        <td class="title-cell">NO hagas tus taxes sin revisar tu W-4 primero</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D25 Vie</td>
+                        <td class="title-cell">Tu esposa no sabe cuánto pagan de taxes. Hablen.</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- SEMANA 6 -->
+                    <tr class="week-header">
+                        <td colspan="3">🚨 SEMANA 6 — Cuenta Regresiva Final</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D26 Lun</td>
+                        <td class="title-cell">El sistema de taxes en 60 segundos</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D27 Mar</td>
+                        <td class="title-cell">📰 [NOTICIA FRESCA — última semana antes del deadline]</td>
+                        <td><span class="tag tag-news">Noticia</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D28 Mié</td>
+                        <td class="title-cell">No declaraste el año pasado — el IRS te mandó esto</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D29 Jue</td>
+                        <td class="title-cell">$1.3M ahorrados a nuestros clientes — los 3 errores que arreglamos</td>
+                        <td><span class="tag tag-cta">CTA sutil</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D30 Vie</td>
+                        <td class="title-cell">Ser buen padre es PROTEGER. Empieza con tus finanzas</td>
+                        <td><span class="tag tag-viral">Viral</span></td>
+                    </tr>
+
+                    <!-- PUSH FINAL -->
+                    <tr class="week-header">
+                        <td colspan="3">🔴 PUSH FINAL — 14 y 15 de Abril</td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D31 Lun</td>
+                        <td class="title-cell">MAÑANA SE CIERRA LA PUERTA. Haz tus taxes HOY</td>
+                        <td><span class="tag tag-urgente">Urgente</span></td>
+                    </tr>
+                    <tr>
+                        <td class="day-num">D32 Mar</td>
+                        <td class="title-cell">HOY ES EL ÚLTIMO DÍA. Si no declaras hoy, esto pasa</td>
+                        <td><span class="tag tag-urgente">Urgente</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- METAS -->
+    <section class="section" style="background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.04);">
+        <div class="container">
+            <h2><span class="emoji">📊</span> Métricas Objetivo</h2>
+            <p class="section-subtitle">KPIs a 6 semanas de ejecución consistente</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-num">32</div>
+                    <div class="metric-label">Videos Publicados</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">500K+</div>
+                    <div class="metric-label">Impresiones Totales</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">5K+</div>
+                    <div class="metric-label">Nuevos Seguidores</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-num">8%+</div>
+                    <div class="metric-label">Engagement Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">200+</div>
+                    <div class="metric-label">Leads Orgánicos al VSL</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">$0</div>
+                    <div class="metric-label">Costo de Adquisición</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Estrategia preparada por <span class="brand">Sales Velocity</span> para <span class="brand">Lugo Insurance
+                Advisors</span></p>
+        <p style="margin-top: 8px;">Marzo 2026 — Temporada de Taxes</p>
+    </footer>
+
+</body>
+
+</html>
