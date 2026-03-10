@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Ads Review — Jorge Vergara | 10 Marzo 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── RESET ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── BRAND TOKENS ── */
+        :root {
+            --brand-navy: #0B1D32;
+            --brand-white: #F8F5F0;
+            --brand-text: #485264;
+            --brand-gray-mid: #6B7B8D;
+            --brand-gray-soft: #9BA8B7;
+            --brand-off-white: #F0EDE8;
+            --brand-slate: #1D3249;
+            --brand-accent: #D4A853;
+            --brand-accent-light: #E6CF9B;
+            --brand-accent-deep: #B8862D;
+            --brand-accent-gradient: linear-gradient(135deg, #D4A853, #B8862D);
+            --brand-success: #2D8B5E;
+            --brand-danger: #D64545;
+            --brand-warning: #E8A838;
+            --brand-info: #3B82C4;
+            --brand-font-heading: 'Plus Jakarta Sans', sans-serif;
+            --brand-font-body: 'DM Sans', sans-serif;
+            --brand-radius: 20px;
+            --brand-radius-sm: 12px;
+            --brand-transition: all 0.3s ease;
+        }
+
+        /* ── BASE ── */
+        body {
+            font-family: var(--brand-font-body);
+            background: var(--brand-navy);
+            color: var(--brand-white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--brand-font-heading); }
+
+        /* ── NAV ── */
+        .brand-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 5%;
+            background: rgba(11, 29, 50, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 168, 83, 0.15);
+        }
+        .brand-nav .logo { font-family: var(--brand-font-heading); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
+        .brand-nav .logo span { font-weight: 300; color: var(--brand-accent); }
+        .brand-nav .review-date {
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--brand-accent); font-weight: 600;
+            padding: 6px 16px; border: 1px solid rgba(212,168,83,0.3); border-radius: 40px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 50vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 120px 5% 60px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(212,168,83,0.06) 0%, transparent 70%), var(--brand-navy);
+            position: relative;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: 0; left: 10%; right: 10%;
+            height: 1px; background: linear-gradient(90deg, transparent, rgba(212,168,83,0.25), transparent);
+        }
+        .eyebrow {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em;
+            color: var(--brand-accent); font-weight: 600; margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
+        }
+        .hero .subtitle {
+            font-size: 1rem; font-weight: 300; color: var(--brand-gray-soft);
+            max-width: 600px;
+        }
+        .hero .period-badge {
+            margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 24px; border-radius: 40px;
+            background: rgba(212,168,83,0.08); border: 1px solid rgba(212,168,83,0.2);
+            font-size: 0.75rem; font-weight: 600; color: var(--brand-accent-light);
+        }
+        .hero .period-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--brand-accent);
+            animation: pulse 2s ease infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* ── CONTAINER ── */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
+
+        /* ── SECTIONS ── */
+        .section { padding: 80px 0; }
+        .section-dark { background: rgba(0,0,0,0.15); }
+        .section-title {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--brand-accent); font-weight: 600; margin-bottom: 8px;
+        }
+        .section h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700;
+            letter-spacing: -0.02em; margin-bottom: 40px; line-height: 1.2;
+        }
+
+        /* ── VERDICT BANNER ── */
+        .verdict-banner {
+            margin: 0; padding: 48px 5%;
+            background: linear-gradient(135deg, rgba(214,69,69,0.12) 0%, rgba(232,168,56,0.08) 100%);
+            border-top: 1px solid rgba(214,69,69,0.2);
+            border-bottom: 1px solid rgba(214,69,69,0.2);
+        }
+        .verdict-inner { max-width: 1000px; margin: 0 auto; }
+        .verdict-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+        }
+        .verdict-icon {
+            font-size: 1.5rem; width: 48px; height: 48px; display: flex;
+            align-items: center; justify-content: center; border-radius: 12px;
+            background: rgba(232,168,56,0.15);
+        }
+        .verdict-label {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--brand-warning); font-weight: 700;
+        }
+        .verdict-title { font-size: 1.3rem; font-weight: 700; font-family: var(--brand-font-heading); }
+        .verdict-text {
+            font-size: 0.92rem; color: var(--brand-gray-soft); line-height: 1.7;
+            max-width: 800px;
+        }
+        .verdict-text strong { color: var(--brand-accent-light); }
+
+        /* ── KPI GRID ── */
+        .kpi-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px; margin-bottom: 40px;
+        }
+        .kpi-card {
+            padding: 24px 20px; border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--brand-radius); background: rgba(255,255,255,0.02);
+            text-align: center; transition: var(--brand-transition); position: relative;
+        }
+        .kpi-card:hover { border-color: rgba(212,168,83,0.25); transform: translateY(-2px); }
+        .kpi-card .kpi-label {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--brand-gray-mid); font-weight: 600; margin-bottom: 8px;
+        }
+        .kpi-card .kpi-value {
+            font-family: var(--brand-font-heading); font-size: 1.8rem;
+            font-weight: 800; letter-spacing: -0.02em;
+        }
+        .kpi-card .kpi-benchmark {
+            font-size: 0.68rem; color: var(--brand-gray-mid); margin-top: 6px;
+        }
+        .kpi-card.accent .kpi-value { color: var(--brand-accent); }
+        .kpi-card.success .kpi-value { color: var(--brand-success); }
+        .kpi-card.danger .kpi-value { color: var(--brand-danger); }
+        .kpi-card.warning .kpi-value { color: var(--brand-warning); }
+        .kpi-card.neutral .kpi-value { color: var(--brand-white); }
+
+        /* Status badges on KPI cards */
+        .kpi-status {
+            position: absolute; top: 12px; right: 12px;
+            font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 3px 8px; border-radius: 20px; font-weight: 700;
+        }
+        .kpi-status.above { background: rgba(45,139,94,0.15); color: var(--brand-success); border: 1px solid rgba(45,139,94,0.3); }
+        .kpi-status.below { background: rgba(214,69,69,0.15); color: var(--brand-danger); border: 1px solid rgba(214,69,69,0.3); }
+        .kpi-status.in-range { background: rgba(212,168,83,0.15); color: var(--brand-accent); border: 1px solid rgba(212,168,83,0.3); }
+        .kpi-status.caution { background: rgba(232,168,56,0.15); color: var(--brand-warning); border: 1px solid rgba(232,168,56,0.3); }
+
+        /* ── BENCHMARK TABLE ── */
+        .benchmark-table {
+            width: 100%; border-collapse: collapse; margin-bottom: 32px;
+            font-size: 0.85rem;
+        }
+        .benchmark-table th {
+            text-align: left; padding: 14px 16px; font-size: 0.6rem;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--brand-accent); font-weight: 700;
+            border-bottom: 1px solid rgba(212,168,83,0.2);
+            background: rgba(0,0,0,0.2);
+        }
+        .benchmark-table td {
+            padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--brand-gray-soft);
+        }
+        .benchmark-table tr:hover td { background: rgba(212,168,83,0.03); }
+        .benchmark-table .metric-name { color: var(--brand-white); font-weight: 500; }
+        .benchmark-table .val-good { color: var(--brand-success); font-weight: 600; }
+        .benchmark-table .val-bad { color: var(--brand-danger); font-weight: 600; }
+        .benchmark-table .val-warn { color: var(--brand-warning); font-weight: 600; }
+        .benchmark-table .val-neutral { color: var(--brand-accent-light); font-weight: 600; }
+
+        /* ── AD PERFORMANCE CARDS ── */
+        .ad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .ad-card {
+            padding: 28px 24px; border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--brand-radius); background: rgba(255,255,255,0.02);
+            transition: var(--brand-transition); position: relative;
+        }
+        .ad-card:hover { border-color: rgba(212,168,83,0.25); }
+        .ad-card .ad-name {
+            font-family: var(--brand-font-heading); font-size: 0.95rem;
+            font-weight: 700; margin-bottom: 16px;
+        }
+        .ad-card .ad-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .ad-stat-item .label {
+            font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--brand-gray-mid); font-weight: 600;
+        }
+        .ad-stat-item .value {
+            font-family: var(--brand-font-heading); font-size: 1.2rem;
+            font-weight: 700; color: var(--brand-white);
+        }
+        .ad-card .winner-badge {
+            position: absolute; top: -8px; right: 16px;
+            padding: 4px 14px; border-radius: 20px; font-size: 0.55rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            background: var(--brand-accent-gradient); color: #fff;
+        }
+
+        /* ── PIPELINE SECTION ── */
+        .pipeline-stages { display: flex; flex-direction: column; gap: 12px; }
+        .pipeline-stage {
+            display: grid; grid-template-columns: 200px 1fr 100px; align-items: center;
+            padding: 16px 20px; border: 1px solid rgba(255,255,255,0.04);
+            border-radius: var(--brand-radius-sm); background: rgba(255,255,255,0.02);
+            gap: 16px;
+        }
+        .stage-name { font-weight: 600; font-size: 0.88rem; }
+        .stage-bar-wrap { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+        .stage-bar { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+        .stage-count { text-align: right; font-family: var(--brand-font-heading); font-weight: 700; font-size: 1.1rem; }
+        .stage-value { text-align: right; font-size: 0.72rem; color: var(--brand-gray-mid); }
+
+        /* ── DIAGNOSIS BLOCKS ── */
+        .diagnosis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .diagnosis-card {
+            padding: 32px 24px; border-radius: var(--brand-radius);
+            border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);
+        }
+        .diagnosis-card .icon { font-size: 1.8rem; margin-bottom: 16px; }
+        .diagnosis-card h3 {
+            font-size: 1rem; font-weight: 700; margin-bottom: 10px;
+        }
+        .diagnosis-card p { font-size: 0.85rem; color: var(--brand-gray-soft); line-height: 1.7; }
+        .diagnosis-card.critical { border-color: rgba(214,69,69,0.25); background: rgba(214,69,69,0.04); }
+        .diagnosis-card.warning { border-color: rgba(232,168,56,0.25); background: rgba(232,168,56,0.04); }
+        .diagnosis-card.positive { border-color: rgba(45,139,94,0.25); background: rgba(45,139,94,0.04); }
+        .diagnosis-card.info { border-color: rgba(59,130,196,0.25); background: rgba(59,130,196,0.04); }
+
+        /* ── ACTION ITEMS ── */
+        .action-list { list-style: none; counter-reset: actions; }
+        .action-item {
+            counter-increment: actions; padding: 24px; margin-bottom: 16px;
+            border-left: 3px solid var(--brand-accent);
+            background: rgba(212,168,83,0.03); border-radius: 0 var(--brand-radius) var(--brand-radius) 0;
+            position: relative;
+        }
+        .action-item::before {
+            content: counter(actions); position: absolute; left: -18px; top: 24px;
+            width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+            background: var(--brand-accent-gradient); color: #fff; border-radius: 50%;
+            font-family: var(--brand-font-heading); font-weight: 800; font-size: 0.8rem;
+        }
+        .action-item h4 {
+            font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; padding-left: 20px;
+        }
+        .action-item p { font-size: 0.85rem; color: var(--brand-gray-soft); line-height: 1.7; padding-left: 20px; }
+        .action-priority {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-left: 8px;
+        }
+        .priority-critical { background: rgba(214,69,69,0.15); color: var(--brand-danger); border: 1px solid rgba(214,69,69,0.3); }
+        .priority-high { background: rgba(232,168,56,0.15); color: var(--brand-warning); border: 1px solid rgba(232,168,56,0.3); }
+        .priority-medium { background: rgba(59,130,196,0.15); color: var(--brand-info); border: 1px solid rgba(59,130,196,0.3); }
+
+        /* ── BUDGET BOX ── */
+        .budget-box {
+            padding: 32px; border-radius: var(--brand-radius);
+            background: rgba(212,168,83,0.05); border: 1px solid rgba(212,168,83,0.2);
+        }
+        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .budget-item { text-align: center; }
+        .budget-item .amount {
+            font-family: var(--brand-font-heading); font-size: 2rem;
+            font-weight: 800; color: var(--brand-accent);
+        }
+        .budget-item .desc {
+            font-size: 0.72rem; color: var(--brand-gray-mid);
+            text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+        }
+
+        /* ── METRICS MONITOR ── */
+        .monitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .monitor-card {
+            padding: 20px; border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--brand-radius-sm); text-align: center;
+        }
+        .monitor-card .metric-name { font-size: 0.72rem; color: var(--brand-gray-mid); font-weight: 600; }
+        .monitor-card .threshold {
+            font-family: var(--brand-font-heading); font-size: 1.1rem;
+            font-weight: 700; margin-top: 4px;
+        }
+        .monitor-card .signal { font-size: 0.68rem; margin-top: 6px; }
+        .signal-green { color: var(--brand-success); }
+        .signal-red { color: var(--brand-danger); }
+
+        /* ── FOOTER ── */
+        .review-footer {
+            padding: 40px 5%; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .review-footer p { font-size: 0.72rem; color: var(--brand-gray-mid); }
+        .review-footer .powered {
+            margin-top: 8px; font-size: 0.6rem; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--brand-accent);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .pipeline-stage { grid-template-columns: 1fr; gap: 8px; }
+            .benchmark-table { font-size: 0.75rem; }
+            .diagnosis-grid { grid-template-columns: 1fr; }
+            .ad-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            .brand-nav { position: static; }
+            body { background: #fff; color: #333; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="brand-nav">
+    <div class="logo">Jorge Vergara <span>Financial</span></div>
+    <div class="review-date">Semana del 10 Marzo 2026</div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="eyebrow">Meta Ads Performance Review</div>
+    <h1>Semana 1 — BSL Launch</h1>
+    <p class="subtitle">Primera revisión semanal de campañas de Meta Ads &mdash; Tax Preparation Season 2026</p>
+    <div class="period-badge">
+        <span class="dot"></span>
+        Período: 3 Mar — 9 Mar 2026 &nbsp;|&nbsp; Primera revisión (sin anterior)
+    </div>
+</section>
+
+<!-- ── VERDICT ── -->
+<div class="verdict-banner">
+    <div class="verdict-inner">
+        <div class="verdict-header">
+            <div class="verdict-icon">⚠️</div>
+            <div>
+                <div class="verdict-label">Veredicto General</div>
+                <div class="verdict-title">Eficiencia de Tráfico Alta, Relevancia de Negocio Pobre</div>
+            </div>
+        </div>
+        <p class="verdict-text">
+            Las métricas de tráfico son <strong>excepcionalmente buenas</strong> (CTR 4.5x por encima del benchmark, CPC 63% por debajo). Sin embargo, el verdadero problema es la <strong>calidad de leads</strong>: de ~12 que completaron encuesta, 7 fueron preparadores de taxes (competidores). Esto indica que el algoritmo Andromeda está clasificando el anuncio como "interés en la industria tributaria" en vez de "necesidad de servicio tributario". <strong>La prioridad #1 esta semana es filtrar competidores antes de escalar.</strong>
+        </p>
+    </div>
+</div>
+
+<!-- ── KPIs ── -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">Resumen Ejecutivo</div>
+        <h2>KPIs de la Semana</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card accent">
+                <span class="kpi-status in-range">En Rango</span>
+                <div class="kpi-label">Inversión</div>
+                <div class="kpi-value">$328</div>
+                <div class="kpi-benchmark">$46.88/día promedio</div>
+            </div>
+            <div class="kpi-card warning">
+                <span class="kpi-status caution">Anomalía</span>
+                <div class="kpi-label">Leads</div>
+                <div class="kpi-value">34</div>
+                <div class="kpi-benchmark">CPL $9.65 (bench: $27-$250)</div>
+            </div>
+            <div class="kpi-card success">
+                <span class="kpi-status above">Superior</span>
+                <div class="kpi-label">CTR</div>
+                <div class="kpi-value">5.43%</div>
+                <div class="kpi-benchmark">Bench: 0.85% - 1.21%</div>
+            </div>
+            <div class="kpi-card success">
+                <span class="kpi-status above">Superior</span>
+                <div class="kpi-label">CPC</div>
+                <div class="kpi-value">$0.44</div>
+                <div class="kpi-benchmark">Bench: $1.22 - $1.92</div>
+            </div>
+            <div class="kpi-card neutral">
+                <span class="kpi-status in-range">En Bench</span>
+                <div class="kpi-label">CPM</div>
+                <div class="kpi-value">$23.90</div>
+                <div class="kpi-benchmark">Bench USA: ~$23.00</div>
+            </div>
+            <div class="kpi-card danger">
+                <span class="kpi-status below">Bajo</span>
+                <div class="kpi-label">CVR (Lead)</div>
+                <div class="kpi-value">4.55%</div>
+                <div class="kpi-benchmark">Bench: 7.72% - 14%</div>
+            </div>
+            <div class="kpi-card neutral">
+                <div class="kpi-label">Landing Page Views</div>
+                <div class="kpi-value">452</div>
+                <div class="kpi-benchmark">60.6% de clicks → LP</div>
+            </div>
+            <div class="kpi-card neutral">
+                <div class="kpi-label">Frecuencia</div>
+                <div class="kpi-value">1.70</div>
+                <div class="kpi-benchmark">Alerta si pasa 3.0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── BENCHMARKS TABLE ── -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-title">Análisis Experto NotebookLM</div>
+        <h2>Comparativa vs. Benchmarks 2026 — Servicios Financieros (USA)</h2>
+        <table class="benchmark-table">
+            <thead>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Tu Campaña</th>
+                    <th>Benchmark 2026</th>
+                    <th>Estado</th>
+                    <th>Análisis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="metric-name">CTR</td>
+                    <td class="val-warn">5.43%</td>
+                    <td>0.85% - 1.21%</td>
+                    <td><span class="kpi-status caution" style="position:static">Anomalía</span></td>
+                    <td>4.5x por encima — indica atracción del público equivocado (competidores)</td>
+                </tr>
+                <tr>
+                    <td class="metric-name">CPC</td>
+                    <td class="val-good">$0.44</td>
+                    <td>$1.22 - $1.92</td>
+                    <td><span class="kpi-status above" style="position:static">Superior</span></td>
+                    <td>Excelente eficiencia de clic — video creativo muy "atrapante"</td>
+                </tr>
+                <tr>
+                    <td class="metric-name">CPM</td>
+                    <td class="val-neutral">$23.90</td>
+                    <td>~$23.00 (USA avg)</td>
+                    <td><span class="kpi-status in-range" style="position:static">En Bench</span></td>
+                    <td>Normal para mercado USA Tier 1</td>
+                </tr>
+                <tr>
+                    <td class="metric-name">CPL</td>
+                    <td class="val-warn">$9.65</td>
+                    <td>$27.66 - $250</td>
+                    <td><span class="kpi-status caution" style="position:static">Demasiado Bajo</span></td>
+                    <td>En servicios profesionales, CPL bajo = baja calidad de lead</td>
+                </tr>
+                <tr>
+                    <td class="metric-name">CVR (Lead)</td>
+                    <td class="val-bad">4.55%</td>
+                    <td>7.72% - 14%</td>
+                    <td><span class="kpi-status below" style="position:static">Bajo</span></td>
+                    <td>Muchos clicks pero pocos convierten — landing no optimizada</td>
+                </tr>
+                <tr>
+                    <td class="metric-name">Frecuencia</td>
+                    <td class="val-good">1.70</td>
+                    <td>< 3.0 (prospección)</td>
+                    <td><span class="kpi-status above" style="position:static">Sano</span></td>
+                    <td>Sin fatiga creativa aún</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="padding: 20px; background: rgba(232,168,56,0.05); border-radius: var(--brand-radius-sm); border: 1px solid rgba(232,168,56,0.15); font-size: 0.82rem; color: var(--brand-gray-soft); line-height: 1.7;">
+            <strong style="color: var(--brand-warning);">⚠️ CTR de 5.43% — Señal de Alerta:</strong> Según fuentes especializadas, un CTR superior al 5% en el sector financiero es <strong>inusual y sospechoso</strong>. Un engagement de "curiosidad" vs. "intención" típicamente indica que el anuncio parece contenido informativo general en vez de una oferta de servicio profesional. <strong>El algoritmo Andromeda clasifica tu anuncio como "interés en industria tributaria" — no como "necesidad de servicio tributario".</strong>
+        </div>
+    </div>
+</section>
+
+<!-- ── AD-LEVEL PERFORMANCE ── -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">Rendimiento por Anuncio</div>
+        <h2>Detalle de Ads — Últimos 7 Días</h2>
+        <div class="ad-grid">
+            <!-- WINNER: Video 1099 -->
+            <div class="ad-card" style="border-color: rgba(212,168,83,0.35);">
+                <span class="winner-badge">🏆 Ganador</span>
+                <div class="ad-name">Ad A: Video 1099</div>
+                <div class="ad-stats">
+                    <div class="ad-stat-item">
+                        <div class="label">Spend</div>
+                        <div class="value" style="color: var(--brand-accent);">$187.50</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Leads</div>
+                        <div class="value" style="color: var(--brand-success);">30</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">CPL</div>
+                        <div class="value" style="color: var(--brand-success);">$6.25</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">CTR</div>
+                        <div class="value">5.33%</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">CPC</div>
+                        <div class="value">$0.45</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Video Views</div>
+                        <div class="value">2,648</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">LP Views</div>
+                        <div class="value">282</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Engagement</div>
+                        <div class="value">2,999</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 12px; border-radius: 8px; background: rgba(45,139,94,0.06); font-size: 0.78rem; color: var(--brand-gray-soft);">
+                    88% de todos los leads. 39 reactions, 9 saves, 48 post saves. Escalar este ad con variaciones de hook.
+                </div>
+            </div>
+
+            <!-- Video W2 -->
+            <div class="ad-card">
+                <div class="ad-name">Ad A: Video W2</div>
+                <div class="ad-stats">
+                    <div class="ad-stat-item">
+                        <div class="label">Spend</div>
+                        <div class="value">$3.55</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Leads</div>
+                        <div class="value" style="color: var(--brand-gray-mid);">0</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">CTR</div>
+                        <div class="value">4.73%</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">LP Views</div>
+                        <div class="value">4</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 12px; border-radius: 8px; background: rgba(214,69,69,0.06); font-size: 0.78rem; color: var(--brand-gray-soft);">
+                    Apenas recibió presupuesto ($3.55). Sin leads. Meta priorizó Video 1099. Evaluar expandir manualmente.
+                </div>
+            </div>
+
+            <!-- Estático W2 -->
+            <div class="ad-card">
+                <div class="ad-name">Ad B: Estático W2</div>
+                <div class="ad-stats">
+                    <div class="ad-stat-item">
+                        <div class="label">Spend</div>
+                        <div class="value">$0.24</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Impressions</div>
+                        <div class="value">8</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Clicks</div>
+                        <div class="value">0</div>
+                    </div>
+                    <div class="ad-stat-item">
+                        <div class="label">Leads</div>
+                        <div class="value" style="color: var(--brand-gray-mid);">0</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 12px; border-radius: 8px; background: rgba(214,69,69,0.06); font-size: 0.78rem; color: var(--brand-gray-soft);">
+                    Sin tracción. Eliminado del mix por el algoritmo. Considerar pausar y crear nuevo creativo estático.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── GHL PIPELINE ── -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-title">GoHighLevel Pipeline</div>
+        <h2>Tax Preparation — Estado del Pipeline</h2>
+        <p style="font-size: 0.85rem; color: var(--brand-gray-soft); margin-bottom: 32px;">
+            100 oportunidades totales &nbsp;|&nbsp; Valor en pipeline: <strong style="color: var(--brand-accent);">$7,871</strong>
+        </p>
+        <div class="pipeline-stages">
+            <div class="pipeline-stage">
+                <div class="stage-name">Procesado ✅</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:15%; background: var(--brand-success);"></div></div>
+                <div><div class="stage-count">15</div><div class="stage-value">$2,311</div></div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-name">Pendiente Docs 📄</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:14%; background: var(--brand-accent);"></div></div>
+                <div><div class="stage-count">14</div><div class="stage-value">$2,070</div></div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-name">No Calificado 🔍</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:10%; background: var(--brand-warning);"></div></div>
+                <div><div class="stage-count">10</div><div class="stage-value">$0</div></div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-name">Primer Contacto 📞</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:3%; background: var(--brand-info);"></div></div>
+                <div><div class="stage-count">3</div><div class="stage-value">$394</div></div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-name">Agendado 📅</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:3%; background: var(--brand-info);"></div></div>
+                <div><div class="stage-count">3</div><div class="stage-value">$344</div></div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-name" style="color: var(--brand-danger);">No Sigue ❌</div>
+                <div class="stage-bar-wrap"><div class="stage-bar" style="width:55%; background: var(--brand-danger);"></div></div>
+                <div><div class="stage-count" style="color: var(--brand-danger);">55</div><div class="stage-value">$2,752</div></div>
+            </div>
+        </div>
+
+        <!-- Pipeline Analysis -->
+        <div style="margin-top: 32px; padding: 24px; border-radius: var(--brand-radius-sm); background: rgba(214,69,69,0.05); border: 1px solid rgba(214,69,69,0.15); font-size: 0.82rem; color: var(--brand-gray-soft); line-height: 1.7;">
+            <strong style="color: var(--brand-danger);">🚨 Alerta Pipeline:</strong> 55% de las oportunidades están en <strong>"No Sigue"</strong> ($2,752 perdidos). Esto confirma el problema de calidad de leads: muchos entran al pipeline pero no califican. Los 15 "Procesados" ($2,311) representan la conversión real: <strong>tasa de cierre efectiva del 15%</strong>.
+        </div>
+    </div>
+</section>
+
+<!-- ── DIAGNOSIS ── -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">Diagnóstico Expert</div>
+        <h2>Problemas Identificados y Qué Está Bien</h2>
+        <div class="diagnosis-grid">
+            <div class="diagnosis-card critical">
+                <div class="icon">🎯</div>
+                <h3>Targeting Atraendo Competidores</h3>
+                <p>7 de 12 encuestados son preparadores de taxes. El algoritmo Andromeda clasifica el anuncio como "industria tributaria" en vez de "necesidad de servicio". El video 1099 es informativo/educacional y atrae profesionales del sector.</p>
+            </div>
+            <div class="diagnosis-card critical">
+                <div class="icon">🔥</div>
+                <h3>Pixel Mal Configurado</h3>
+                <p>El evento Lead estaba configurado muy dentro de la Thank You page, sin trackear correctamente. Esto "ensució" el aprendizaje del algoritmo durante 7 días. Ya se corrigió pero Meta necesita tiempo para recalibrar.</p>
+            </div>
+            <div class="diagnosis-card warning">
+                <div class="icon">📊</div>
+                <h3>CVR Bajo (4.55% vs 7-14%)</h3>
+                <p>Solo 34 de 746 clicks conviertieron en lead. La landing page probablemente tiene demasiados campos o falta "message match" con el ad. El formulario debería tener máximo 1-3 campos iniciales.</p>
+            </div>
+            <div class="diagnosis-card positive">
+                <div class="icon">✅</div>
+                <h3>Eficiencia de Tráfico Excepcional</h3>
+                <p>CPC $0.44 (63% bajo benchmark), CPM en rango, 4,003 video views. El creativo es muy atractivo y genera engagement masivo. Esta base es escalable una vez resuelta la calidad.</p>
+            </div>
+            <div class="diagnosis-card positive">
+                <div class="icon">💰</div>
+                <h3>Pipeline Revenue Real</h3>
+                <p>15 clientes procesados generando $2,311 + 14 pendientes de documentos por $2,070. Revenue potencial total: $4,381. Con inversión de $328, el ROAS bruto pipeline es de ~13.3x.</p>
+            </div>
+            <div class="diagnosis-card info">
+                <div class="icon">⏰</div>
+                <h3>Temporalidad Crítica</h3>
+                <p>Estamos en Tax Season 2026. Los CPMs subirán las próximas semanas pero la intención de compra es máxima. Es mejor adelantar presupuesto ahora antes de que los costos se disparen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ACTION PLAN ── -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-title">Plan de Acción — Semana 2</div>
+        <h2>7 Acciones Prioritarias para Esta Semana</h2>
+        <div class="action-list">
+            <div class="action-item">
+                <h4>Hook de Identificación de Avatar <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>Los primeros 3 segundos del video deben nombrar al público correcto y repeler competidores: <em style="color:var(--brand-accent-light);">"Si eres trabajador 1099 y NO eres preparador de impuestos, esto es para ti."</em> Andromeda analiza audio y texto para clasificar la audiencia. Si los competidores dejan de interactuar, el algoritmo dejará de buscarlos.</p>
+            </div>
+            <div class="action-item">
+                <h4>Lógica Condicional en Formularios <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>Agregar pregunta de pre-calificación: <em style="color:var(--brand-accent-light);">"¿Eres preparador de impuestos?"</em> Si responden "Sí", cerrar el formulario automáticamente o enviar a una página no comercial. Esto entrena al algoritmo a buscar contribuyentes reales, no profesionales del sector.</p>
+            </div>
+            <div class="action-item">
+                <h4>Optimizar Señales de Conversión (CAPI) <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>Solo disparar el evento "Lead" hacia Meta cuando el usuario complete la encuesta de calificación, NO en el pre-registro. Esto entrena al algoritmo para buscar personas que completan el proceso completo, no solo las que hacen clic. Meta necesita señales de <strong>calidad</strong> para recalibrar.</p>
+            </div>
+            <div class="action-item">
+                <h4>Simplificar Formulario Inicial (1-3 campos) <span class="action-priority priority-high">Alto</span></h4>
+                <p>Reducir el pre-registro a solo Nombre y Teléfono. Mover las preguntas complejas a un paso posterior. Formularios de 1-3 campos tienen la tasa de conversión más alta. Esto debería subir el CVR del 4.55% actual hacia el benchmark de 7-14%.</p>
+            </div>
+            <div class="action-item">
+                <h4>Message Match en Landing Page <span class="action-priority priority-high">Alto</span></h4>
+                <p>El titular de la landing debe repetir exactamente la promesa del ad. Si el ad habla de "1099", el encabezado principal debe decir <em style="color:var(--brand-accent-light);">"Especialistas en Impuestos para Trabajadores 1099"</em>. Agregar testimonios en video justo debajo del CTA para reducir fricción por confianza.</p>
+            </div>
+            <div class="action-item">
+                <h4>Escalar Ad Ganador con Regla del 20% <span class="action-priority priority-medium">Medio</span></h4>
+                <p>No incrementar presupuesto más de 20-30% cada 3-5 días. Para salir de Learning Phase, Meta necesita mínimo 50 conversiones/semana por ad set. Con CPL de $6.25, el presupuesto diario mínimo ideal es $45-$50. Crear variaciones del mismo concepto con diferentes hooks en los primeros 3 segundos.</p>
+            </div>
+            <div class="action-item">
+                <h4>Crear Exclusiones de Audiencia <span class="action-priority priority-medium">Medio</span></h4>
+                <p>Subir lista de contactos actuales a Meta como Audiencia Personalizada y excluir. Excluir intereses como "Tax Preparation Software" y "Accounting Services". No micro-segmentar manualmente — dejar que el creativo filtrado haga el trabajo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── BUDGET RECOMMENDATION ── -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">Recomendación de Presupuesto</div>
+        <h2>Semana 2 — Tax Season Sprint</h2>
+        <div class="budget-box">
+            <p style="font-size: 0.88rem; color: var(--brand-gray-soft); margin-bottom: 16px;">
+                Estrategia <strong style="color: var(--brand-accent);">70/20/10</strong>: 70% al ad ganador (1099), 20% a variaciones de video, 10% a probar nuevo ángulo (ej. errores comunes en declaraciones latinas).
+            </p>
+            <div class="budget-grid">
+                <div class="budget-item">
+                    <div class="amount">$50</div>
+                    <div class="desc">Diario Mínimo</div>
+                </div>
+                <div class="budget-item">
+                    <div class="amount">$350</div>
+                    <div class="desc">Semanal Conservador</div>
+                </div>
+                <div class="budget-item">
+                    <div class="amount">$700</div>
+                    <div class="desc">Semanal Agresivo</div>
+                </div>
+                <div class="budget-item">
+                    <div class="amount">~56</div>
+                    <div class="desc">Leads Esperados (cons.)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── METRICS TO MONITOR ── -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-title">Métricas de Monitoreo</div>
+        <h2>Señales Tempranas — Qué Vigilar en Semana 2</h2>
+        <div class="monitor-grid">
+            <div class="monitor-card">
+                <div class="metric-name">Hook Rate (3s)</div>
+                <div class="threshold">≥ 25-30%</div>
+                <div class="signal signal-green">✓ Si se mantiene = video fresco</div>
+                <div class="signal signal-red">✗ Si baja = fatiga creativa</div>
+            </div>
+            <div class="monitor-card">
+                <div class="metric-name">CPM</div>
+                <div class="threshold">≤ $30</div>
+                <div class="signal signal-green">✓ Estable = buena relevancia</div>
+                <div class="signal signal-red">✗ Sube = competencia alta/creative fatigue</div>
+            </div>
+            <div class="monitor-card">
+                <div class="metric-name">CTR de Enlace</div>
+                <div class="threshold">≥ 0.9%</div>
+                <div class="signal signal-green">✓ Debería BAJAR del 5.43% con filtro</div>
+                <div class="signal signal-red">✗ Si se mantiene 5%+ = aún atrayendo wrong audience</div>
+            </div>
+            <div class="monitor-card">
+                <div class="metric-name">Frecuencia (7d)</div>
+                <div class="threshold">< 3.0</div>
+                <div class="signal signal-green">✓ 1.70 actual = sano</div>
+                <div class="signal signal-red">✗ Si pasa 3.0 = saturación</div>
+            </div>
+            <div class="monitor-card">
+                <div class="metric-name">Lead Quality</div>
+                <div class="threshold">< 30% no calificados</div>
+                <div class="signal signal-green">✓ Si baja % de competidores → éxito</div>
+                <div class="signal signal-red">✗ Si sigue 50%+ competidores → cambio de creativo</div>
+            </div>
+            <div class="monitor-card">
+                <div class="metric-name">MER (Revenue/Spend)</div>
+                <div class="threshold">≥ 5x</div>
+                <div class="signal signal-green">✓ Actual: ~13.3x (pipeline total)</div>
+                <div class="signal signal-red">✗ Considerar solo "Procesados" reales</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="review-footer">
+    <p>Meta Ads Review — Jorge Vergara Financial &nbsp;|&nbsp; Semana del 10 de Marzo, 2026</p>
+    <p>Próxima revisión programada: <strong style="color: var(--brand-accent-light);">17 de Marzo, 2026</strong></p>
+    <p class="powered">Powered by Sales Velocity System &nbsp;×&nbsp; NotebookLM Expert Analysis</p>
+</footer>
+
+</body>
+</html>
