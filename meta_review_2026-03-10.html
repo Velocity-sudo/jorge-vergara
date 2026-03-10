@@ -359,7 +359,7 @@
 <!-- ── HERO ── -->
 <section class="hero">
     <div class="eyebrow">Meta Ads Performance Review</div>
-    <h1>Semana 1 — BSL Launch</h1>
+    <h1>Semana 1 — VSL Launch</h1>
     <p class="subtitle">Primera revisión semanal de campañas de Meta Ads &mdash; Tax Preparation Season 2026</p>
     <div class="period-badge">
         <span class="dot"></span>
@@ -704,32 +704,32 @@
         <h2>7 Acciones Prioritarias para Esta Semana</h2>
         <div class="action-list">
             <div class="action-item">
-                <h4>Hook de Identificación de Avatar <span class="action-priority priority-critical">Crítico</span></h4>
-                <p>Los primeros 3 segundos del video deben nombrar al público correcto y repeler competidores: <em style="color:var(--brand-accent-light);">"Si eres trabajador 1099 y NO eres preparador de impuestos, esto es para ti."</em> Andromeda analiza audio y texto para clasificar la audiencia. Si los competidores dejan de interactuar, el algoritmo dejará de buscarlos.</p>
+                <h4>Nuevo Hook en "Video 1099" para Repeler Preparadores <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>El <strong>"Ad A: Video 1099"</strong> (ganador con $187.50 de inversión y 30 leads) está generando CTR de 5.33% pero atrayendo preparadores de impuestos. <strong>Acción:</strong> Crear una variación del mismo video donde los primeros 3 segundos digan explícitamente: <em style="color:var(--brand-accent-light);">"Si eres trabajador 1099 y NECESITAS ayuda con tus impuestos — esto es para ti. Si ya eres preparador, este video no es para ti."</em> Andromeda analiza audio y texto del creativo para clasificar la audiencia. Si los preparadores dejan de interactuar, el algoritmo dejará de buscarlos. Mantener el video original corriendo en paralelo para comparar resultados.</p>
             </div>
             <div class="action-item">
-                <h4>Lógica Condicional en Formularios <span class="action-priority priority-critical">Crítico</span></h4>
-                <p>Agregar pregunta de pre-calificación: <em style="color:var(--brand-accent-light);">"¿Eres preparador de impuestos?"</em> Si responden "Sí", cerrar el formulario automáticamente o enviar a una página no comercial. Esto entrena al algoritmo a buscar contribuyentes reales, no profesionales del sector.</p>
+                <h4>Pre-Calificación en el Form de Pre-Registro (GHL Form <code>uXpIuXSiCHXh01X4gAqb</code>) <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>El formulario actual en <strong>preregistro_ghl_snippet.html</strong> captura Nombre, Email y Teléfono sin ningún filtro. <strong>Acción:</strong> Agregar en GHL un campo condicional ANTES del submit: <em style="color:var(--brand-accent-light);">"¿Cuál es tu situación? → (a) Soy trabajador y necesito preparar mis taxes (b) Soy preparador de impuestos"</em>. Si seleccionan (b), redirigir a una página diferente o mostrar un mensaje "Este programa es para contribuyentes". Esto elimina preparadores ANTES de que entren al pipeline y "ensucien" el evento Lead del Pixel.</p>
             </div>
             <div class="action-item">
-                <h4>Optimizar Señales de Conversión (CAPI) <span class="action-priority priority-critical">Crítico</span></h4>
-                <p>Solo disparar el evento "Lead" hacia Meta cuando el usuario complete la encuesta de calificación, NO en el pre-registro. Esto entrena al algoritmo para buscar personas que completan el proceso completo, no solo las que hacen clic. Meta necesita señales de <strong>calidad</strong> para recalibrar.</p>
+                <h4>Mover Evento "Lead" del Pixel al Survey (GHL Survey <code>8HpnUgSjIkp4fq9L8omr</code>) <span class="action-priority priority-critical">Crítico</span></h4>
+                <p>Actualmente el Meta Pixel dispara "Lead" en el submit del pre-registro (línea 10 del snippet). <strong>Acción:</strong> Mover el evento de conversión "Lead" para que solo se dispare cuando el usuario completa la encuesta en la página VSL (<strong>vsl_acceso_ghl_snippet.html</strong>, sección #survey-section). La encuesta ya incluye preguntas de calificación. Esto entrena a Meta para optimizar hacia personas que llegan hasta el paso 3 del funnel (Te registraste → Viste el video → Llenaste la encuesta), no solo las que hacen clic en el pre-registro.</p>
             </div>
             <div class="action-item">
-                <h4>Simplificar Formulario Inicial (1-3 campos) <span class="action-priority priority-high">Alto</span></h4>
-                <p>Reducir el pre-registro a solo Nombre y Teléfono. Mover las preguntas complejas a un paso posterior. Formularios de 1-3 campos tienen la tasa de conversión más alta. Esto debería subir el CVR del 4.55% actual hacia el benchmark de 7-14%.</p>
+                <h4>Headline Match: Pre-Registro No Dice "1099" Pero el Ad Sí <span class="action-priority priority-high">Alto</span></h4>
+                <p>El titular actual del pre-registro es: <em style="color:var(--brand-gray-soft);">"Descubre los Errores que te Cuestan Miles de Dólares al IRS"</em> y el subtítulo menciona "W2, 1099 o dueño de negocio" — demasiado genérico. Pero el ad ganador se llama "Video 1099" y habla específicamente de trabajadores 1099. <strong>Acción:</strong> Cambiar el headline del pre-registro a <em style="color:var(--brand-accent-light);">"Trabajador 1099: Los Errores que te Están Costando Miles al IRS"</em> y eliminar las menciones a W2 y dueños de negocio del subtítulo. Message match exacto = mayor CVR (objetivo: subir del 4.55% actual hacia 7-14%).</p>
             </div>
             <div class="action-item">
-                <h4>Message Match en Landing Page <span class="action-priority priority-high">Alto</span></h4>
-                <p>El titular de la landing debe repetir exactamente la promesa del ad. Si el ad habla de "1099", el encabezado principal debe decir <em style="color:var(--brand-accent-light);">"Especialistas en Impuestos para Trabajadores 1099"</em>. Agregar testimonios en video justo debajo del CTA para reducir fricción por confianza.</p>
+                <h4>Headline Match: Página VSL Genérica — Agregar Refuerzo "1099" <span class="action-priority priority-high">Alto</span></h4>
+                <p>La página VSL dice <em style="color:var(--brand-gray-soft);">"¡Acceso Conseguido! Tu Video de 5 Minutos Está Listo"</em> — no refuerza la promesa específica del ad. El usuario que hizo clic en un video sobre "1099" llega a un titular genérico. <strong>Acción:</strong> Cambiar el subtítulo debajo de "Acceso Conseguido" a: <em style="color:var(--brand-accent-light);">"Mira cómo trabajadores 1099 como tú están maximizando su reembolso con esta estrategia legal"</em>. Esto mantiene la continuidad del mensaje desde el ad hasta el VSL.</p>
             </div>
             <div class="action-item">
-                <h4>Escalar Ad Ganador con Regla del 20% <span class="action-priority priority-medium">Medio</span></h4>
-                <p>No incrementar presupuesto más de 20-30% cada 3-5 días. Para salir de Learning Phase, Meta necesita mínimo 50 conversiones/semana por ad set. Con CPL de $6.25, el presupuesto diario mínimo ideal es $45-$50. Crear variaciones del mismo concepto con diferentes hooks en los primeros 3 segundos.</p>
+                <h4>Escalar "Video 1099" con Regla del 20% — Presupuesto a $50/día <span class="action-priority priority-medium">Medio</span></h4>
+                <p>El <strong>"Ad A: Video 1099"</strong> concentra el 88% de leads (30 de 34) con CPL de $6.25 y 2,648 video views. Los otros dos ads (Video W2: $3.55 gastados, 0 leads; Estático W2: $0.24, 0 impressions) fueron eliminados por el algoritmo. <strong>Acción:</strong> Subir presupuesto gradualmente de $46.88/día actual a $50-55/día esta semana (incremento del 20%). Pausar "Estático W2" formalmente y crear 2 variaciones del Video 1099 con hooks diferentes en los primeros 3 segundos (mantener el mismo contenido central). Meta necesita ~50 conversiones/semana por ad set para salir de Learning Phase.</p>
             </div>
             <div class="action-item">
-                <h4>Crear Exclusiones de Audiencia <span class="action-priority priority-medium">Medio</span></h4>
-                <p>Subir lista de contactos actuales a Meta como Audiencia Personalizada y excluir. Excluir intereses como "Tax Preparation Software" y "Accounting Services". No micro-segmentar manualmente — dejar que el creativo filtrado haga el trabajo.</p>
+                <h4>Exclusión de los 55 "No Sigue" + Intereses de Preparadores <span class="action-priority priority-medium">Medio</span></h4>
+                <p>El pipeline GHL muestra 55 contactos en "No Sigue" ($2,752 perdidos) — muchos son preparadores que entraron por curiosidad. <strong>Acción:</strong> Exportar los 55 contactos de "No Sigue" + los 10 "No Calificado" del pipeline de GHL, subirlos a Meta como Audiencia Personalizada y excluirlos. Además, excluir intereses como "Tax Preparation Software", "Intuit ProConnect" y "Accounting Services". El creativo filtrado (hook + form condicional) hará el trabajo pesado, las exclusiones son la segunda capa de defensa.</p>
             </div>
         </div>
     </div>
