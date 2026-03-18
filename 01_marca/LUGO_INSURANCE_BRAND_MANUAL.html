@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lugo Insurance & Advisors - Corporate Brand Manual</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-navy: #002B49;
+            --brand-teal: #00C4CC;
+            --bg-light: #F8FAFC;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- SIDEBAR LAYOUT --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--brand-navy);
+            color: white;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .sidebar-logo img {
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-logo img:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 18px;
+        }
+
+        .nav-menu a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a::before {
+            content: '•';
+            color: var(--brand-teal);
+            font-size: 1.5rem;
+            margin-right: 10px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .nav-menu a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: 300px;
+            padding: 70px 100px;
+            max-width: 1200px;
+        }
+
+        /* Tipografía Set */
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 60px;
+            border-bottom: 3px solid var(--brand-teal);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+            margin-top: 60px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--brand-navy);
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        strong {
+            font-weight: 700;
+            color: var(--brand-navy);
+        }
+
+        /* --- BRAND PROFILE CARDS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #E2E8F0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- COLOR SYSTEM --- */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .color-box {
+            height: 140px;
+            width: 100%;
+        }
+
+        .color-info {
+            padding: 20px;
+        }
+
+        .color-name {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--brand-navy);
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* --- TYPOGRAPHY DEMO --- */
+        .typography-example {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .type-bold {
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: var(--brand-navy);
+        }
+
+        .type-medium {
+            font-weight: 500;
+            font-size: 1.8rem;
+            color: var(--brand-teal);
+            margin-bottom: 15px;
+        }
+
+        .type-regular {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            max-width: 800px;
+        }
+
+        /* --- DARK SECTION WITH NEON GLOW CTAS --- */
+        .dark-section {
+            background-color: var(--brand-navy);
+            color: white;
+            padding: 50px 60px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 20px 40px rgba(0, 43, 73, 0.2);
+            background-image: radial-gradient(circle at top right, rgba(0, 196, 204, 0.1), transparent 50%);
+        }
+
+        .dark-section h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .dark-section p,
+        .dark-section li {
+            color: #CBD5E1;
+        }
+
+        .dark-section strong {
+            color: white;
+        }
+
+        /* Buttons Core */
+        .btn-wrapper {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 45px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brand-navy);
+            background-color: var(--brand-teal);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Magical base glow */
+            box-shadow: 0 0 20px rgba(0, 196, 204, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-5px) scale(1.02);
+            background-color: #1AE5ED;
+            /* Intensified hover glow */
+            box-shadow: 0 0 35px rgba(0, 196, 204, 0.8), 0 0 60px rgba(0, 196, 204, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+            color: #001A2C;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 43px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brand-teal);
+            background-color: transparent;
+            border: 2px solid var(--brand-teal);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 196, 204, 0.3), inset 0 0 15px rgba(0, 196, 204, 0.2);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 196, 204, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 196, 204, 0.6), inset 0 0 25px rgba(0, 196, 204, 0.4);
+            text-shadow: 0 0 8px rgba(0, 196, 204, 0.8);
+        }
+
+        /* Callouts */
+        .callout {
+            background-color: #F1F5F9;
+            border-left: 4px solid var(--brand-navy);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                padding: 30px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 40px 20px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="LUGO INSURANCE & ADVISORS A COLOR.png" alt="Lugo Insurance & Advisors">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#soul">1. El Núcleo de la Marca</a></li>
+            <li><a href="#visual">2. Identidad Visual</a></li>
+            <li><a href="#verbal">3. Identidad Verbal</a></li>
+            <li><a href="#ui">4. Guía UI & Digital</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <h1>Lugo Insurance & Advisors</h1>
+        <div class="subtitle">Manual de Identidad de Marca Corporativa</div>
+
+        <!-- SECCIÓN 1 -->
+        <section id="soul">
+            <h2>1. El Núcleo de la Marca (The Soul)</h2>
+            <p><strong>Lugo Insurance & Advisors</strong> no es solo una agencia de seguros; es un escudo protector para
+                familias y empresas. A diferencia de la marca personal del consultor fiscal individual, la marca
+                corporativa de Lugo se centra en la <strong>institución, la seguridad colectiva y la protección
+                    integral</strong>.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>🛡️ El Propósito</h3>
+                    <p><strong>Misión:</strong> Brindar tranquilidad absoluta a familias y dueños de negocios mediante
+                        estrategias de seguros sólidas, transparentes y personalizadas.</p>
+                    <p><strong>Visión:</strong> Ser reconocidos como el estándar de oro en protección patrimonial y
+                        cuidado familiar en el sector asegurador para la comunidad hispana.</p>
+                </div>
+                <div class="card">
+                    <h3>💡 Arquetipo & Valores</h3>
+                    <p><strong>Arquetipo: El Cuidador + El Héroe.</strong> Combinamos la empatía y la protección
+                        familiar con la fortaleza y resiliencia ante la incertidumbre.</p>
+                    <p style="margin-bottom:0"><strong>Valores:</strong></p>
+                    <ul style="margin-bottom:0">
+                        <li><strong>Transparencia:</strong> Sin letras pequeñas.</li>
+                        <li><strong>Empatía:</strong> Protegemos vidas, no solo bienes.</li>
+                        <li><strong>Protección:</strong> Tu escudo ante el riesgo.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2 -->
+        <section id="visual">
+            <h2>2. Identidad Visual (Design System)</h2>
+
+            <div class="callout">
+                El isotipo principal es una fusión de dos símbolos: <strong>El Escudo</strong> (Seguridad financiera e
+                Inversiones) y <strong>El Corazón</strong> (Núcleo familiar, Seguros de Vida y Salud).
+            </div>
+
+            <h3>Paleta de Colores Corporativos</h3>
+            <p>La identidad cromática busca transmitir <strong>seguridad institucional</strong> combinada con
+                <strong>modernidad tecnológica</strong> (Insurtech Premium).</p>
+
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-box" style="background-color: #002B49;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Navy Blue (El Escudo)</div>
+                        <div class="color-hex">Hex: #002B49</div>
+                        <p style="font-size: 0.9rem; margin-top: 10px; margin-bottom: 0;">Fondo web, texto principal.
+                            Transmite confianza y solidez corporativa.</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-box" style="background-color: #00C4CC;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Neon Teal (El Corazón)</div>
+                        <div class="color-hex">Hex: #00C4CC</div>
+                        <p style="font-size: 0.9rem; margin-top: 10px; margin-bottom: 0;">CTAs, botones brillantes,
+                            efectos Glow térmicos. Genera contraste radical.</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-box" style="background-color: #FFFFFF; border-bottom: 1px solid #E2E8F0;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Blanco Puro</div>
+                        <div class="color-hex">Hex: #FFFFFF</div>
+                        <p style="font-size: 0.9rem; margin-top: 10px; margin-bottom: 0;">Luminosidad, limpieza y
+                            contraste extremo sobre fondos oscuros.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Sistema Tipográfico</h3>
+            <p><strong>Plus Jakarta Sans:</strong> Geométrica, robusta, altamente legible en pantallas y de aspecto
+                sumamente moderno y Premium.</p>
+            <div class="typography-example">
+                <div class="type-bold">Plus Jakarta Sans ExtraBold (800)</div>
+                <div class="type-medium">Plus Jakarta Sans Medium (500)</div>
+                <div class="type-regular">Plus Jakarta Sans Regular (400). Usada para todo el texto de cuerpo,
+                    descripciones y copys largos. Mantiene una estética limpia, corporativa y accesible en cualquier
+                    dispositivo móvil o de escritorio.</div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3 -->
+        <section id="verbal">
+            <h2>3. Identidad Verbal (Brand Voice)</h2>
+            <p>El tono de voz corporativo. Debe diferir del de un asesor financiero individual; aquí habla <strong>la
+                    institución respaldando a la familia</strong>.</p>
+
+            <div class="grid-2">
+                <div class="card" style="border-top: 4px solid var(--brand-teal)">
+                    <h3>✅ Lo que SÍ decimos</h3>
+                    <ul style="margin-bottom:0">
+                        <li>"Proteger tu legado"</li>
+                        <li>"Tu familia está a salvo"</li>
+                        <li>"Nuestro escudo para tu paz mental"</li>
+                        <li>"Cuidamos lo que más amas"</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid #EF4444">
+                    <h3>❌ Lo que NO decimos</h3>
+                    <ul style="margin-bottom:0">
+                        <li>Contratos confusos y "letra pequeña" matemática.</li>
+                        <li>Tácticas de miedo extremo ("¿Qué pasaría si mueres mañana?"). Abordamos el riesgo, pero el
+                            tono siempre es <strong>orientado a la solución</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+            <p><strong>Foco del Discurso:</strong> Siempre hablamos en <em>Primera Persona del Plural (Nosotros)</em> en
+                lugar de "Yo", reafirmando que somos una entidad y un equipo trabajando juntos.</p>
+        </section>
+
+        <!-- SECCIÓN 4 -->
+        <section id="ui">
+            <h2>4. Guía UI y Entorno Digital (Glow Style)</h2>
+            <p>Las landing pages de alta conversión usarán esquemas <strong>Dark Mode (Azul Marino + Textos
+                    Blancos)</strong>. Esto garantiza la elegancia corporativa y permite el despliegue del
+                <strong>efecto Neón</strong> exclusivo de la marca.</p>
+
+            <div class="dark-section">
+                <h3>El Efecto "Teal Glow"</h3>
+                <p>El color Cian/Teal se aplicará para convertir botones planos en focos de luz digitales. Esto atrae el
+                    ojo humano hacia la conversión instintivamente y proyecta una imagen <em>"Insurtech Premium"</em>.
+                </p>
+
+                <div class="btn-wrapper">
+                    <a href="#" class="btn-glow">Agendar Asesoría</a>
+                    <a href="#" class="btn-outline">Ver Pólizas</a>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Directrices Fotográficas</h3>
+            <ul>
+                <li><strong>Estilo de Iluminación:</strong> Alto contraste corporativo. Se prohíben las fotos "flash
+                    over-exposed".</li>
+                <li><strong>Tratamiento UI:</strong> Sobre fotos empleadas de fondo, aplicar una capa superpuesta o
+                    gradiente Azul Marino al 30% a 50% de opacidad. Esto funde la foto con la UI y asegura que los
+                    textos en blanco y los botones "Glow" resalten perfectamente, previniendo la fatiga visual.</li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

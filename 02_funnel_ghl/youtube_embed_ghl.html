@@ -1,0 +1,50 @@
+<!-- ============================================
+     JORGE VERGARA — VSL YouTube Embed para GHL
+     [Custom HTML Element] — Pegar en el Page Builder
+     Reemplaza el video element actual de GHL Media
+     ============================================ -->
+
+<style>
+    .vsl-video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-bottom: 56.25%;
+        /* 16:9 */
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow:
+            0 0 20px rgba(0, 162, 255, 0.3),
+            0 0 60px rgba(0, 162, 255, 0.1);
+        border: 2px solid rgba(0, 162, 255, 0.4);
+        background: #000;
+    }
+
+    .vsl-video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+        .vsl-video-wrapper {
+            border-radius: 8px;
+            box-shadow:
+                0 0 15px rgba(0, 162, 255, 0.25),
+                0 0 40px rgba(0, 162, 255, 0.08);
+        }
+    }
+</style>
+
+<div class="vsl-video-wrapper">
+    <iframe
+        src="https://www.youtube.com/embed/5nDkKk89dr8?rel=0&modestbranding=1&showinfo=0&controls=1&autoplay=1&mute=1&playsinline=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+        loading="eager" title="Jorge Vergara - Clase de Taxes">
+    </iframe>
+</div>

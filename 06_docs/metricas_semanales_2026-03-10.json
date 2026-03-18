@@ -1,0 +1,29 @@
+{
+  "client": "Jorge Vergara",
+  "extraction_date": "2026-03-10",
+  "extraction_timestamp": "2026-03-10T11:18:33.567867",
+  "meta_ads": {},
+  "pipeline": {
+    "tax_preparation": {
+      "total": 205,
+      "by_stage": {
+        "No calificado": 10,
+        "Pendiente por Documentos": 18,
+        "No sigue": 110,
+        "Primer contacto": 5,
+        "Procesado": 58,
+        "Agendado": 4
+      },
+      "total_pipeline_value": 23154.0
+    }
+  },
+  "kpis": {
+    "total_leads_in_pipeline": 205,
+    "total_active_clients": 0,
+    "lead_to_client_conversion_pct": 0.0,
+    "total_pipeline_value": 23154.0,
+    "total_opportunities": 205,
+    "meta_cpl_7d": 0,
+    "meta_spend_30d": 0
+  }
+}

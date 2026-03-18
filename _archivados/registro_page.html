@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Asesoría Fiscal Jorge Vergara</title>
+    <!-- Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASE (LIGHT THEME) --- */
+        :root {
+            --bg-body: #F6F9FC;
+            --bg-card: #FFFFFF;
+            --text-main: #1D3249;
+            /* Navy */
+            --text-body: #4A5568;
+            --text-light: #718096;
+            --brand-navy: #1D3249;
+            --brand-gold: #D4AF37;
+            --brand-gold-hover: #B59020;
+            --spacing-sm: 16px;
+            --spacing-md: 32px;
+            --spacing-lg: 64px;
+            --border-radius: 16px;
+            --shadow-soft: 0 10px 40px rgba(29, 50, 73, 0.08);
+            --shadow-hover: 0 15px 50px rgba(29, 50, 73, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- LAYOUT --- */
+        .page-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 40px 20px;
+        }
+
+        .split-container {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        @media (min-width: 900px) {
+            .split-container {
+                flex-direction: row;
+            }
+        }
+
+        /* --- LEFT SIDE: CONTENT --- */
+        .content-side {
+            flex: 1;
+            background: var(--brand-navy);
+            color: #FFFFFF;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Decorative background element */
+        .content-side::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(29, 50, 73, 0) 70%);
+            border-top-left-radius: 100%;
+            pointer-events: none;
+        }
+
+        .brand-logo {
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--brand-gold);
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .headline {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #FFFFFF;
+        }
+
+        .headline .highlight-gold {
+            color: var(--brand-gold);
+        }
+
+        .subheadline {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--brand-gold);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        /* --- RIGHT SIDE: FORM --- */
+        .form-side {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #FFFFFF;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--brand-navy);
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            font-size: 15px;
+            color: var(--text-light);
+        }
+
+        /* Embed Container for GHL Form */
+        .ghl-form-embed {
+            width: 100%;
+            min-height: 350px;
+            /* In GHL, you will paste the form iframe or script here */
+        }
+
+        /* Custom Form Styling (Fallback/Mockup if not using native GHL embed yet) */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: #FAFCFF;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-navy);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(29, 50, 73, 0.1);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #D4AF37 0%, #B59020 100%);
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 18px;
+            padding: 16px 24px;
+            border-radius: 10px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.45);
+        }
+
+        .privacy-text {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* --- AUTHORITY BAR (Bottom) --- */
+        .authority-bar {
+            text-align: center;
+            padding: 24px 20px;
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .authority-bar p {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+        <div class="container" style="display: flex; justify-content: center; width: 100%;">
+            <div class="split-container">
+
+                <!-- LEFT SIDE (VALUE PROPOSITION) -->
+                <div class="content-side">
+                    <!-- Top Logo/Name -->
+                    <div class="brand-logo">
+                        JORGE VERGARA
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="headline">
+                        Descubre en 5 minutos los errores que te pueden costar <span class="highlight-gold">miles de
+                            dólares</span> en impuestos
+                    </h1>
+
+                    <!-- Subhead -->
+                    <p class="subheadline">
+                        El IRS no perdona el desorden, pero premia a quienes conocen el sistema. Regístrate para acceder
+                        al video gratuito donde revelo cómo proteger tu dinero legalmente.
+                    </p>
+
+                    <!-- Bullet Points -->
+                    <ul class="benefits-list">
+                        <li>Evita multas innecesarias por mala clasificación (1099 vs W2).</li>
+                        <li>Descubre deducciones legales que la mayoría de preparadores ignoran.</li>
+                        <li>Asegura tu tranquilidad y la de tu familia frente al IRS.</li>
+                    </ul>
+                </div>
+
+                <!-- RIGHT SIDE (OPT-IN FORM) -->
+                <div class="form-side">
+                    <div class="form-header">
+                        <h2>Acceso Inmediato al Video</h2>
+                        <p>Ingresa tus datos para ver el entrenamiento gratuito ahora mismo.</p>
+                    </div>
+
+                    <!-- 
+                        NOTE FOR GO HIGH LEVEL: 
+                        You can replace this entire form block with the GHL Form Embed Code 
+                    -->
+                    <form action="[GHL_FORM_SUBMIT_URL_AQUI]" method="POST">
+                        <div class="form-group">
+                            <label for="first_name">Nombre completo</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control"
+                                placeholder="Ej. Carlos Martínez" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@correo.com"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Teléfono (Opcional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567">
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            Ver el Video Ahora
+                        </button>
+
+                        <div class="privacy-text">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            Tus datos son 100% seguros y confidenciales.
+                        </div>
+                    </form>
+                    <!-- END FORM MOCKUP -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SIMPLE FOOTER -->
+    <div class="authority-bar">
+        <p>Jorge Vergara © 2026 | Estratega Fiscal Registrado | Protegiendo el patrimonio de la comunidad hispana</p>
+    </div>
+
+</body>
+
+</html>

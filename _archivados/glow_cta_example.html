@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lugo Insurance & Advisors - Glow CTA Example</title>
+    <!-- Incluyendo la fuente Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS BASE (Fondos Oscuros para resaltar el Glow) --- */
+        body {
+            background-color: #002B49;
+            /* Azul Marino Corporativo (El Escudo) */
+            color: #FFFFFF;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: #94A3B8;
+            /* Gris azulado para subtítulos */
+            max-width: 600px;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* --- ESTILOS DE BOTONES PREMIUM GLOW --- */
+
+        /* Variables de Color */
+        :root {
+            --brand-neon-teal: #00C4CC;
+            /* Color del Corazón / Neón */
+            --brand-neon-teal-rgb: 0, 196, 204;
+        }
+
+        /* 1. Botón Primario (El Foco Principal - Glow Efectivo) */
+        .btn-glow-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #002B49;
+            /* Texto oscuro para máximo contraste sobre el fondo cian */
+            background-color: var(--brand-neon-teal);
+            border: none;
+            border-radius: 50px;
+            /* Forma de píldora moderna */
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            /* LA MAGIA DEL GLOW INICIAL */
+            box-shadow: 0 0 20px rgba(var(--brand-neon-teal-rgb), 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animación/Hover del Botón Primario */
+        .btn-glow-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            background-color: #1AE5ED;
+            /* Un poco más brillante en Hover */
+            /* GLOW INTENSIFICADO AL PASAR EL RATÓN */
+            box-shadow: 0 0 35px rgba(var(--brand-neon-teal-rgb), 0.8),
+                0 0 60px rgba(var(--brand-neon-teal-rgb), 0.4),
+                inset 0 0 10px rgba(255, 255, 255, 0.4);
+            color: #001A2C;
+            /* Aún más oscuro para el texto al brillar */
+        }
+
+        /* 2. Botón Secundario (Glow Sutil - Borde Neón) */
+        .btn-glow-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brand-neon-teal);
+            background-color: transparent;
+            border: 2px solid var(--brand-neon-teal);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+
+            /* GLOW SUTIL EN EL BORDE */
+            box-shadow: 0 0 15px rgba(var(--brand-neon-teal-rgb), 0.3),
+                inset 0 0 15px rgba(var(--brand-neon-teal-rgb), 0.2);
+        }
+
+        /* Animación/Hover del Botón Secundario */
+        .btn-glow-outline:hover {
+            background-color: rgba(var(--brand-neon-teal-rgb), 0.1);
+            transform: translateY(-3px);
+            /* GLOW AUMENTADO EN HOVER */
+            box-shadow: 0 0 25px rgba(var(--brand-neon-teal-rgb), 0.6),
+                inset 0 0 25px rgba(var(--brand-neon-teal-rgb), 0.4);
+            text-shadow: 0 0 8px rgba(var(--brand-neon-teal-rgb), 0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lugo Insurance & Advisors</h1>
+    <p>Ejemplo de la identidad visual digital premium. Observa cómo el color Cian/Teal (el Corazón del Logo) brilla
+        estratégicamente sobre el Azul Marino intenso (el Escudo).</p>
+
+    <div class="cta-container">
+        <!-- El Botón de Acción Principal (El que más llama la atención) -->
+        <a href="#" class="btn-glow-primary">Get a Quote</a>
+
+        <!-- El Botón Secundario (Para acciones menores como 'Ver Servicios') -->
+        <a href="#" class="btn-glow-outline">Our Services</a>
+    </div>
+
+</body>
+
+</html>

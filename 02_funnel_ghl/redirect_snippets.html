@@ -1,0 +1,57 @@
+<!-- 
+========================================================================
+FRAGMENTOS DE CÓDIGO PARA PÁGINAS PUENTE (REDIRECTS)
+========================================================================
+Instrucciones: 
+Crea una nueva página en el Funnel para cada objetivo (agendar, whatsapp, etc).
+Pega el código correspondiente en: Settings > Tracking Code > Header Code.
+========================================================================
+-->
+
+<!-- 
+1. PÁGINA: /go/book 
+   OBJETIVO: Redirigir al calendario preservando UTMs.
+   USO: Cuando el usuario hace click en "Agendar Evaluación" en la landing.
+-->
+<script>
+    // --- CONFIGURACIÓN ---
+    // Reemplaza esto con el link directo a tu calendario o página de booking
+    const destino = "[BOOKING_URL_AQUI]"; // Ej: https://api.leadconnectorhq.com/widget/booking/...
+    // ---------------------
+
+    // Función para pasar los UTMs
+    const params = window.location.search;
+
+    // Opcional: Evento FB Pixel
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout');
+    }
+
+    // Redirección con pequeño delay
+    setTimeout(function () {
+        window.location.href = destino + params;
+    }, 400); 
+</script>
+
+<!-- 
+2. PÁGINA: /go/wa (Opcional)
+   OBJETIVO: Redirigir a WhatsApp.
+   USO: Si decides poner un botón de soporte.
+-->
+<script>
+    // --- CONFIGURACIÓN ---
+    const telefono = "15550000000"; // Tu número con código de país
+    const mensaje = "Hola, me interesa la evaluación de impuestos.";
+    // ---------------------
+
+    const urlWA = "https://api.whatsapp.com/send?phone=" + telefono + "&text=" + encodeURIComponent(mensaje);
+
+    // Opcional: Evento FB Pixel
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Contact');
+    }
+
+    setTimeout(function () {
+        window.location.href = urlWA;
+    }, 400); 
+</script>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video de 5 Minutos: Errores Costosos de Impuestos</title>
+    <!-- Incluir fuente Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- RESET & BASE (GHL Override) --- */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .jv-landing {
+            --text-main: #FFFFFF;
+            --text-body: #CBD5E1;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --brand-navy: #002B49;
+            --brand-navy-light: #2C4A6B;
+            --brand-teal: #00C4CC;
+            --brand-teal-rgb: 0, 196, 204;
+            --brand-teal-hover: #1AE5ED;
+            --brand-gold: #D4AF37;
+            --brand-gold-rgb: 212, 175, 55;
+            --brand-gold-hover: #F2C94C;
+            --brand-red: #E11D48;
+            --brand-green: #10B981;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .jv-landing * {
+            box-sizing: border-box;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 0;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .jv-highlight {
+            color: var(--brand-teal);
+            text-decoration: underline;
+            text-decoration-color: rgba(var(--brand-teal-rgb), 0.4);
+            text-underline-offset: 4px;
+        }
+
+        .jv-highlight-dark {
+            color: var(--brand-navy);
+            text-decoration: underline;
+            text-decoration-color: rgba(29, 50, 73, 0.2);
+            text-underline-offset: 4px;
+        }
+
+        /* --- BUTTONS --- */
+        .jv-btn-trigger {
+            background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-hover) 100%);
+            color: var(--brand-navy);
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 20px;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(var(--brand-gold-rgb), 0.4);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 50;
+            text-decoration: none;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .jv-btn-trigger:hover,
+        .jv-btn-trigger:active,
+        .jv-btn-trigger:focus {
+            background: linear-gradient(135deg, var(--brand-gold-hover) 0%, var(--brand-gold) 100%);
+            box-shadow: 0 6px 20px rgba(var(--brand-gold-rgb), 0.6);
+            outline: none;
+        }
+
+        .jv-btn-trigger svg {
+            transition: transform 0.3s ease;
+        }
+
+        .jv-btn-trigger:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* --- LAYOUT UTILS --- */
+        .jv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .jv-section {
+            padding: 80px 0;
+        }
+
+        .jv-text-center {
+            text-align: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .jv-hero {
+            background-color: var(--brand-navy);
+            background-image: radial-gradient(circle at center, rgba(var(--brand-teal-rgb), 0.05) 0%, rgba(29, 50, 73, 1) 100%);
+            color: var(--text-body);
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .jv-hero .jv-pretitle {
+            color: var(--brand-teal);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            background: rgba(var(--brand-teal-rgb), 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(var(--brand-teal-rgb), 0.2);
+        }
+
+        .jv-hero h1 {
+            font-size: 42px;
+            color: #FFFFFF;
+            margin-bottom: 24px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .jv-hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- BADGES --- */
+        .jv-badges-wrapper {
+            background: #FFFFFF;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+            margin-top: -40px;
+            border-radius: 12px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .jv-badges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .jv-badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--brand-navy);
+        }
+
+        .jv-badge-item svg {
+            color: var(--brand-teal);
+            width: 32px;
+            height: 32px;
+        }
+
+        /* --- PAIN POINTS --- */
+        .jv-pain-section {
+            background-color: #F8FAFC;
+        }
+
+        .jv-pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .jv-pain-card {
+            background: #FFFFFF;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            border-top: 4px solid var(--brand-navy);
+            transition: transform 0.3s;
+        }
+
+        .jv-pain-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .jv-pain-card h4 {
+            font-size: 20px;
+            color: var(--brand-navy);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .jv-pain-card h4::before {
+            content: '⚠️';
+            font-size: 24px;
+        }
+
+        .jv-pain-card p {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* --- SOLUTION --- */
+        .jv-solution-section {
+            background: var(--brand-navy);
+            color: #FFFFFF;
+        }
+
+        .jv-solution-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .jv-solution-box h2 {
+            color: var(--brand-teal);
+            margin-bottom: 20px;
+        }
+
+        .jv-solution-box p {
+            font-size: 18px;
+            color: #E2E8F0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- WHAT WE DO (BENEFITS) --- */
+        .jv-benefits-list {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: left;
+        }
+
+        .jv-benefit-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .jv-benefit-item svg {
+            flex-shrink: 0;
+            color: var(--brand-teal);
+            width: 28px;
+            height: 28px;
+            margin-top: 2px;
+        }
+
+        .jv-benefit-item div h4 {
+            margin-bottom: 4px;
+            font-size: 18px;
+            color: var(--brand-navy);
+        }
+
+        .jv-benefit-item div p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* --- QUALIFICATION GRID --- */
+        .jv-qualify-section {
+            background: #FFFFFF;
+        }
+
+        .jv-qualify-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .jv-qualify-box {
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .jv-qualify-yes {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .jv-qualify-no {
+            background: rgba(225, 29, 72, 0.05);
+            border: 1px solid rgba(225, 29, 72, 0.2);
+        }
+
+        .jv-qualify-box h4 {
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .jv-qualify-yes h4 {
+            color: var(--brand-green);
+        }
+
+        .jv-qualify-no h4 {
+            color: var(--brand-red);
+        }
+
+        .jv-qualify-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .jv-qualify-list li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        .jv-qualify-yes .jv-qualify-list li::before {
+            content: '✓';
+            color: var(--brand-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .jv-qualify-no .jv-qualify-list li::before {
+            content: '✕';
+            color: var(--brand-red);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .jv-testi-section {
+            background: #F8FAFC;
+        }
+
+        .jv-testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .jv-testi-card {
+            background: #FFFFFF;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        .jv-testi-card h4 {
+            color: var(--brand-navy);
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .jv-testi-card .status {
+            color: var(--text-light);
+            font-size: 15px;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .jv-testi-card .result {
+            font-weight: 700;
+            color: var(--brand-green);
+            font-size: 16px;
+        }
+
+        .jv-testi-card .badge {
+            display: inline-block;
+            background: rgba(var(--brand-teal-rgb), 0.15);
+            color: var(--brand-teal-hover);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 800;
+            margin-top: 15px;
+        }
+
+        /* --- FOOTER --- */
+        .jv-footer {
+            background: var(--brand-navy);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .jv-footer p {
+            max-width: 800px;
+            margin: 0 auto 15px;
+            line-height: 1.6;
+        }
+
+        .jv-footer strong {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- MODAL (POP-UP) --- */
+        .jv-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            /* Empezamos con el popup completamente apagado del DOM */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .jv-modal-overlay.jv-active {
+            opacity: 1;
+        }
+
+        .jv-modal-content {
+            background: #FFFFFF;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Permite scroll vertical */
+            max-height: 90vh;
+            /* Nunca será más alto que la pantalla del celular */
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .jv-modal-header {
+            background: var(--brand-navy);
+            padding: 24px 20px;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+        }
+
+        .jv-modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .jv-modal-header p {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .jv-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+            padding: 4px;
+        }
+
+        .jv-modal-close:hover {
+            color: #FFFFFF;
+        }
+
+        .jv-modal-body {
+            padding: 30px;
+            background: #FFFFFF;
+        }
+
+        .jv-ghl-embed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .jv-hero h1 {
+                font-size: 32px;
+            }
+
+            .jv-hero p {
+                font-size: 18px;
+            }
+
+            .jv-badges {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .jv-qualify-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .jv-btn-trigger {
+                width: 100%;
+                padding: 18px 20px;
+                font-size: 18px;
+            }
+
+            .jv-solution-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="jv-landing">
+
+        <!-- HERO SECTION -->
+        <header class="jv-hero">
+            <div class="jv-container">
+                <span class="jv-pretitle">Video Privado • Acceso Restringido</span>
+                <h1>En 5 Minutos Te Muestro Cómo Descubrir los Errores que te Cuestan <span class="jv-highlight">Miles
+                        de Dólares</span> al IRS</h1>
+                <p>Si tienes ingresos W2, trabajas como 1099 o tienes tu propia LLC, descubre la estrategia legal para
+                    maximizar tu reembolso y proteger tu dinero HOY MISMO.</p>
+
+                <button class="jv-btn-trigger" onclick="jvOpenModal(event)">
+                    Abrir Video de 5 Minutos 🔓
+                </button>
+            </div>
+        </header>
+
+        <!-- BADGES -->
+        <div class="jv-container">
+            <div class="jv-badges-wrapper">
+                <div class="jv-badges">
+                    <div class="jv-badge-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        Aplica la Ley a tu Favor
+                    </div>
+                    <div class="jv-badge-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Video de solo 5 Minutos
+                    </div>
+                    <div class="jv-badge-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        Máximo Reembolso Legal
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAIN POINTS -->
+        <section class="jv-section jv-pain-section">
+            <div class="jv-container">
+                <h2 class="jv-text-center" style="font-size: 32px; color: var(--brand-navy); margin-bottom: 20px;">¿Por
+                    qué sigues regalando miles de dólares de más al IRS?</h2>
+
+                <div class="jv-pain-grid">
+                    <div class="jv-pain-card">
+                        <h4>"Pago Demasiados Impuestos"</h4>
+                        <p>Crees que no hay forma de pagar menos. <strong>Falso.</strong> Existen deducciones y
+                            estrategias legales de las que nadie te ha hablado.</p>
+                    </div>
+                    <div class="jv-pain-card">
+                        <h4>"Mi Preparador Solo Llena Formas"</h4>
+                        <p>No te dan asesoría, solo ingresan números al sistema. Terminas pagando el precio de su falta
+                            de estrategia fiscal.</p>
+                    </div>
+                    <div class="jv-pain-card">
+                        <h4>"Miedo al Rechazo o Auditoría"</h4>
+                        <p>Tienes ingresos mixtos, trabajas por cuenta propia (1099) y temes hacer las cosas mal, así
+                            que prefieres no declarar gastos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTION -->
+        <section class="jv-section jv-solution-section">
+            <div class="jv-container">
+                <div class="jv-solution-box">
+                    <h2>LA SOLUCIÓN: UNA ESTRATEGIA A TU MEDIDA</h2>
+                    <p>No solo "hacemos taxes", <strong>creamos estrategias fiscales</strong>. Analizamos tu perfil
+                        financiero y tu tipo de ingresos (W2, 1099, o Empresa) para aplicar las deducciones correctas y
+                        hacer que tu dinero rinda, manteniéndote siempre en cumplimiento con el IRS.</p>
+                    <button class="jv-btn-trigger" onclick="jvOpenModal(event)">
+                        Quiero Ver el Video de 5 Minutos →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT WE DO (BENEFITS) -->
+        <section class="jv-section" style="background: #FFFFFF;">
+            <div class="jv-container">
+                <h2 class="jv-text-center" style="font-size: 32px; color: var(--brand-navy);">Esto es lo que aprenderás
+                    gratis</h2>
+
+                <div class="jv-benefits-list">
+                    <div class="jv-benefit-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                        <div>
+                            <h4>Entrenamiento en Video (5 Minutos)</h4>
+                            <p>Sin relleno. Te explicamos exactamente cómo funcionan las leyes tributarias y cuáles son
+                                los errores más comunes.</p>
+                        </div>
+                    </div>
+                    <div class="jv-benefit-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <div>
+                            <h4>Análisis de Elegibilidad</h4>
+                            <p>Descubre si aplicas a créditos fiscales importantes, deducciones de negocios o ajustes
+                                por depreciación.</p>
+                        </div>
+                    </div>
+                    <div class="jv-benefit-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <div>
+                            <h4>Ruta de Acción Personalizada</h4>
+                            <p>Te decimos exactamente qué documentos necesitas preparar hoy mismo para tener éxito en tu
+                                próxima declaración.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jv-text-center">
+                    <button class="jv-btn-trigger" onclick="jvOpenModal(event)">
+                        Obtener el Entrenamiento →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUALIFICATION GRID -->
+        <section class="jv-section jv-qualify-section">
+            <div class="jv-container">
+                <h2 class="jv-text-center" style="font-size: 32px; color: var(--brand-navy);">¿Para quién es esto?</h2>
+
+                <div class="jv-qualify-grid">
+                    <div class="jv-qualify-box jv-qualify-yes">
+                        <h4>ESTO ES PARA TI SI:</h4>
+                        <ul class="jv-qualify-list">
+                            <li>Vives y trabajas en Estados Unidos.</li>
+                            <li>Tienes comprobantes de ingresos (W2, 1099, LLC, Corp).</li>
+                            <li>Quieres organizar tus finanzas de manera formal y legal.</li>
+                            <li>Estás comprometido a seguir instrucciones de un experto.</li>
+                        </ul>
+                    </div>
+                    <div class="jv-qualify-box jv-qualify-no">
+                        <h4>ESTO NO ES PARA TI SI:</h4>
+                        <ul class="jv-qualify-list">
+                            <li>Buscas "trucos" ilegales para evadir al fisco.</li>
+                            <li>No tienes ningún tipo de registro contable o ingreso.</li>
+                            <li>Prefieres seguir regalando tu dinero pagando penalidades.</li>
+                            <li>No estás dispuesto a ver un video de 5 minutos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS / CASES -->
+        <section class="jv-section jv-testi-section">
+            <div class="jv-container">
+                <h2 class="jv-text-center" style="font-size: 32px; color: var(--brand-navy);">Casos Reales, Personas
+                    Reales</h2>
+                <p class="jv-text-center" style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Lo que es
+                    posible cuando cambias a un simple "preparador" por un Estratega Fiscal.</p>
+
+                <div class="jv-testi-grid">
+                    <!-- Case 1 -->
+                    <div class="jv-testi-card">
+                        <h4>CASO: Contratista 1099</h4>
+                        <div class="status"><strong>Situación:</strong> Pagaba miles al final del año porque no llevaba
+                            registro de gastos de materiales ni millaje.</div>
+                        <div class="result"><strong>Resultado:</strong> Estructuramos sus deducciones operativas.</div>
+                        <div class="badge">Ahorro Fiscal: $6,500+</div>
+                    </div>
+                    <!-- Case 2 -->
+                    <div class="jv-testi-card">
+                        <h4>CASO: Dueño de LLC</h4>
+                        <div class="status"><strong>Situación:</strong> Mezclaba cuenta personal con la del negocio,
+                            perdiendo grandes beneficios fiscales.</div>
+                        <div class="result"><strong>Resultado:</strong> Implementamos un sistema contable claro.</div>
+                        <div class="badge">Ahorro Fiscal: $12,000+</div>
+                    </div>
+                    <!-- Case 3 -->
+                    <div class="jv-testi-card">
+                        <h4>CASO: Empleado W2 con Side Hustle</h4>
+                        <div class="status"><strong>Situación:</strong> Ingresos regulares pero tenía un pequeño negocio
+                            en paralelo del cual no deducía gastos.</div>
+                        <div class="result"><strong>Resultado:</strong> Ajustamos sus deducciones del hogar.</div>
+                        <div class="badge">Reembolso Maximizado*</div>
+                    </div>
+                </div>
+
+                <div class="jv-text-center" style="margin-top: 50px;">
+                    <button class="jv-btn-trigger" onclick="jvOpenModal(event)">
+                        Quiero Ver el Video y Verificar Mi Caso →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="jv-footer">
+            <div class="jv-container">
+                <p>* Los resultados mostrados son ejemplos de clientes específicos y no garantizan que tú obtengas las
+                    mismas condiciones. Todo depende de elegibilidad crediticia, tipo de negocio, tus ingresos y
+                    regulaciones del IRS vigentes al momento de aplicar.</p>
+                <p><strong>Descargo de Responsabilidad:</strong> No somos intermediarios ilegales del IRS. Somos
+                    especialistas financieros y fiscales. Cualquier decisión financiera debe estar sujeta a análisis y
+                    revisión en cumplimiento con la ley federal de EE.UU.</p>
+                <p>© 2026 Lugo Insurance & Advisors. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- EL POP-UP (MODAL) OCULTO -->
+    <div class="jv-modal-overlay" id="jvModalOverlay" onclick="jvCloseModalOutside(event)">
+        <div class="jv-modal-content">
+            <div class="jv-modal-header">
+                <h3>Video de 5 Minutos</h3>
+                <p>Acceso Inmediato y Gratuito</p>
+                <button class="jv-modal-close" id="jvCloseModalBtn" onclick="jvCloseModal(event)">&times;</button>
+            </div>
+            <div class="jv-modal-body">
+                <!-- TÍTULO AÑADIDO ENCIMA DEL FORMULARIO -->
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div
+                        style="display: inline-block; background: rgba(var(--brand-teal-rgb), 0.1); color: #1AE5ED; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">
+                        Paso Final
+                    </div>
+                    <h2 style="color: #002B49; font-size: 26px; font-weight: 800; margin: 0 0 8px 0; line-height: 1.2;">
+                        ¿A dónde te enviamos el video?
+                    </h2>
+                    <p style="color: #64748B; font-size: 15px; margin: 0;">
+                        Completa tus datos para enviarte el acceso inmediato a tu correo y WhatsApp.
+                    </p>
+                </div>
+
+                <!-- 🚨 INSTRUCCIÓN PARA GHL 🚨 -->
+                <div class="jv-ghl-embed" style="min-height: 400px; width: 100%;">
+                    <iframe src="https://api.leadconnectorhq.com/widget/form/uXpIuXSiCHXh01X4gAqb"
+                        style="width:100%;height:950px;border:none;border-radius:3px" id="inline-uXpIuXSiCHXh01X4gAqb"
+                        data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value=""
+                        data-activation-type="alwaysActivated" data-activation-value=""
+                        data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Form 1"
+                        data-height="787" data-layout-iframe-id="inline-uXpIuXSiCHXh01X4gAqb"
+                        data-form-id="uXpIuXSiCHXh01X4gAqb" title="Form 1">
+                    </iframe>
+                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funciones globales robustas
+        function jvOpenModal(e) {
+            if (e) e.preventDefault();
+            const modal = document.getElementById('jvModalOverlay');
+            if (modal) {
+                // Primero aplicamos display flex para que el nav lo renderice
+                modal.style.display = 'flex';
+                // Usamos un ligero retraso para activar la transición de opacidad suavemente
+                setTimeout(() => {
+                    modal.classList.add('jv-active');
+                }, 10);
+            }
+        }
+
+        function jvCloseModal(e) {
+            if (e) e.preventDefault();
+            const modal = document.getElementById('jvModalOverlay');
+            if (modal) {
+                // Removemos la clase de opacidad
+                modal.classList.remove('jv-active');
+                // Esperamos que termine la transición de opacidad (0.3s) y luego apagamos el display
+                setTimeout(() => {
+                    if (!modal.classList.contains('jv-active')) {
+                        modal.style.display = 'none';
+                    }
+                }, 300);
+            }
+        }
+
+        function jvCloseModalOutside(e) {
+            const modalOverlay = document.getElementById('jvModalOverlay');
+            if (e.target === modalOverlay) {
+                jvCloseModal(e);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

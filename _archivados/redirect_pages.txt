@@ -1,0 +1,32 @@
+
+*** PÁGINA 1: /go/menos (Redirect al CTA Principal) ***
+
+Pegar esto en el "Settings" -> "Tracking Code" -> "Header Code" de la página en GHL:
+O usarlo como un "HTML Element" en una página en blanco.
+
+<meta http-equiv="refresh" content="0;url=[GHL_BASE_URL_AQUI]/taxes#apply?utm_source=instagram&utm_medium=paid&utm_campaign=jorge_taxes&utm_content=cta_menos">
+
+<script>
+    // Fallback JS
+    window.location.href = "[GHL_BASE_URL_AQUI]/taxes#apply?utm_source=instagram&utm_medium=paid&utm_campaign=jorge_taxes&utm_content=cta_menos";
+</script>
+
+
+
+*** PÁGINA 2: /go/video (Redirect al Video directo - Opcional) ***
+
+<meta http-equiv="refresh" content="0;url=[VIDEO_URL_AQUI]?utm_source=instagram">
+
+<script>
+    window.location.href = "[VIDEO_URL_AQUI]?utm_source=instagram";
+</script>
+
+
+
+*** PÁGINA 3: /go/whatsapp (Redirect a WhatsApp) ***
+
+<meta http-equiv="refresh" content="0;url=[WHATSAPP_URL_AQUI]">
+
+<script>
+    window.location.href = "[WHATSAPP_URL_AQUI]";
+</script>

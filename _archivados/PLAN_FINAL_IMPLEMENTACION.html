@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Final de Implementación — Jorge Vergara / Lugo Insurance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002B49;
+            --teal: #00C4CC;
+            --teal-dark: #0FA5AB;
+            --gold: #D4AF37;
+            --green: #10B981;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --bg: #F8FAFC;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 196, 204, 0.1));
+            pointer-events: none;
+        }
+
+        .header .pill {
+            display: inline-block;
+            background: rgba(0, 196, 204, 0.15);
+            color: var(--teal);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(0, 196, 204, 0.3);
+        }
+
+        .header h1 {
+            font-size: 34px;
+            font-weight: 800;
+            margin: 0 0 10px;
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 16px;
+            margin: 0;
+            max-width: 650px;
+        }
+
+        .header .date {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 0;
+            border-bottom: 2px solid #E2E8F0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: white;
+            color: var(--text-light);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.2s;
+            border: 1px solid #E2E8F0;
+            border-bottom: none;
+        }
+
+        .tab:hover {
+            color: var(--navy);
+            background: #F1F5F9;
+        }
+
+        .tab.active {
+            color: var(--teal-dark);
+            background: white;
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            background: white;
+            border-radius: 0 0 16px 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #E2E8F0;
+            border-top: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            color: var(--navy);
+            margin: 0 0 6px;
+        }
+
+        .section .subtitle {
+            color: var(--text-light);
+            font-size: 14px;
+            margin: 0 0 24px;
+        }
+
+        .section h3 {
+            font-size: 17px;
+            color: var(--navy);
+            margin: 24px 0 12px;
+            padding-top: 16px;
+            border-top: 1px solid #F1F5F9;
+        }
+
+        .section h3:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        /* Cards */
+        .card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 14px;
+        }
+
+        .card.highlight {
+            border-left: 4px solid var(--teal);
+        }
+
+        .card.gold {
+            border-left: 4px solid var(--gold);
+        }
+
+        .card.green {
+            border-left: 4px solid var(--green);
+        }
+
+        .card.amber {
+            border-left: 4px solid var(--amber);
+        }
+
+        .card.red {
+            border-left: 4px solid var(--red);
+        }
+
+        .card h4 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: var(--navy);
+        }
+
+        .card p,
+        .card li {
+            font-size: 14px;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .card ul {
+            margin: 6px 0 0;
+            padding-left: 18px;
+        }
+
+        .card li {
+            margin-bottom: 4px;
+        }
+
+        /* Tags */
+        code {
+            background: #E0F2FE;
+            color: #0369A1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        .tag-status {
+            background: rgba(0, 196, 204, 0.12);
+            color: var(--teal-dark);
+        }
+
+        .tag-action {
+            background: rgba(212, 175, 55, 0.12);
+            color: #9A7B1F;
+        }
+
+        .tag-alert {
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--red);
+        }
+
+        .tag-done {
+            background: rgba(16, 185, 129, 0.12);
+            color: #059669;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        th {
+            background: #F1F5F9;
+            color: var(--navy);
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        tr:hover td {
+            background: #FAFBFC;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checklist li {
+            padding: 10px 12px;
+            border-bottom: 1px solid #F1F5F9;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .checklist li::before {
+            content: '☐';
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .checklist li.done::before {
+            content: '✅';
+        }
+
+        /* Flow */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .flow-step {
+            background: white;
+            border: 1px solid #CBD5E1;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            color: #94A3B8;
+            font-size: 18px;
+        }
+
+        /* Asset list */
+        .asset {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #F1F5F9;
+            font-size: 14px;
+        }
+
+        .asset-icon {
+            font-size: 18px;
+        }
+
+        .asset-name {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .asset-status {
+            margin-left: auto;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .tab {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="pill">Plan Final — Sales Velocity System</div>
+            <h1>Implementación GHL + Meta Ads</h1>
+            <p>Plan consolidado paso a paso para lanzar el funnel completo de Jorge Vergara / Lugo Insurance & Advisors.
+                Todo lo que falta hacer para ir LIVE.</p>
+            <div class="date">📅 Actualizado: 27 de Febrero 2026</div>
+        </header>
+
+        <!-- TABS -->
+        <div class="tabs" id="tabs">
+            <button class="tab active" data-tab="overview">📋 Resumen</button>
+            <button class="tab" data-tab="funnel">🔗 Funnel GHL</button>
+            <button class="tab" data-tab="events">📊 Pixel & Eventos</button>
+            <button class="tab" data-tab="tags">🏷️ Tags & Pipeline</button>
+            <button class="tab" data-tab="ads">📣 Meta Ads</button>
+            <button class="tab" data-tab="checklist">✅ Checklist final</button>
+        </div>
+
+        <!-- ===================== TAB 1: OVERVIEW ===================== -->
+        <div class="section active" id="overview">
+            <h2>Resumen del Sistema Completo</h2>
+            <p class="subtitle">Todo el flujo de prospección a cierre de Jorge Vergara, consolidado.</p>
+
+            <h3>Flujo del Funnel</h3>
+            <div class="flow">
+                <div class="flow-step">📣 Meta Ad</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📝 VSL Page</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📅 Agenda Page</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">🎉 Thank You</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📞 Llamada</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">💰 Cierre</div>
+            </div>
+
+            <h3>Assets Construidos</h3>
+            <div class="asset"><span class="asset-icon">📄</span><span class="asset-name">VSL Page
+                    (vsl_ghl_snippet.html)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">📅</span><span class="asset-name">Agenda Page
+                    (calendar_ghl_snippet.html)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">🎉</span><span class="asset-name">Thank You Page
+                    (thankyou_ghl_snippet.html)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">🎨</span><span class="asset-name">Ad Creatives (9 imágenes, 3
+                    ángulos)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">💬</span><span class="asset-name">Pipeline Communications (HTML
+                    doc)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">📊</span><span class="asset-name">Plan Arquitectura GHL
+                    (plan_arquitectura_ghl.html)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">📣</span><span class="asset-name">Estrategia Ads
+                    Semanal</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+            <div class="asset"><span class="asset-icon">🌐</span><span class="asset-name">Landing Page desplegada
+                    (GitHub Pages)</span><span class="asset-status tag tag-done">✅ Listo</span></div>
+
+            <h3>URLs del Funnel en GHL</h3>
+            <table>
+                <tr>
+                    <th>Paso</th>
+                    <th>URL</th>
+                    <th>Evento Pixel</th>
+                </tr>
+                <tr>
+                    <td><strong>1. VSL</strong></td>
+                    <td><code>lugoinsuranceadvisors.com/registro-1143</code></td>
+                    <td>PageView + InitiateCheckout + Lead</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Agenda</strong></td>
+                    <td><code>lugoinsuranceadvisors.com/agenda-page</code></td>
+                    <td>PageView + ViewContent</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Thank You</strong></td>
+                    <td><code>lugoinsuranceadvisors.com/thankyou-2381-page</code></td>
+                    <td>Schedule</td>
+                </tr>
+            </table>
+
+            <div class="card amber">
+                <h4>💡 Nota sobre contactos en GHL</h4>
+                <p style="margin-top: 6px;">El contacto se crea en GHL en el <strong>Paso 1 (Registro VSL)</strong> con
+                    nombre, email y teléfono. Si después llega a la Agenda pero NO completa la encuesta o NO agenda,
+                    <strong>NO pierdes al contacto</strong> — ya está en tu CRM y recibirá los Workflows de nurture
+                    automáticamente.
+                </p>
+            </div>
+        </div>
+
+        <!-- ===================== TAB 2: FUNNEL GHL ===================== -->
+        <div class="section" id="funnel">
+            <h2>Configuración del Funnel en GHL</h2>
+            <p class="subtitle">Paso a paso para implementar los 3 snippets en el embudo de GHL.</p>
+
+            <div class="card highlight">
+                <h4>Paso 1: VSL Page → <code>registro-1143</code></h4>
+                <ul>
+                    <li>Abrir el paso <strong>"VSL"</strong> en el embudo</li>
+                    <li>Añadir elemento <strong>"Custom HTML/JS"</strong></li>
+                    <li>Pegar el contenido completo de <code>vsl_ghl_snippet.html</code></li>
+                    <li>En <strong>Page Settings → Custom CSS</strong>: pegar los estilos de override de GHL</li>
+                    <li>En <strong>Page Settings → Tracking Code → Header</strong>: añadir el Facebook Pixel</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <h4>Paso 2: Agenda Page → <code>agenda-page</code></h4>
+                <ul>
+                    <li>Abrir el paso <strong>"Agenda"</strong> en el embudo</li>
+                    <li>Añadir elemento <strong>"Custom HTML/JS"</strong></li>
+                    <li>Pegar el contenido de <code>calendar_ghl_snippet.html</code></li>
+                    <li>Verificar que el calendario usa <code>mxOOyMQyYIaZi6l4UIGg</code></li>
+                    <li>Widget Appearance: Color <code>#D4AF37</code>, botón "Confirmar Mi Llamada →"</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <h4>Paso 3: Thank You → <code>thankyou-2381-page</code></h4>
+                <ul>
+                    <li>Abrir el paso <strong>"thankyoupage"</strong> en el embudo</li>
+                    <li>Añadir elemento <strong>"Custom HTML/JS"</strong></li>
+                    <li>Pegar el contenido de <code>thankyou_ghl_snippet.html</code></li>
+                    <li>La página ya incluye el video de preparación</li>
+                </ul>
+            </div>
+
+            <div class="card amber">
+                <h4>⚠️ Configuración Global del Embudo</h4>
+                <ul>
+                    <li><strong>Redirect después del form (VSL):</strong> → <code>/agenda-page</code></li>
+                    <li><strong>Redirect del calendario:</strong> → <code>/thankyou-2381-page</code></li>
+                    <li><strong>Fondo de página:</strong> Transparente o #002B49 (navy)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TAB 3: PIXEL & EVENTS ===================== -->
+        <div class="section" id="events">
+            <h2>Facebook Pixel & Eventos Meta</h2>
+            <p class="subtitle">Guía paso a paso para instalar el Pixel y los eventos de conversión en GHL.</p>
+
+            <div class="card amber">
+                <h4>🧩 ¿Cómo funciona el Pixel?</h4>
+                <p style="margin-top: 6px;">Son <strong>2 lados</strong> que deben estar conectados:</p>
+                <table style="margin-top: 10px;">
+                    <tr>
+                        <th>Lado</th>
+                        <th>¿Dónde?</th>
+                        <th>¿Qué haces?</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. El Código</strong></td>
+                        <td>En GHL (en cada página)</td>
+                        <td>Instalas el script que ENVÍA las señales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Meta</strong></td>
+                        <td>En Meta Events Manager</td>
+                        <td>Verificas que las señales LLEGAN y las usas</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 13px; color: var(--text-light);">💡 Piensa en el Pixel como un
+                    <strong>walkie-talkie</strong>: instalas el transmisor (código) en GHL, y Meta tiene el receptor que
+                    escucha. No configuras eventos en Meta manualmente — <strong>el código los envía
+                        automáticamente</strong>.
+                </p>
+            </div>
+
+            <!-- PASO 1 -->
+            <h3>Paso 1: Obtener tu ID de Pixel</h3>
+            <div class="card highlight">
+                <h4>📍 ¿Dónde encontrarlo?</h4>
+                <ul>
+                    <li>Ve a <strong>Meta Business Suite</strong> → <strong>Events Manager</strong></li>
+                    <li>Tu Pixel ya debería existir (si no, creas uno nuevo)</li>
+                    <li>Copia el <strong>Pixel ID</strong> — es un número tipo <code>123456789012345</code></li>
+                </ul>
+            </div>
+
+            <!-- PASO 2 -->
+            <h3>Paso 2: Instalar el Pixel BASE en GHL (Header)</h3>
+            <div class="card highlight">
+                <h4>📍 ¿Dónde en GHL?</h4>
+                <p style="margin-top: 6px;">Abrir cada paso del embudo → <strong>⚙️ Settings</strong> (ruedita) →
+                    <strong>"Tracking Code"</strong> → <strong>"Header"</strong>
+                </p>
+                <div
+                    style="background: #F1F5F9; border-radius: 8px; padding: 16px; margin: 12px 0; font-family: monospace; font-size: 13px; line-height: 2;">
+                    <div>📁 <strong>Embudo de Jorge</strong></div>
+                    <div style="padding-left: 20px;">├── 📄 <strong>VSL</strong> (registro-1143)</div>
+                    <div style="padding-left: 40px;">└── ⚙️ Settings → Tracking → <span
+                            style="background: #DBEAFE; padding: 2px 6px; border-radius: 3px;">Header</span> →
+                        <strong>[PEGAR AQUÍ]</strong>
+                    </div>
+                    <div style="padding-left: 20px;">├── 📅 <strong>Agenda</strong> (agenda-page)</div>
+                    <div style="padding-left: 40px;">└── ⚙️ Settings → Tracking → <span
+                            style="background: #DBEAFE; padding: 2px 6px; border-radius: 3px;">Header</span> →
+                        <strong>[PEGAR AQUÍ]</strong>
+                    </div>
+                    <div style="padding-left: 20px;">└── 🎉 <strong>Thank You</strong> (thankyou-2381-page)</div>
+                    <div style="padding-left: 40px;">└── ⚙️ Settings → Tracking → <span
+                            style="background: #DBEAFE; padding: 2px 6px; border-radius: 3px;">Header</span> →
+                        <strong>[PEGAR AQUÍ]</strong>
+                    </div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-light);">⚠️ Es el <strong>mismo código</strong> en las 3
+                    páginas.</p>
+            </div>
+            <div class="card">
+                <h4>Código del Pixel — copiar y cambiar solo el ID:</h4>
+                <pre
+                    style="background: #1E293B; color: #E2E8F0; padding: 16px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin-top: 8px;">
+&lt;!-- Meta Pixel Code --&gt;
+&lt;script&gt;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '<span style="color:#F59E0B;font-weight:bold;">159472918101008</span>');
+fbq('track', 'PageView');
+&lt;/script&gt;
+</pre>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">☝️ Este código ya dispara
+                    <code>PageView</code> automáticamente en cada página.
+                </p>
+            </div>
+
+            <!-- PASO 3 -->
+            <h3>Paso 3: Agregar eventos EXTRA por página (Footer)</h3>
+            <p style="font-size: 14px; color: var(--text-light); margin-top: -8px;">Estos van en <strong>Settings →
+                    Tracking Code → Footer</strong> de cada página específica.</p>
+
+
+            <div class="card highlight">
+                <h4>📄 VSL Page → <span
+                        style="background: #FEF3C7; padding: 2px 8px; border-radius: 3px; font-size: 12px;">Footer</span>
+                </h4>
+                <p style="font-size: 13px; margin-top: 4px; color: var(--text-light);">La encuesta está en esta página.
+                    2 eventos: al tocar un campo + al enviar el form</p>
+                <pre
+                    style="background: #1E293B; color: #E2E8F0; padding: 14px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin-top: 8px;">
+&lt;script&gt;
+// Evento 1: Empezó a llenar la encuesta (tocó un campo)
+var formStarted = false;
+document.addEventListener('focusin', function(e) {
+  if (!formStarted &amp;&amp; e.target.closest(
+    'form, .ghl-form-wrap, [data-form]')) {
+    formStarted = true;
+    fbq('track', 'InitiateCheckout', {
+      content_name: 'Encuesta VSL'
+    });
+  }
+});
+
+// Evento 2: Envió la encuesta completa
+document.addEventListener('submit', function(e) {
+  if(e.target.closest('form')) {
+    fbq('track', 'Lead');
+  }
+});
+&lt;/script&gt;
+</pre>
+                <p style="font-size: 13px; margin-top: 6px;">🏷️ <code>InitiateCheckout</code> = empezó a llenar
+                    &nbsp;|&nbsp; <code>Lead</code> = envió la encuesta</p>
+            </div>
+
+            <div class="card highlight">
+                <h4>📅 Agenda Page → <span
+                        style="background: #FEF3C7; padding: 2px 8px; border-radius: 3px; font-size: 12px;">Footer</span>
+                </h4>
+                <p style="font-size: 13px; margin-top: 4px; color: var(--text-light);">Solo tiene el calendario. Evento
+                    al cargar = llegó a agendar</p>
+                <pre
+                    style="background: #1E293B; color: #E2E8F0; padding: 14px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin-top: 8px;">
+&lt;script&gt;
+fbq('track', 'ViewContent', {
+  content_name: 'Agenda - Calendario'
+});
+&lt;/script&gt;
+</pre>
+                <p style="font-size: 13px; margin-top: 6px;">🏷️ <code>ViewContent</code> = "llegó a la página del
+                    calendario"</p>
+            </div>
+
+            <div class="card highlight">
+                <h4>🎉 Thank You Page → <span
+                        style="background: #FEF3C7; padding: 2px 8px; border-radius: 3px; font-size: 12px;">Footer</span>
+                </h4>
+                <p style="font-size: 13px; margin-top: 4px; color: var(--text-light);">Si llegaron aquí = ya agendaron
+                    su cita</p>
+                <pre
+                    style="background: #1E293B; color: #E2E8F0; padding: 14px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin-top: 8px;">
+&lt;script&gt;
+fbq('track', 'Schedule');
+&lt;/script&gt;
+</pre>
+                <p style="font-size: 13px; margin-top: 6px;">🏷️ <code>Schedule</code> = "esta persona agendó cita"</p>
+            </div>
+
+            <div class="card green">
+                <h4>📋 Resumen: ¿Qué va dónde?</h4>
+                <table style="margin-top: 8px;">
+                    <tr>
+                        <th>Página</th>
+                        <th>⚙️ Header (Global)</th>
+                        <th>⚙️ Footer (por página)</th>
+                        <th>¿Cuándo se dispara?</th>
+                    </tr>
+                    <tr>
+                        <td><strong>VSL</strong></td>
+                        <td>Pixel base + PageView ✅</td>
+                        <td><code>InitiateCheckout</code> + <code>Lead</code></td>
+                        <td>Al tocar campo + Al enviar form</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agenda</strong></td>
+                        <td>Pixel base + PageView ✅</td>
+                        <td><code>ViewContent</code></td>
+                        <td>Automático al cargar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thank You</strong></td>
+                        <td>Pixel base + PageView ✅</td>
+                        <td><code>Schedule</code></td>
+                        <td>Automático al cargar</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- PASO 4 -->
+        <h3>Paso 4: Verificar que todo funciona</h3>
+        <div class="card highlight">
+            <h4>🔍 Opción A: Meta Pixel Helper (Extensión Chrome)</h4>
+            <ul>
+                <li>Instala <strong>"Meta Pixel Helper"</strong> en Chrome</li>
+                <li>Visita cada página de tu embudo</li>
+                <li>El icono se pone <strong>🟢 verde</strong> si detecta el Pixel</li>
+                <li>Click en el icono y verás qué eventos se dispararon</li>
+            </ul>
+        </div>
+        <div class="card highlight">
+            <h4>🔍 Opción B: Test Events en Meta</h4>
+            <ul>
+                <li>Ve a <strong>Events Manager</strong> → tu Pixel → <strong>"Test Events"</strong></li>
+                <li>Pega la URL del funnel y navégalo completo</li>
+                <li>Verás los eventos aparecer en <strong>tiempo real</strong></li>
+            </ul>
+        </div>
+
+        <!-- PASO 5 -->
+        <h3>Paso 5: Usar los eventos en tu campaña</h3>
+        <div class="card highlight">
+            <h4>📣 Al crear la campaña en Meta Ads Manager</h4>
+            <ul>
+                <li>Objetivo: <strong>Conversiones</strong></li>
+                <li>A nivel de Ad Set → <strong>"Conversion Event"</strong> → selecciona el evento</li>
+                <li>Meta buscará personas similares a las que ya dispararon ese evento</li>
+            </ul>
+        </div>
+        <div class="card green">
+            <h4>🎯 Fases de Optimización</h4>
+            <ul>
+                <li><strong>Fase 1 (Lanzamiento):</strong> Optimizar por <code>Lead</code> — Más volumen, más data</li>
+                <li><strong>Fase 2 (Escalado):</strong> Optimizar por <code>Schedule</code> — Mayor calidad</li>
+                <li><strong>Fase 3 (Avanzado):</strong> Optimizar por <code>Purchase</code> — El santo grial</li>
+            </ul>
+        </div>
+
+        <!-- RETARGETING -->
+        <h3>🎯 Audiencias de Retargeting</h3>
+        <p style="font-size: 14px; color: var(--text-light); margin-top: -8px;">Crear en Meta → Audiences → Custom
+            Audience → Website</p>
+        <div class="card gold">
+            <h4>Audiencia 1: Visitó VSL pero NO se registró</h4>
+            <ul>
+                <li><strong>Incluir:</strong> <code>PageView</code> en <code>registro-1143</code> (últimos 30 días)</li>
+                <li><strong>Excluir:</strong> <code>Lead</code></li>
+                <li><strong>Ad:</strong> "¿Todavía no viste cómo ahorrar miles en impuestos?"</li>
+            </ul>
+        </div>
+        <div class="card gold">
+            <h4>Audiencia 2: Empezó encuesta pero NO terminó</h4>
+            <ul>
+                <li><strong>Incluir:</strong> <code>InitiateCheckout</code> (últimos 14 días)</li>
+                <li><strong>Excluir:</strong> <code>Schedule</code></li>
+                <li><strong>Ad:</strong> "¿Te quedaste a medias? Solo faltan 2 preguntas."</li>
+            </ul>
+        </div>
+        <div class="card gold">
+            <h4>Audiencia 3: Se registró pero NO agendó</h4>
+            <ul>
+                <li><strong>Incluir:</strong> <code>Lead</code> (últimos 21 días)</li>
+                <li><strong>Excluir:</strong> <code>Schedule</code></li>
+                <li><strong>Ad:</strong> "Ya viste que puedes ahorrar. Agenda tu llamada de 15 min."</li>
+            </ul>
+        </div>
+
+        <div class="card amber">
+            <h4>💡 Nota sobre contactos en GHL</h4>
+            <p style="margin-top: 6px;">El contacto se crea en GHL desde el <strong>Paso 1 (Registro VSL)</strong>. Si
+                no completa la encuesta, <strong>NO pierdes al contacto</strong> — ya está en tu CRM. El retargeting de
+                Meta es un refuerzo ADICIONAL por anuncios.</p>
+        </div>
+    </div>
+
+
+    <!-- ===================== TAB 4: TAGS & PIPELINE ===================== -->
+    <div class="section" id="tags">
+        <h2>Tags (Etiquetas) y Pipeline</h2>
+        <p class="subtitle">Etiquetas a crear en GHL y cómo se mueven los prospectos en el pipeline.</p>
+
+        <h3>Pipeline: "Lugo Insurance Pipeline"</h3>
+        <div class="flow">
+            <div class="flow-step">1. Lead Entrante</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">2. Cita Agendada</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">3. No-Show</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">4. Presentación</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">5. WON / LOST</div>
+        </div>
+
+        <h3>Tags a Crear en GHL</h3>
+        <table>
+            <tr>
+                <th>Tag</th>
+                <th>Tipo</th>
+                <th>Cuándo se aplica</th>
+                <th>Cuándo se quita</th>
+            </tr>
+            <tr>
+                <td><span class="tag tag-status">Fuente: Meta Ads</span></td>
+                <td>Fuente</td>
+                <td>Auto — Al registrarse desde el funnel</td>
+                <td>Nunca</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-status">Registrado a VSL</span></td>
+                <td>Status</td>
+                <td>Auto — Al completar el form de registro</td>
+                <td>Cuando agenda cita</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-action">Encuesta Completada</span></td>
+                <td>Acción</td>
+                <td>Auto — Al enviar la encuesta en la agenda page</td>
+                <td>Nunca</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-done">Cita Agendada</span></td>
+                <td>Status</td>
+                <td>Auto — Al agendar en el calendario</td>
+                <td>Cuando cierra o se pierde</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-alert">Alerta: No-Show</span></td>
+                <td>Alerta</td>
+                <td>Auto — Cuando el estatus de cita = No-Show</td>
+                <td>Cuando reagenda</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-done">Presentación Realizada</span></td>
+                <td>Status</td>
+                <td>Manual — Jorge marca tras la Zoom call</td>
+                <td>Nunca</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-done">Cerrado - WON</span></td>
+                <td>Resultado</td>
+                <td>Manual — Al recibir pago</td>
+                <td>Nunca</td>
+            </tr>
+            <tr>
+                <td><span class="tag tag-alert">Cerrado - LOST</span></td>
+                <td>Resultado</td>
+                <td>Manual — Si no cierra</td>
+                <td>Nunca</td>
+            </tr>
+        </table>
+
+        <h3>Workflows (Automatizaciones)</h3>
+        <div class="card highlight">
+            <h4>WF 1: Nuevo Registro</h4>
+            <ul>
+                <li><strong>Trigger:</strong> Formulario del funnel enviado (step VSL)</li>
+                <li><strong>Tags:</strong> +<code>Fuente: Meta Ads</code> +<code>Registrado a VSL</code></li>
+                <li><strong>Pipeline:</strong> Crear oportunidad en "1. Lead Entrante"</li>
+                <li><strong>Acción:</strong> Inicia secuencia Nurture (emails/WA pidiendo que agende)</li>
+            </ul>
+        </div>
+        <div class="card gold">
+            <h4>WF 2: Cita Agendada (🏆 Santo Grial)</h4>
+            <ul>
+                <li><strong>Trigger:</strong> Cita creada en calendario <code>mxOOyMQyYIaZi6l4UIGg</code></li>
+                <li><strong>Tags:</strong> -<code>Registrado a VSL</code> +<code>Cita Agendada</code></li>
+                <li><strong>Pipeline:</strong> Mover a "2. Cita Agendada"</li>
+                <li><strong>Acción:</strong> Eliminar del WF 1 + Iniciar secuencia Show-Up</li>
+                <li><strong>Alerta interna:</strong> WhatsApp/Notificación a Jorge con datos del lead</li>
+            </ul>
+        </div>
+        <div class="card red">
+            <h4>WF 3: No-Show</h4>
+            <ul>
+                <li><strong>Trigger:</strong> Estatus de cita → "No-Show"</li>
+                <li><strong>Tags:</strong> +<code>Alerta: No-Show</code></li>
+                <li><strong>Pipeline:</strong> Mover a "3. No-Show"</li>
+                <li><strong>Acción:</strong> Secuencia de recuperación (3 intentos de reagendamiento)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== TAB 5: META ADS ===================== -->
+    <!-- ===================== TAB 5: META ADS ===================== -->
+    <div class="section" id="ads">
+        <h2>Meta Ads — Plan de Lanzamiento Completo</h2>
+        <p class="subtitle">Presupuesto, estructura, creativos, y roadmap semana a semana.</p>
+
+        <!-- PRESUPUESTO -->
+        <h3>💰 Presupuesto Total y Distribución</h3>
+        <div class="card gold">
+            <h4>Presupuesto mensual recomendado: $900 – $1,200 USD</h4>
+            <p style="margin-top: 6px; font-size: 13px; color: var(--text-light);">Para un servicio de ticket medio/alto (tax prep + consultoría), este budget permite testear audiencias, optimizar y escalar lo que funciona.</p>
+        </div>
+        <table>
+            <tr>
+                <th>Semana</th>
+                <th>Fase</th>
+                <th>Budget/día</th>
+                <th>Budget/semana</th>
+                <th>Creativos</th>
+                <th>Optimización</th>
+            </tr>
+            <tr>
+                <td><strong>Semana 1</strong></td>
+                <td>🧪 Testing</td>
+                <td>$30/día</td>
+                <td>$210</td>
+                <td>Solo estáticos (imágenes)</td>
+                <td>Lead</td>
+            </tr>
+            <tr>
+                <td><strong>Semana 2</strong></td>
+                <td>📊 Optimizar</td>
+                <td>$35-40/día</td>
+                <td>$245 – $280</td>
+                <td>Estáticos ganadores + Videos</td>
+                <td>Lead</td>
+            </tr>
+            <tr>
+                <td><strong>Semana 3</strong></td>
+                <td>🚀 Escalar</td>
+                <td>$40-50/día</td>
+                <td>$280 – $350</td>
+                <td>Ganadores + Retargeting</td>
+                <td>Lead → Schedule</td>
+            </tr>
+            <tr>
+                <td><strong>Semana 4+</strong></td>
+                <td>💎 Refinar</td>
+                <td>$40-50/día</td>
+                <td>$280 – $350</td>
+                <td>Solo ganadores + Nuevos tests</td>
+                <td>Schedule</td>
+            </tr>
+        </table>
+
+        <!-- SEMANA 1 -->
+        <h3>📅 Semana 1 — Testing (Días 1-7)</h3>
+        <div class="card red">
+            <h4>🎯 Objetivo: Encontrar qué ángulo y audiencia funcionan mejor</h4>
+            <p style="font-size: 13px; margin-top: 4px; color: var(--text-light);">NO tomar decisiones antes de los 7 días. Meta necesita mínimo 50 eventos por ad set para optimizar.</p>
+        </div>
+        <div class="card highlight">
+            <h4>Configuración Semana 1</h4>
+            <ul>
+                <li><strong>Campaña:</strong> "JV - Auditoría Fiscal - Conversiones"</li>
+                <li><strong>Objetivo:</strong> Conversiones → optimizar por <code>Lead</code></li>
+                <li><strong>Budget:</strong> $30/día a nivel de CAMPAÑA (CBO) — Meta distribuye entre ad sets</li>
+                <li><strong>Creativos:</strong> SOLO imágenes estáticas (más baratas de testear, resultado más rápido)</li>
+                <li><strong>Placements:</strong> Advantage+ (automático) — dejar que Meta elija Feed, Stories, Reels</li>
+            </ul>
+        </div>
+
+        <div style="background: #F1F5F9; border-radius: 10px; padding: 20px; margin: 16px 0; font-size: 14px; font-family: monospace; line-height: 2;">
+            <div style="font-weight: 800; color: var(--navy); font-size: 15px; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">📦 Estructura Semana 1 (Solo Estáticos):</div>
+            <div style="padding-left: 0;">📦 <strong>CAMPAÑA:</strong> JV - Auditoría Fiscal - Conversiones <span style="background: #DBEAFE; padding: 2px 8px; border-radius: 3px; font-size: 11px;">CBO $30/día</span></div>
+            <div style="padding-left: 20px;">│</div>
+            <div style="padding-left: 20px;">├── 👥 <strong>AD SET 1:</strong> <span style="color: var(--teal-dark);">Hispanos FL - Broad 25-55</span></div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Error Común (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Emocional (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">└── 🖼️ Ad: Urgencia (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 20px;">│</div>
+            <div style="padding-left: 20px;">├── 👥 <strong>AD SET 2:</strong> <span style="color: var(--teal-dark);">Tax Interests - 30-55</span></div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Error Común (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Emocional (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">└── 🖼️ Ad: Urgencia (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 20px;">│</div>
+            <div style="padding-left: 20px;">└── 👥 <strong>AD SET 3:</strong> <span style="color: var(--teal-dark);">Lookalike - Clientes Actuales</span></div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Error Común (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">├── 🖼️ Ad: Emocional (imagen 4:5 + 9:16)</div>
+            <div style="padding-left: 50px;">└── 🖼️ Ad: Urgencia (imagen 4:5 + 9:16)</div>
+            <div style="margin-top: 8px; padding: 8px 12px; background: #DBEAFE; border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px;">
+                <strong>= 3 Ad Sets × 3 Ads = 9 anuncios estáticos | $210 total semana 1</strong>
+            </div>
+        </div>
+
+        <div class="card amber">
+            <h4>⚠️ ¿Por qué SOLO estáticos en Semana 1?</h4>
+            <ul>
+                <li>Las imágenes son <strong>más baratas de testear</strong> — CPM más bajo</li>
+                <li>Meta optimiza más rápido con menos presupuesto si son imágenes</li>
+                <li>En 7 días sabrás cuál <strong>ángulo gana</strong> (Error Común vs Emocional vs Urgencia)</li>
+                <li>Los videos se agregan en Semana 2 sobre lo que <strong>ya probó funcionar</strong></li>
+            </ul>
+        </div>
+
+        <!-- SEMANA 2 -->
+        <h3>📅 Semana 2 — Optimización (Días 8-14)</h3>
+        <div class="card highlight">
+            <h4>📊 Decisiones a tomar el Día 7</h4>
+            <table style="margin-top: 8px;">
+                <tr><th>Métrica</th><th>🟢 Bien</th><th>🟡 Regular</th><th>🔴 Apagar</th></tr>
+                <tr><td><strong>CTR (Click-Through Rate)</strong></td><td>> 1.5%</td><td>1% - 1.5%</td><td>< 1%</td></tr>
+                <tr><td><strong>CPL (Costo por Lead)</strong></td><td>< $8</td><td>$8 - $15</td><td>> $15</td></tr>
+                <tr><td><strong>CPC (Costo por Click)</strong></td><td>< $1.50</td><td>$1.50 - $3</td><td>> $3</td></tr>
+            </table>
+        </div>
+        <div class="card green">
+            <h4>✅ Acciones Semana 2</h4>
+            <ul>
+                <li><strong>APAGAR:</strong> Ad sets con CTR < 1% o CPL > $15 después de 7 días</li>
+                <li><strong>ESCALAR:</strong> Subir budget 20-30% al ad set ganador</li>
+                <li><strong>AGREGAR VIDEOS:</strong> Crear 1-2 video ads con el ángulo ganador y añadirlos al ad set ganador</li>
+                <li><strong>Budget total:</strong> Subir a $35-40/día</li>
+                <li><strong>Seguir optimizando por:</strong> <code>Lead</code></li>
+            </ul>
+        </div>
+
+        <div style="background: #F1F5F9; border-radius: 10px; padding: 20px; margin: 16px 0; font-size: 14px; font-family: monospace; line-height: 2;">
+            <div style="font-weight: 800; color: var(--navy); font-size: 15px; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">📦 Estructura Semana 2 (Estáticos + Videos):</div>
+            <div style="padding-left: 0;">📦 <strong>CAMPAÑA:</strong> JV - Auditoría Fiscal <span style="background: #DBEAFE; padding: 2px 8px; border-radius: 3px; font-size: 11px;">CBO $35-40/día</span></div>
+            <div style="padding-left: 20px;">│</div>
+            <div style="padding-left: 20px;">├── 👥 <strong>AD SET GANADOR</strong> (el que mejor CPL tuvo)</div>
+            <div style="padding-left: 50px;">├── 🖼️ Imagen ganadora (la que siguió activa)</div>
+            <div style="padding-left: 50px;">├── 🎬 <strong>Video 1:</strong> Ángulo ganador - formato corto (30-60s)</div>
+            <div style="padding-left: 50px;">└── 🎬 <strong>Video 2:</strong> Ángulo ganador - formato largo (VSL clip 90s)</div>
+            <div style="padding-left: 20px;">│</div>
+            <div style="padding-left: 20px;">└── 👥 <strong>AD SET #2</strong> (segundo mejor, si aún es viable)</div>
+            <div style="padding-left: 50px;">└── 🖼️ Imágenes que siguen activas</div>
+        </div>
+
+        <div class="card amber">
+            <h4>🎬 Videos Recomendados para Semana 2</h4>
+            <table style="margin-top: 8px;">
+                <tr><th>Tipo</th><th>Duración</th><th>Contenido</th><th>Formato</th></tr>
+                <tr>
+                    <td><strong>Video Corto</strong></td>
+                    <td>30-60 seg</td>
+                    <td>Jorge hablando directo a cámara: "¿Eres hispano en FL y pagas de más en impuestos? Te explico en 5 min cómo ahorrar miles."</td>
+                    <td>9:16 (vertical)</td>
+                </tr>
+                <tr>
+                    <td><strong>VSL Clip</strong></td>
+                    <td>60-90 seg</td>
+                    <td>Extracto del VSL mostrando los 3 errores comunes + CTA al final</td>
+                    <td>4:5 o 9:16</td>
+                </tr>
+                <tr>
+                    <td><strong>Testimonial</strong></td>
+                    <td>30-45 seg</td>
+                    <td>Si Jorge tiene testimonios de clientes (el más poderoso de todos)</td>
+                    <td>9:16</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SEMANA 3 -->
+        <h3>📅 Semana 3 — Escalar + Retargeting (Días 15-21)</h3>
+        <div class="card green">
+            <h4>🚀 Acciones Semana 3</h4>
+            <ul>
+                <li><strong>Crear Campaña de Retargeting:</strong> nueva campaña separada con las 3 audiencias personalizadas</li>
+                <li><strong>Budget Retargeting:</strong> $5-10/día (audiencias pequeñas, no necesitan mucho)</li>
+                <li><strong>Budget Prospección:</strong> Mantener $30-40/día solo en ganadores</li>
+                <li><strong>Considerar:</strong> Cambiar optimización de <code>Lead</code> a <code>Schedule</code> si hay suficientes eventos (+50)</li>
+            </ul>
+        </div>
+
+        <div style="background: #F1F5F9; border-radius: 10px; padding: 20px; margin: 16px 0; font-size: 14px; font-family: monospace; line-height: 2;">
+            <div style="font-weight: 800; color: var(--navy); font-size: 15px; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">📦 Estructura Semana 3 (2 Campañas):</div>
+            <div style="padding-left: 0;">📦 <strong>CAMPAÑA 1:</strong> Prospección <span style="background: #D1FAE5; padding: 2px 8px; border-radius: 3px; font-size: 11px;">CBO $35-40/día</span></div>
+            <div style="padding-left: 20px;">└── 👥 Ad Sets ganadores con creativos ganadores</div>
+            <div style="padding-left: 20px;"> </div>
+            <div style="padding-left: 0;">📦 <strong>CAMPAÑA 2:</strong> Retargeting <span style="background: #FEF3C7; padding: 2px 8px; border-radius: 3px; font-size: 11px;">CBO $5-10/día</span></div>
+            <div style="padding-left: 20px;">├── 👥 Visitó VSL, no se registró</div>
+            <div style="padding-left: 50px;">└── 🖼️ "¿Todavía no viste cómo ahorrar miles?"</div>
+            <div style="padding-left: 20px;">├── 👥 Empezó encuesta, no terminó</div>
+            <div style="padding-left: 50px;">└── 🖼️ "Solo faltan 2 preguntas para tu consulta gratis"</div>
+            <div style="padding-left: 20px;">└── 👥 Se registró, no agendó</div>
+            <div style="padding-left: 50px;">└── 🖼️ "Agenda tu llamada de 15 min — es gratis"</div>
+            <div style="margin-top: 8px; padding: 8px 12px; background: #FEF3C7; border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px;">
+                <strong>Budget total Semana 3: $40-50/día = $280-$350/semana</strong>
+            </div>
+        </div>
+
+        <!-- SEMANA 4+ -->
+        <h3>📅 Semana 4+ — Refinamiento Continuo</h3>
+        <div class="card highlight">
+            <h4>💎 Modo Crucero</h4>
+            <ul>
+                <li><strong>Mantener:</strong> Solo lo que funciona — apagar todo lo demás</li>
+                <li><strong>Testear:</strong> 1 nuevo creative por semana (imagen o video) contra los ganadores</li>
+                <li><strong>Optimizar por:</strong> <code>Schedule</code> (citas agendadas) si hay +50 eventos</li>
+                <li><strong>Monitorear:</strong> Frequency (si > 3, la audiencia se cansa — renovar creativos)</li>
+                <li><strong>Budget:</strong> $40-50/día = ~$1,200-$1,500/mes estabilizado</li>
+            </ul>
+        </div>
+
+        <!-- UTMs -->
+        <h3>🔗 UTMs para los Ads</h3>
+        <div class="card highlight">
+            <h4>Plantilla de URL para cada anuncio</h4>
+            <p style="margin-top: 8px;">Cada ad debe usar esta URL con UTMs:</p>
+            <pre style="background: #1E293B; color: #E2E8F0; padding: 14px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin-top: 8px; word-break: break-all;">
+https://lugoinsuranceadvisors.com/registro-1143?utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}
+</pre>
+            <p style="margin-top: 8px; font-size: 13px; color: var(--text-light);">Los <code>{{variables}}</code> son dinámicas de Meta — se llenan automáticamente.</p>
+        </div>
+
+        <!-- AUDIENCIAS -->
+        <h3>👥 Detalle de Audiencias</h3>
+        <table>
+            <tr>
+                <th>Ad Set</th>
+                <th>Audiencia</th>
+                <th>Edad</th>
+                <th>¿Por qué?</th>
+            </tr>
+            <tr>
+                <td><strong>Broad</strong></td>
+                <td>Hispanos en FL, sin intereses</td>
+                <td>25-55</td>
+                <td>Meta busca libremente — funciona bien con Advantage+</td>
+            </tr>
+            <tr>
+                <td><strong>Interests</strong></td>
+                <td>Intereses: Tax prep, IRS, Self-employed, Small biz</td>
+                <td>30-55</td>
+                <td>Público con intención — más costoso pero más calificado</td>
+            </tr>
+            <tr>
+                <td><strong>Lookalike</strong></td>
+                <td>1% parecidos a clientes actuales de Jorge</td>
+                <td>25-55</td>
+                <td>El más poderoso — Meta clona al cliente ideal</td>
+            </tr>
+        </table>
+        <div class="card amber">
+            <h4>⚠️ Para el Lookalike</h4>
+            <p style="margin-top: 6px;">Jorge necesita subir una lista de al menos <strong>100 clientes</strong> (email o teléfono) en Meta → Audiencias → Custom Audience → Customer List. Si no tiene 100, comenzar solo con Broad + Interests y crear el Lookalike cuando tenga suficientes leads del funnel.</p>
+        </div>
+
+        <!-- CREATIVOS -->
+        <h3>🎨 Creativos Disponibles</h3>
+        <table>
+            <tr>
+                <th>Ángulo</th>
+                <th>Tipo</th>
+                <th>Formatos</th>
+                <th>Archivo</th>
+                <th>Semana</th>
+            </tr>
+            <tr>
+                <td>🔴 Error Común</td>
+                <td>🖼️ Estático</td>
+                <td>1:1, 4:5, 9:16</td>
+                <td><code>error_comun_*.png</code></td>
+                <td>S1</td>
+            </tr>
+            <tr>
+                <td>💛 Emocional</td>
+                <td>🖼️ Estático</td>
+                <td>1:1, 4:5, 9:16</td>
+                <td><code>emocional_*.png</code></td>
+                <td>S1</td>
+            </tr>
+            <tr>
+                <td>⏰ Urgencia</td>
+                <td>🖼️ Estático</td>
+                <td>1:1, 4:5, 9:16</td>
+                <td><code>urgencia_*.png</code></td>
+                <td>S1</td>
+            </tr>
+            <tr style="background: #F0FDF4;">
+                <td>🎬 Video Corto</td>
+                <td>🎬 Video</td>
+                <td>9:16</td>
+                <td>Por grabar (Jorge a cámara)</td>
+                <td>S2</td>
+            </tr>
+            <tr style="background: #F0FDF4;">
+                <td>🎬 VSL Clip</td>
+                <td>🎬 Video</td>
+                <td>4:5 o 9:16</td>
+                <td>Recorte del VSL existente</td>
+                <td>S2</td>
+            </tr>
+            <tr style="background: #F0FDF4;">
+                <td>🎬 Testimonial</td>
+                <td>🎬 Video</td>
+                <td>9:16</td>
+                <td>Testimonio de cliente real</td>
+                <td>S2-S3</td>
+            </tr>
+        </table>
+
+        <!-- PASO A PASO -->
+        <h3>📋 Paso a Paso para Subir los Ads (Semana 1)</h3>
+        <div class="card green">
+            <h4>En Meta Ads Manager:</h4>
+            <ul>
+                <li><strong>1.</strong> Crear campaña → Objetivo: <strong>Conversiones</strong></li>
+                <li><strong>2.</strong> Budget: <strong>$30/día</strong> a nivel de campaña (CBO activado)</li>
+                <li><strong>3.</strong> Crear <strong>3 Ad Sets</strong> (Broad, Interests, Lookalike)</li>
+                <li><strong>4.</strong> En cada Ad Set: Location = Florida, Language = Español, Age = según tabla</li>
+                <li><strong>5.</strong> En cada Ad Set: Conversion Event = <code>Lead</code></li>
+                <li><strong>6.</strong> Crear <strong>3 Ads por Ad Set</strong> (uno de cada ángulo) → <strong>9 ads total</strong></li>
+                <li><strong>7.</strong> Formato primario: <strong>4:5</strong> para Feed + <strong>9:16</strong> para Stories/Reels</li>
+                <li><strong>8.</strong> Body copy: Usar textos de <code>ad_creatives/captions.md</code></li>
+                <li><strong>9.</strong> CTA Button: <strong>"Más información"</strong> o <strong>"Registrarse"</strong></li>
+                <li><strong>10.</strong> URL: Pegar la plantilla UTM de arriba</li>
+                <li><strong>11.</strong> Pixel: Seleccionar pixel <code>159472918101008</code></li>
+                <li><strong>12.</strong> Publicar en <strong>DRAFT</strong> → Revisar → <strong>LAUNCH</strong></li>
+            </ul>
+        </div>
+
+        <div class="card red">
+            <h4>🚫 Errores que NUNCA cometer</h4>
+            <ul>
+                <li><strong>NO</strong> edites un ad activo — duplícalo y edita la copia</li>
+                <li><strong>NO</strong> cambies budget más de 20% de golpe — Meta resetea el learning</li>
+                <li><strong>NO</strong> apagues antes de 7 días — Meta necesita datos para optimizar</li>
+                <li><strong>NO</strong> uses CPC manual — déjalo en automático (Lowest Cost)</li>
+                <li><strong>NO</strong> metas más de 5-6 ads por ad set — Meta no podrá optimizar bien</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- ===================== TAB 6: CHECKLIST ===================== -->
+    <div class="section" id="checklist">
+        <h2>✅ Checklist Final de Implementación</h2>
+        <p class="subtitle">Todo lo que falta para ir LIVE. Marca cada paso conforme lo completes.</p>
+
+        <h3>1. GHL — Funnel Pages</h3>
+        <ul class="checklist">
+            <li>Implementar <code>vsl_ghl_snippet.html</code> en step "VSL"</li>
+            <li>Implementar <code>calendar_ghl_snippet.html</code> en step "Agenda"</li>
+            <li>Implementar <code>thankyou_ghl_snippet.html</code> en step "thankyoupage"</li>
+            <li>Verificar redirects: VSL → Agenda → Thank You</li>
+            <li>Verificar que el calendario muestra disponibilidad correcta</li>
+        </ul>
+
+        <h3>2. GHL — Pixel & Tracking</h3>
+        <ul class="checklist">
+            <li>Obtener ID del Pixel de Facebook de Jorge</li>
+            <li>Agregar código Pixel en Header de CADA paso del embudo</li>
+            <li>Agregar evento <code>InitiateCheckout</code> en VSL (al tocar campo encuesta)</li>
+            <li>Agregar evento <code>Lead</code> en VSL (al enviar encuesta)</li>
+            <li>Agregar evento <code>ViewContent</code> en Agenda Page (automático)</li>
+            <li>Agregar evento <code>Schedule</code> en Thank You Page (automático)</li>
+            <li>Verificar con <strong>Meta Pixel Helper</strong> (extensión Chrome)</li>
+            <li>Crear 3 audiencias de retargeting en Meta Ads Manager</li>
+        </ul>
+
+        <h3>3. GHL — Tags y Pipeline</h3>
+        <ul class="checklist">
+            <li>Crear Pipeline "Lugo Insurance Pipeline" con 5 stages</li>
+            <li>Crear las 8 etiquetas listadas en la tab "Tags"</li>
+            <li>Crear WF 1: Nuevo Registro (trigger: form submit)</li>
+            <li>Crear WF 2: Cita Agendada (trigger: appointment created)</li>
+            <li>Crear WF 3: No-Show (trigger: appointment status = no-show)</li>
+            <li>Probar e2e: llenar form → pipeline → tags aplicados</li>
+        </ul>
+
+        <h3>4. GHL — Comunicaciones (Workflows)</h3>
+        <ul class="checklist">
+            <li>Configurar secuencia Nurture (post-registro, no agendaron)</li>
+            <li>Configurar secuencia Show-Up (pre-llamada, 24h/1h/5min)</li>
+            <li>Configurar secuencia No-Show (re-agendamiento)</li>
+            <li>Configurar alertas internas a Jorge (nueva cita, no-show)</li>
+            <li>Referencia: <code>comunicaciones_pipeline.html</code></li>
+        </ul>
+
+        <h3>5. Meta Ads — Campaña</h3>
+        <ul class="checklist">
+            <li>Verificar acceso al Ad Account de Jorge</li>
+            <li>Verificar Pixel conectado y activo</li>
+            <li>Crear campaña con estructura recomendada (3 Ad Sets)</li>
+            <li>Subir los 9 creatives (3 ángulos × 3 formatos)</li>
+            <li>Agregar UTMs a cada ad</li>
+            <li>Configurar budget ($20-30/día para iniciar)</li>
+            <li>Publicar en modo DRAFT → revisar → LAUNCH</li>
+        </ul>
+
+        <h3>6. Idioma del Calendario (Opcional)</h3>
+        <ul class="checklist">
+            <li>Pedir a Jorge que cambie idioma de GHL a Español</li>
+            <li>Settings → Business Profile → Language → Español</li>
+        </ul>
+    </div>
+
+    </div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Checklist toggle
+        document.querySelectorAll('.checklist li').forEach(li => {
+            li.addEventListener('click', function () {
+                this.classList.toggle('done');
+            });
+        });
+    </script>
+</body>
+
+</html>

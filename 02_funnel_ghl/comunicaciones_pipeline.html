@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicaciones Pipeline — Jorge Vergara Tax Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002B49;
+            --teal: #1AE5ED;
+            --teal-d: #0FA5AB;
+            --slack: #4A154B;
+            --slack-l: #F3E8F3;
+            --gmail: #EA4335;
+            --gmail-l: #FDECEA;
+            --sms: #128C7E;
+            --sms-l: #E7F9EE;
+            --wa: #25D366;
+            --wa-l: #E7F9EE;
+            --txt: #1E293B;
+            --txt-l: #64748B;
+            --bg: #F1F5F9;
+            --w: #FFF;
+            --brd: #E2E8F0;
+            --code: #F8FAFC;
+            --warn-bg: #FEF3C7;
+            --warn: #92400E;
+            --crit-bg: #FEE2E2;
+            --crit: #991B1B;
+            --ok-bg: #D1FAE5;
+            --ok: #065F46;
+            --info-bg: #DBEAFE;
+            --info: #1E40AF;
+            --auto-bg: #EDE9FE;
+            --auto: #5B21B6
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .page {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 32px 20px 80px
+        }
+
+        .header {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(26, 229, 237, .1)0%, transparent 70%)
+        }
+
+        .pill {
+            display: inline-block;
+            background: rgba(26, 229, 237, .12);
+            color: var(--teal);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(26, 229, 237, .2);
+            margin-bottom: 10px
+        }
+
+        .header h1 {
+            color: var(--w);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 13px
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            background: var(--w);
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--brd);
+            margin-bottom: 6px;
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .tab {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--txt-l);
+            transition: .2s;
+            white-space: nowrap
+        }
+
+        .tab:hover {
+            background: var(--bg);
+            color: var(--txt)
+        }
+
+        .tab.active {
+            background: var(--navy);
+            color: var(--w)
+        }
+
+        .tab .tn {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 18px;
+            font-size: 10px;
+            margin-right: 4px;
+            background: rgba(0, 0, 0, .06);
+            color: var(--txt-l)
+        }
+
+        .tab.active .tn {
+            background: rgba(26, 229, 237, .2);
+            color: var(--teal)
+        }
+
+        /* SUB TABS */
+        .sub-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+            padding: 4px;
+            background: var(--code);
+            border-radius: 10px;
+            border: 1px solid var(--brd)
+        }
+
+        .sub-tab {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--txt-l);
+            text-align: center;
+            transition: .2s
+        }
+
+        .sub-tab.active-int {
+            background: var(--slack-l);
+            color: var(--slack)
+        }
+
+        .sub-tab.active-ext {
+            background: #DBEAFE;
+            color: #1E40AF
+        }
+
+        /* STAGE CONTENT */
+        .stage-panel {
+            display: none
+        }
+
+        .stage-panel.active {
+            display: block
+        }
+
+        .stage-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px
+        }
+
+        .stage-title h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy)
+        }
+
+        .stage-desc {
+            font-size: 13px;
+            color: var(--txt-l);
+            margin-bottom: 18px
+        }
+
+        .comm-panel {
+            display: none
+        }
+
+        .comm-panel.active {
+            display: block
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--w);
+            border: 1px solid var(--brd);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden
+        }
+
+        .card-h {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--brd);
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .ch {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            padding: 3px 8px;
+            border-radius: 4px
+        }
+
+        .ch-slack {
+            background: var(--slack-l);
+            color: var(--slack)
+        }
+
+        .ch-email {
+            background: var(--gmail-l);
+            color: var(--gmail)
+        }
+
+        .ch-sms {
+            background: var(--sms-l);
+            color: var(--sms)
+        }
+
+        .ch-wa {
+            background: var(--wa-l);
+            color: var(--wa)
+        }
+
+        .time {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--txt-l);
+            background: var(--code);
+            padding: 3px 8px;
+            border-radius: 5px
+        }
+
+        .urg {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 4px
+        }
+
+        .u-ok {
+            background: var(--ok-bg);
+            color: var(--ok)
+        }
+
+        .u-info {
+            background: var(--info-bg);
+            color: var(--info)
+        }
+
+        .u-warn {
+            background: var(--warn-bg);
+            color: var(--warn)
+        }
+
+        .u-crit {
+            background: var(--crit-bg);
+            color: var(--crit)
+        }
+
+        .card-b {
+            padding: 14px 16px
+        }
+
+        .lbl {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--txt-l);
+            margin-bottom: 4px
+        }
+
+        .subj {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gmail);
+            margin-bottom: 6px
+        }
+
+        .msg {
+            background: var(--code);
+            border: 1px solid var(--brd);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12.5px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word
+        }
+
+        .msg .m {
+            color: var(--teal-d);
+            font-weight: 700;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 11.5px
+        }
+
+        .msg .b {
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .msg .lk {
+            color: #3B82F6;
+            text-decoration: underline
+        }
+
+        .auto {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px 14px;
+            margin: 0 0 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--auto-bg);
+            color: var(--auto);
+            border: 1px solid #C4B5FD
+        }
+
+        .merge-ref {
+            background: var(--w);
+            border: 1px solid var(--brd);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px
+        }
+
+        .merge-ref h3 {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 8px
+        }
+
+        .fg {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .fi {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: var(--code);
+            border: 1px solid var(--brd);
+            font-family: 'SF Mono', 'Fira Code', monospace
+        }
+
+        .fi strong {
+            color: var(--navy)
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--txt-l)
+        }
+
+        @media(max-width:768px) {
+            .page {
+                padding: 12px 8px 60px
+            }
+
+            .header {
+                padding: 24px 16px
+            }
+
+            .header h1 {
+                font-size: 20px
+            }
+
+            .tabs {
+                gap: 2px;
+                padding: 6px
+            }
+
+            .tab {
+                padding: 6px 8px;
+                font-size: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="pill">Pipeline Completo — GHL Workflows</div>
+            <h1>📋 Comunicaciones por Etapa</h1>
+            <p>Textos internos (equipo) y externos (cliente) listos para implementar en GoHighLevel. Click en cada etapa
+                para ver las notificaciones.</p>
+        </header>
+        <div class="merge-ref">
+            <h3>📋 GHL Merge Fields</h3>
+            <div class="fg">
+                <div class="fi"><strong>Nombre:</strong> {{contact.first_name}}</div>
+                <div class="fi"><strong>Apellido:</strong> {{contact.last_name}}</div>
+                <div class="fi"><strong>Tel:</strong> {{contact.phone}}</div>
+                <div class="fi"><strong>Email:</strong> {{contact.email}}</div>
+                <div class="fi"><strong>Link:</strong> {{contact.contact_link}}</div>
+                <div class="fi"><strong>Fuente:</strong> {{contact.source}}</div>
+                <div class="fi"><strong>Fecha:</strong> {{contact.date_created}}</div>
+            </div>
+        </div>
+        <div id="tabs" class="tabs"></div>
+        <div id="content"></div>
+        <p class="footer">Comunicaciones Pipeline — Antigravity × Lucho Branding × Jorge Vergara — Febrero 2026</p>
+    </div>
+    <script>
+        const M = { n: '<span class="m">{{contact.first_name}} {{contact.last_name}}</span>', fn: '<span class="m">{{contact.first_name}}</span>', ph: '<span class="m">{{contact.phone}}</span>', em: '<span class="m">{{contact.email}}</span>', lk: '<span class="lk">{{contact.contact_link}}</span>', src: '<span class="m">{{contact.source}}</span>', dt: '<span class="m">{{contact.date_created}}</span>', pay: '<span class="m">{{custom_values.payment_link}}</span>', docs: '<span class="m">{{custom_values.secure_system_link}}</span>', cal: '<span class="m">{{appointment.calendar_link}}</span>', apdt: '<span class="m">{{appointment.date}}</span>', aptm: '<span class="m">{{appointment.time}}</span>' };
+        const B = t => `<span class="b">${t}</span>`;
+        const stages = [
+            // ── 0. ABANDONÓ ENCUESTA ──
+            {
+                id: 0, name: "Abandonó Encuesta", icon: "🚪", desc: "Persona hizo clic en el Survey pero NO lo completó. Lead tibio — rescatar rápido.",
+                int: [
+                    {
+                        ch: "slack", time: "0H — Inmediato", urg: "u-crit", urgTxt: "⚡ URGENTE",
+                        msg: `🔴 ${B('ENCUESTA ABANDONADA')}\n\n${M.n} empezó la encuesta pero ${B('NO la terminó.')}\n\n📞 ${M.ph}\n📧 ${M.em}\n\n👉 ${M.lk}\n\n⚡ ${B('Llámalo AHORA mientras aún está en el teléfono.')}`
+                    },
+                    {
+                        ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Recordatorio",
+                        msg: `⚠️ ${B('Recordatorio — Encuesta abandonada sin llamar')}\n\n${M.n} abandonó la encuesta hace 24h y ${B('aún no se ha contactado.')}\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nHay que llamarlo hoy o se pierde.`
+                    },
+                    {
+                        ch: "email", time: "48H", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `⚠️ Lead sin contactar hace 48h — {{contact.first_name}} {{contact.last_name}}`,
+                        msg: `${B('Lead sin contactar — Encuesta abandonada')}\n\nHola Jefferson,\n\n${M.n} abandonó la encuesta hace ${B('48 horas')} y sigue sin ser contactado.\n\n${B('Datos del contacto:')}\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n• Fuente: ${M.src}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\nSi no se llama hoy, este lead se moverá automáticamente a "No Sigue" en 48h.\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Mover oportunidad a ${B('"No Sigue"')}. Tag: [Status] Inacción - Abandono` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "10 min", urg: "u-info", urgTxt: "📲 Rescate",
+                        msg: `Hola ${M.fn}, vimos que empezaste tu solicitud de preparación de taxes pero no la terminaste.\n\nSolo toma 2 minutos completarla → ${M.docs}\n\n¿Tienes alguna pregunta? Responde a este mensaje. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "24H", urg: "u-info", urgTxt: "📧 Recordatorio", subj: `{{contact.first_name}}, tu solicitud de taxes quedó incompleta`,
+                        msg: `Hola ${M.fn},\n\nNotamos que empezaste a llenar tu información para la preparación de taxes pero no terminaste.\n\nSabemos que la vida es ocupada — por eso te hicimos el proceso lo más corto posible.\n\n${B('👉 Complétala aquí (2 minutos):')} ${M.docs}\n\nRecuerda: la fecha límite del IRS es el ${B('15 de abril')}. Mientras más rápido empecemos, más rápido recibes tu reembolso.\n\n¿Preguntas? Llámanos o responde este email.\n\nJorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 1. NUEVO LEAD ──
+            {
+                id: 1, name: "Nuevo Lead", icon: "🔥", desc: "Llenó la encuesta completa. Lead caliente — Jefferson tiene 15–20 min para llamar.",
+                int: [
+                    {
+                        ch: "slack", time: "0H — Inmediato", urg: "u-crit", urgTxt: "🔥 LLAMAR YA",
+                        msg: `🔥 ${B('NUEVO LEAD — ¡LLAMAR EN 15 MIN!')}\n\n${B(M.n)} acaba de completar la encuesta de taxes.\n\n📞 ${M.ph}\n📧 ${M.em}\n🏷 Fuente: ${M.src}\n\n👉 ${M.lk}\n\n⏱ ${B('Tienes 15–20 minutos para llamarlo.')} Confirma datos del survey + explica los 3 pasos.`
+                    },
+                    {
+                        ch: "slack", time: "2H", urg: "u-warn", urgTxt: "⚠️ Sin llamar",
+                        msg: `⚠️ ${B('2 HORAS y aún no llamas a este lead')}\n\n${M.n} completó la encuesta hace 2 horas.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nCada hora que pasa reduce la probabilidad de contacto. Llámalo ahora.`
+                    },
+                    {
+                        ch: "slack", time: "4H", urg: "u-crit", urgTxt: "🚨 Riesgo",
+                        msg: `🚨 ${B('4 HORAS SIN LLAMAR — Lead en riesgo')}\n\n${M.n} — nadie lo ha llamado en 4 horas.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\n${B('Si no se llama hoy, la probabilidad de cierre baja un 80%.')}`
+                    },
+                    {
+                        ch: "email", time: "24H", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `🚨 Lead de 24h SIN LLAMAR — {{contact.first_name}} {{contact.last_name}}`,
+                        msg: `${B('⚠️ Lead sin primer contacto — 24 horas')}\n\nHola Jefferson,\n\nHan pasado ${B('24 horas')} desde que ${M.n} completó la encuesta y aún no tiene primera llamada.\n\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n• Fuente: ${M.src}\n• Registrado: ${M.dt}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\nSe irá a inacción si no se llama antes de las 96h.\n\n— Notificación automática GHL`
+                    },
+                    {
+                        ch: "sms", time: "48H", urg: "u-crit", urgTxt: "🚨 Último aviso",
+                        msg: `🚨 LEAD SIN LLAMAR 48H: ${M.n} — Tel: ${M.ph}. Llámalo hoy o se va a inacción. Ver: ${M.lk}`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Mover a ${B('"Inacción"')}. Tag: [Status] Inacción - Sin Llamada 1. Notificación Slack: "Se perdió a {{contact.first_name}} por inacción."` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H — Inmediato", urg: "u-ok", urgTxt: "✅ Confirmación",
+                        msg: `¡Hola ${M.fn}! Gracias por completar tu solicitud de preparación de taxes. En breve te llamaremos para confirmar tu información y explicarte los siguientes pasos. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 2. LLAMADA 1 ──
+            {
+                id: 2, name: "Llamada 1", icon: "📞", desc: "Se hizo la primera llamada pero no contestó. Hay que reintentar al día siguiente.",
+                int: [
+                    {
+                        ch: "slack", time: "24H", urg: "u-info", urgTxt: "📞 2do Intento",
+                        msg: `📞 ${B('LLAMADA #2 — Toca reintentar')}\n\n${M.n} no contestó la primera llamada ayer.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlámalo hoy por segunda vez. Si contesta → confirma datos + envía link del sistema seguro.`
+                    },
+                    {
+                        ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Sin 2da llamada",
+                        msg: `⚠️ ${B('Aún no se ha hecho la 2da llamada')}\n\n${M.n} lleva 48h desde la primera llamada sin segundo intento.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nHay que llamarlo hoy. Si no se hace, el lead se irá a inacción.`
+                    },
+                    {
+                        ch: "email", time: "72H", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `⚠️ 2da llamada pendiente — {{contact.first_name}} {{contact.last_name}} (72h)`,
+                        msg: `Hola Jefferson,\n\n${M.n} no contestó la 1ra llamada y han pasado ${B('72 horas sin segundo intento.')}\n\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\nSi no se hace la 2da llamada en las próximas 24h, el lead se moverá a inacción.\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Mover a ${B('"Inacción"')}. Tag: [Status] Inacción - Sin Llamada 2` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-info", urgTxt: "📲 Follow-up",
+                        msg: `Hola ${M.fn}, te llamamos hace un momento pero no pudimos comunicarnos. Te volveremos a llamar mañana para ayudarte con tu preparación de taxes. Si prefieres, llámanos de vuelta. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "wa", time: "2H", urg: "u-info", urgTxt: "📱 WhatsApp",
+                        msg: `Hola ${M.fn} 👋\n\nTe llamamos hoy para continuar con tu preparación de taxes pero no logramos comunicarnos.\n\nTe volveremos a llamar mañana. Si tienes alguna pregunta, puedes respondernos por aquí.\n\n— Equipo Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 3. LLAMADA 2 ──
+            {
+                id: 3, name: "Llamada 2", icon: "📞", desc: "Segundo intento sin respuesta. Queda una última llamada + SMS al cliente.",
+                int: [
+                    {
+                        ch: "slack", time: "24H", urg: "u-crit", urgTxt: "🔴 3er INTENTO",
+                        msg: `🔴 ${B('LLAMADA #3 — Último intento')}\n\n${M.n} no ha contestado las 2 llamadas anteriores. Esta es la ${B('tercera y última.')}\n\n📞 ${M.ph}\n👉 ${M.lk}\n\n${B('Si no contesta → SMS final al cliente y marcar "No Sigue".')}`
+                    },
+                    {
+                        ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Pendiente",
+                        msg: `⚠️ ${B('Última llamada pendiente')}\n\n${M.n} — 2 llamadas hechas, la 3ra y última aún no se hace.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlámalo hoy. Si no contesta → SMS y cerrar.`
+                    },
+                    {
+                        ch: "email", time: "72H", urg: "u-crit", urgTxt: "🚨 Final", subj: `🚨 ÚLTIMA LLAMADA PENDIENTE — {{contact.first_name}} {{contact.last_name}}`,
+                        msg: `Hola Jefferson,\n\n${M.n} lleva ${B('2 llamadas sin respuesta')} y han pasado 72h sin el tercer intento.\n\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\n${B('Haz la 3ra llamada HOY.')} Si no contesta, se enviará SMS final al cliente y se cerrará como "No Sigue".\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Enviar ${B('SMS final al CLIENTE')}. Mover a ${B('"No Sigue"')}. Tag: [Status] No Contesta - 3 Llamadas. ${B('Terminal — sin nutrición.')}` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-info", urgTxt: "📲 Intento 2",
+                        msg: `Hola ${M.fn}, te hemos intentado llamar 2 veces para ayudarte con tu preparación de taxes. Mañana te llamaremos por última vez. Si prefieres, llámanos tú. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 4. LLAMADA 3 ──
+            {
+                id: 4, name: "Llamada 3", icon: "📞", desc: "Tercer y último intento de llamada. Si no contesta → SMS final y terminal.",
+                int: [
+                    {
+                        ch: "slack", time: "24H", urg: "u-crit", urgTxt: "🔴 ÚLTIMA",
+                        msg: `🔴 ${B('ÚLTIMA LLAMADA — Ahora o nunca')}\n\n${M.n} — este es el ${B('3er y último intento')} de contacto.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nSi no contesta esta vez → enviar SMS de cierre y "No Sigue".`
+                    },
+                    {
+                        ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Sin hacer",
+                        msg: `⚠️ ${B('3ra llamada AÚN no se hace')}\n\n${M.n} — 48h desde que se debía hacer el último intento.\n\n📞 ${M.ph}\n👉 ${M.lk}`
+                    },
+                    {
+                        ch: "email", time: "72H", urg: "u-crit", urgTxt: "🚨 Cierre", subj: `🚨 Cierre inminente — {{contact.first_name}} {{contact.last_name}} sin 3ra llamada`,
+                        msg: `Hola Jefferson,\n\n${M.n} — el tercer intento de llamada no se ha realizado en 72h.\n\n• Teléfono: ${M.ph}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\nEn 24h se cerrará como "No Sigue" automáticamente.\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Mover a ${B('"Inacción"')}. Tag: [Status] Inacción - Sin Llamada 3` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "Al cerrar", urg: "u-crit", urgTxt: "📲 Cierre",
+                        msg: `Hola ${M.fn}, te hemos intentado contactar 3 veces para tu preparación de taxes sin éxito. Si aún necesitas ayuda antes del 15 de abril, llámanos. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "Al cerrar", urg: "u-crit", urgTxt: "📧 Cierre", subj: `{{contact.first_name}}, ¿aún necesitas ayuda con tus taxes?`,
+                        msg: `Hola ${M.fn},\n\nTe hemos intentado contactar ${B('3 veces')} para ayudarte con tu preparación de taxes, pero no hemos logrado comunicarnos contigo.\n\nEntendemos que estás ocupado/a. Si aún necesitas nuestro servicio antes de la ${B('fecha límite del 15 de abril')}, puedes:\n\n📞 Llamarnos directamente\n📧 Responder este email\n\nSi ya no necesitas el servicio, no te enviaremos más mensajes.\n\nJorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 5. PENDIENTE DOCUMENTOS ──
+            {
+                id: 5, name: "Pend. Documentos", icon: "📄", desc: "Cliente contactado exitosamente. Se envió link al sistema seguro. Ahora hay que monitorear que suba sus documentos.",
+                int: [
+                    {
+                        ch: "slack", time: "0H — Contactado", urg: "u-ok", urgTxt: "✅ Contactado",
+                        msg: `✅ ${B('CONTACTO EXITOSO — Link enviado')}\n\n${M.n} contestó y recibió el link del sistema seguro.\n\n📞 ${M.ph}\n🏷 Movido a: ${B('Pendiente por Documentos')}\n\n👉 ${M.lk}\n\nSiguiente: monitorear subida de documentos.`
+                    },
+                    {
+                        ch: "slack", time: "72H sin docs", urg: "u-warn", urgTxt: "📄 Pendiente",
+                        msg: `📄 ${B('3 DÍAS — Sin documentos')}\n\n${M.n} recibió link hace 3 días pero ${B('no ha subido documentos.')}\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlamar para recordarle. ¿Necesita ayuda con el sistema?`
+                    },
+                    {
+                        ch: "email", time: "7 Días", urg: "u-crit", urgTxt: "🚨 Urgente", subj: `📄 {{contact.first_name}} {{contact.last_name}} — 7 días sin documentos`,
+                        msg: `Hola Jefferson,\n\n${M.n} lleva ${B('7 días sin subir documentos')} al sistema.\n\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\n${B('Hacer llamada de seguimiento.')} La fecha límite del IRS es el ${B('15 de abril')}.\n\n— Notificación automática GHL`
+                    },
+                    {
+                        ch: "sms", time: "15 Días", urg: "u-crit", urgTxt: "🚨 Deadline",
+                        msg: `📄 DOCS URGENTE: ${M.n} lleva 15 días sin subir docs. Tel: ${M.ph}. Se acerca el 15 de abril. Último follow-up → ${M.lk}`
+                    },
+                    { ch: "auto", msg: `${B('21 Días — Acción Automática:')} Mover a ${B('"No Sigue"')} si no ha subido ningún documento. Tag: [Status] Sin Documentos - 21 días` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-ok", urgTxt: "✅ Instrucciones",
+                        msg: `¡Hola ${M.fn}! Fue un gusto hablar contigo. Como acordamos, aquí tienes el link para subir tus documentos de forma segura:\n\n👉 ${M.docs}\n\nDocumentos que necesitamos:\n✅ W2 / 1099\n✅ Social Security (SSN)\n✅ ID con foto\n✅ 1095-A (si aplica)\n\n¿Preguntas? Responde este mensaje. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "0H", urg: "u-ok", urgTxt: "📧 Paso a paso", subj: `${B('{{contact.first_name}}, aquí está tu link para subir documentos')}`,
+                        msg: `Hola ${M.fn},\n\n¡Gracias por confiar en nosotros para tu preparación de taxes!\n\nComo hablamos, aquí tienes tu link seguro para subir tus documentos:\n\n${B('👉 Subir documentos:')} ${M.docs}\n\n${B('¿Qué necesitas subir?')}\n✅ W2 o 1099 (formulario de ingresos)\n✅ Social Security Number (SSN)\n✅ Identificación con foto\n✅ 1095-A del Marketplace (si aplica)\n✅ Actas de nacimiento de dependientes (si aplica)\n\n${B('¿Cómo funciona?')}\n1. Haz clic en el link de arriba\n2. Crea tu perfil en el sistema seguro\n3. Sube tus documentos (puedes tomarles foto desde el celular)\n\nUna vez que recibamos todo, preparamos tu declaración y te agendamos la cita de revisión.\n\n¿Necesitas ayuda? Llámanos o responde este email.\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "wa", time: "24H", urg: "u-info", urgTxt: "📱 Recordatorio",
+                        msg: `Hola ${M.fn} 👋\n\n¿Pudiste subir tus documentos al sistema seguro?\n\n👉 ${M.docs}\n\nSi tienes algún problema para acceder o subir los documentos, escríbeme por aquí y te ayudo paso a paso.\n\n— Equipo Jorge Vergara`
+                    },
+                    {
+                        ch: "sms", time: "72H", urg: "u-warn", urgTxt: "⚠️ Recordatorio",
+                        msg: `${M.fn}, aún no hemos recibido tus documentos para preparar tus taxes. Recuerda subirlos aquí: ${M.docs}. ¿Necesitas ayuda? Llámanos. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "7 Días", urg: "u-warn", urgTxt: "📧 Urgencia", subj: `{{contact.first_name}}, aún faltan tus documentos de taxes`,
+                        msg: `Hola ${M.fn},\n\nHace una semana que hablamos y aún no hemos recibido tus documentos para preparar tu declaración de taxes.\n\nSabemos que puede ser un proceso que toma tiempo, pero la ${B('fecha límite del IRS es el 15 de abril')} y queremos asegurarnos de que tu declaración esté lista a tiempo.\n\n${B('👉 Sube tus documentos aquí:')} ${M.docs}\n\nSi tienes alguna dificultad o pregunta, llámanos y te guiamos paso a paso.\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "14 Días", urg: "u-crit", urgTxt: "🚨 Último aviso",
+                        msg: `⚠️ ${M.fn}, se acerca el 15 de abril y aún no tenemos tus documentos. Si no los recibes pronto, no podremos garantizar que tu declaración se envíe a tiempo. Súbelos aquí: ${M.docs}. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 6. PENDIENTE PAGO ──
+            {
+                id: 6, name: "Pendiente Pago", icon: "💳", desc: "Documentos recibidos y validados. Jefferson envía acuerdo + invoice. Pago obligatorio antes de agendar revisión.",
+                int: [
+                    {
+                        ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ Docs completos",
+                        msg: `✅ ${B('DOCUMENTOS COMPLETOS — Enviar factura')}\n\n${M.n} subió todos los documentos requeridos.\n\n👉 ${M.lk}\n\n${B('Siguiente:')}\n1. Validar docs\n2. Enviar acuerdo de servicio\n3. Enviar invoice/link de pago\n\nMoverlo a "Pendiente Pago" al enviar invoice.`
+                    },
+                    {
+                        ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Sin pagar",
+                        msg: `💳 ${B('24H — Cliente aún no paga')}\n\n${M.n} recibió el invoice ayer y aún no ha procesado el pago.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nHacer seguimiento para confirmar recepción.`
+                    },
+                    {
+                        ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Recordatorio",
+                        msg: `💳 ${B('48H — Pago pendiente')}\n\n${M.n} — 2 días con invoice sin pagar.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlamar para resolver dudas sobre el pago.`
+                    },
+                    {
+                        ch: "email", time: "72H", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `💳 Pago pendiente 72h — {{contact.first_name}} {{contact.last_name}}`,
+                        msg: `Hola Jefferson,\n\n${M.n} tiene ${B('72h con el pago pendiente.')}\n\n• Teléfono: ${M.ph}\n• Email: ${M.em}\n\n${B('👉 Ver contacto: ')} ${M.lk}\n\nSin pago no podemos agendar la revisión. Llamar para resolver.\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('15 Días — Acción Automática:')} Si no hay pago → Mover a ${B('"No Sigue"')}. Tag: [Status] Sin Pago - 15 días` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-ok", urgTxt: "✅ Invoice",
+                        msg: `¡Hola ${M.fn}! Ya recibimos todos tus documentos y estamos preparando tu declaración. Para continuar, procesa tu pago aquí:\n\n💳 ${M.pay}\n\nUna vez recibido, te agendaremos la cita de revisión. — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "0H", urg: "u-ok", urgTxt: "📧 Acuerdo + Pago", subj: `{{contact.first_name}}, tus documentos están completos — siguiente paso: pago`,
+                        msg: `Hola ${M.fn},\n\n¡Buenas noticias! Recibimos y validamos todos tus documentos.\n\nEstamos preparando tu declaración de taxes. Para continuar con el proceso, necesitamos procesar tu pago:\n\n${B('💳 Procesar pago:')} ${M.pay}\n\nUna vez confirmado el pago, te agendaremos tu cita de revisión con Jorge para repasar tu declaración juntos antes de enviarla al IRS.\n\n¿Preguntas? Llámanos o responde este email.\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "24H", urg: "u-info", urgTxt: "📲 Recordatorio",
+                        msg: `${M.fn}, ¿pudiste procesar tu pago? Tu declaración está casi lista. Paga aquí para agendar tu cita de revisión: ${M.pay}. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 7. DOCS Y PAGO OK ──
+            {
+                id: 7, name: "Docs y Pago OK", icon: "✅", desc: "Documentos y pago confirmados. Todo listo para agendar la revisión con Jorge.",
+                int: [
+                    {
+                        ch: "slack", time: "0H", urg: "u-ok", urgTxt: "✅ Todo listo",
+                        msg: `🎉 ${B('PAGO CONFIRMADO — Agendar revisión')}\n\n${M.n} completó el pago.\n\n💳 Pago: Confirmado ✅\n📄 Documentos: Completos ✅\n\n👉 ${M.lk}\n\n${B('Enviar link de agendamiento para revisión con Jorge.')}`
+                    },
+                    {
+                        ch: "slack", time: "24H", urg: "u-warn", urgTxt: "⚠️ Sin agendar",
+                        msg: `📅 ${B('24H — Cliente no ha agendado')}\n\n${M.n} pagó pero ${B('no ha agendado la cita de revisión.')}\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nVerificar que recibió el link de agendamiento.`
+                    },
+                    {
+                        ch: "slack", time: "48H", urg: "u-warn", urgTxt: "⚠️ Recordatorio",
+                        msg: `📅 ${B('48H — Cita sin agendar')}\n\n${M.n} — 2 días con pago confirmado pero sin cita agendada.\n\n📞 ${M.ph}\n👉 ${M.lk}\n\nLlamar para ayudar a agendar.`
+                    },
+                    {
+                        ch: "email", time: "72H", urg: "u-crit", urgTxt: "🚨 Escalamiento", subj: `📅 Cliente pagó pero no agenda — {{contact.first_name}} {{contact.last_name}}`,
+                        msg: `Hola Jefferson,\n\n${M.n} pagó hace ${B('72h')} pero no ha agendado la cita de revisión.\n\n• Teléfono: ${M.ph}\n\n${B('👉 Ver contacto:')} ${M.lk}\n\nLlamar y agendar directamente si es necesario.\n\n— Notificación automática GHL`
+                    },
+                    { ch: "auto", msg: `${B('96H — Acción Automática:')} Mover a ${B('"Inacción"')} si no agenda. Tag: [Status] Inacción - Sin Agendar` }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-ok", urgTxt: "✅ Confirmación",
+                        msg: `¡Hola ${M.fn}! Recibimos tu pago. ¡Gracias! 🎉\n\nTu declaración está lista para revisión. Agenda tu cita con Jorge aquí:\n\n📅 ${M.cal}\n\n— Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "0H", urg: "u-ok", urgTxt: "📧 Agendamiento", subj: `✅ {{contact.first_name}}, tu pago está confirmado — agenda tu revisión`,
+                        msg: `Hola ${M.fn},\n\n¡Tu pago ha sido confirmado! 🎉\n\nTu declaración de taxes está preparada y lista para revisión.\n\n${B('📅 Agenda tu cita de revisión con Jorge:')}\n${M.cal}\n\nEn la cita, Jorge revisará contigo tu declaración línea por línea antes de enviarla al IRS. Solo necesitas firmar electrónicamente.\n\n¡Estamos a un paso de terminar!\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "24H", urg: "u-info", urgTxt: "📲 Recordatorio",
+                        msg: `${M.fn}, ¿agendaste tu cita de revisión? Tu declaración está lista. Agenda aquí: ${M.cal}. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 8. CITA AGENDADA ──
+            {
+                id: 8, name: "Cita Agendada", icon: "📅", desc: "Revisión agendada con Jorge. Recordatorios para garantizar que asista.",
+                int: [
+                    {
+                        ch: "slack", time: "0H — Agendada", urg: "u-ok", urgTxt: "📅 Agendada",
+                        msg: `📅 ${B('CITA AGENDADA')}\n\n${M.n} agendó revisión de declaración.\n\n📅 Fecha: ${M.apdt}\n🕐 Hora: ${M.aptm}\n\n👉 ${M.lk}\n\nJorge, prepara la declaración para la revisión.`
+                    },
+                    {
+                        ch: "slack", time: "-24H (día antes)", urg: "u-info", urgTxt: "⏰ Mañana",
+                        msg: `⏰ ${B('CITA MAÑANA')}\n\n${M.n} tiene revisión MAÑANA.\n\n📅 ${M.apdt} a las ${M.aptm}\n\n👉 ${M.lk}\n\nVerificar que la declaración esté lista para mostrar.`
+                    },
+                    {
+                        ch: "slack", time: "-10 MIN", urg: "u-warn", urgTxt: "🔔 Ahora",
+                        msg: `🔔 ${B('CITA EN 10 MINUTOS')}\n\n${M.n} — revisión de declaración en 10 min.\n\n👉 ${M.lk}`
+                    }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H — Confirmación", urg: "u-ok", urgTxt: "✅ Confirmada",
+                        msg: `¡Hola ${M.fn}! Tu cita de revisión está confirmada:\n\n📅 ${M.apdt}\n🕐 ${M.aptm}\n\nEn la cita repasaremos tu declaración juntos. ¡Nos vemos ahí! — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "-24H", urg: "u-info", urgTxt: "📧 Recordatorio", subj: `Recordatorio: tu cita de revisión de taxes es mañana`,
+                        msg: `Hola ${M.fn},\n\nEste es un recordatorio de que tu cita de revisión de declaración de taxes es ${B('mañana')}:\n\n📅 Fecha: ${M.apdt}\n🕐 Hora: ${M.aptm}\n\nEn la cita, Jorge revisará contigo tu declaración punto por punto. Si todo está correcto, firmarás electrónicamente y la enviaremos al IRS.\n\n¿Necesitas reagendar? Responde a este email.\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "-1H", urg: "u-warn", urgTxt: "⏰ En 1 hora",
+                        msg: `${M.fn}, tu cita de revisión de taxes es en 1 HORA (${M.aptm}). ¡Te esperamos! — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "-10 MIN", urg: "u-crit", urgTxt: "🔔 Ahora",
+                        msg: `${M.fn}, tu cita de revisión empieza en 10 minutos. ¿Estás listo/a? — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 9. PROCESADO ──
+            {
+                id: 9, name: "Procesado ✅", icon: "🏆", desc: "Declaración revisada, firmada y sometida al IRS. Caso cerrado exitosamente.",
+                int: [
+                    {
+                        ch: "slack", time: "0H", urg: "u-ok", urgTxt: "🏆 Cerrado",
+                        msg: `🏆 ${B('CASO CERRADO — Declaración sometida')}\n\n${M.n} — declaración firmada y enviada al IRS.\n\n👉 ${M.lk}\n\n¡Otro caso completado! 💪`
+                    }
+                ],
+                ext: [
+                    {
+                        ch: "sms", time: "0H", urg: "u-ok", urgTxt: "🎉 Felicitaciones",
+                        msg: `🎉 ¡Felicidades ${M.fn}! Tu declaración de taxes ha sido enviada al IRS exitosamente. Recibirás una confirmación por email. ¡Gracias por confiar en nosotros! — Jorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "email", time: "0H", urg: "u-ok", urgTxt: "📧 Confirmación final", subj: `🎉 ¡Tu declaración fue enviada, {{contact.first_name}}!`,
+                        msg: `Hola ${M.fn},\n\n${B('🎉 ¡Tu declaración de taxes ha sido enviada al IRS exitosamente!')}\n\nAquí tienes un resumen:\n✅ Declaración revisada y firmada\n✅ Enviada al IRS\n✅ Recibirás tu reembolso según la estimación discutida\n\nGuarda este email como confirmación.\n\nSi tienes alguna pregunta sobre tu reembolso o necesitas una copia de tu declaración, no dudes en contactarnos.\n\n${B('¿Te gustaría dejarnos una reseña?')}\nNos ayudaría mucho: [LINK_REVIEW]\n\n¡Gracias por confiar en Jorge Vergara Tax Services!\n\nJorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 10. EXTENSIÓN ──
+            {
+                id: 10, name: "Extensión", icon: "📅", desc: "Última semana de temporada (7–14 abril). Solo extensiones ante el IRS.",
+                int: [
+                    {
+                        ch: "slack", time: "0H", urg: "u-warn", urgTxt: "📅 Extensión",
+                        msg: `📅 ${B('EXTENSIÓN — Caso desviado')}\n\n${M.n} no completó a tiempo. Se procede con extensión ante el IRS.\n\n👉 ${M.lk}\n\nProcesar Form 4868 y comunicar nueva fecha al cliente.`
+                    }
+                ],
+                ext: [
+                    {
+                        ch: "email", time: "0H", urg: "u-info", urgTxt: "📧 Notificación", subj: `{{contact.first_name}}, información sobre la extensión de tu declaración`,
+                        msg: `Hola ${M.fn},\n\nDado que no pudimos completar tu declaración antes de la fecha límite del 15 de abril, hemos procesado una ${B('extensión ante el IRS (Form 4868)')} a tu nombre.\n\nEsto te da hasta el ${B('15 de octubre')} para presentar tu declaración sin penalidades.\n\n${B('¿Qué necesitas hacer?')}\n• Si debes impuestos, el pago estimado aún vence el 15 de abril\n• Envíanos tus documentos pendientes lo antes posible\n\nTe contactaremos para continuar con el proceso.\n\nJorge Vergara Tax Services`
+                    },
+                    {
+                        ch: "sms", time: "0H", urg: "u-info", urgTxt: "📲 Info",
+                        msg: `${M.fn}, procesamos una extensión para tu declaración de taxes. Tienes hasta el 15 de octubre. Te contactaremos para seguir con el proceso. — Jorge Vergara Tax Services`
+                    }
+                ]
+            },
+            // ── 11. NO SIGUE / INACCIÓN ──
+            {
+                id: 11, name: "No Sigue / Inacción", icon: "🚫", desc: "Estado terminal. 'Es bien sí o no.' Sin nutrición activa.",
+                int: [
+                    {
+                        ch: "slack", time: "Al mover", urg: "u-crit", urgTxt: "🚫 Terminal",
+                        msg: `🚫 ${B('LEAD CERRADO — No Sigue')}\n\n${M.n} ha sido movido a "No Sigue".\n\nMotivo: ${B('{{opportunity.pipeline_stage}}')}\nTag: ${B('{{contact.tags}}')}\n\n👉 ${M.lk}\n\n${B('No se enviarán más comunicaciones.')}`
+                    }
+                ],
+                ext: []
+            }
+        ];
+        // ── RENDER ──
+        const tabsEl = document.getElementById('tabs');
+        const contentEl = document.getElementById('content');
+        stages.forEach((s, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'tab' + (i === 0 ? ' active' : '');
+            btn.innerHTML = `<span class="tn">${s.id}</span>${s.icon} ${s.name}`;
+            btn.onclick = () => { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active')); document.getElementById('s' + s.id).classList.add('active') };
+            tabsEl.appendChild(btn);
+            const panel = document.createElement('div');
+            panel.id = 's' + s.id; panel.className = 'stage-panel' + (i === 0 ? ' active' : '');
+            let h = `<div class="stage-title"><h2>${s.icon} ${s.id}. ${s.name}</h2></div><p class="stage-desc">${s.desc}</p>`;
+            const hasExt = s.ext && s.ext.length > 0;
+            if (hasExt) { h += `<div class="sub-tabs"><button class="sub-tab active-int" onclick="switchSub(this,'int',${s.id})">🔒 Interna (Equipo)</button><button class="sub-tab" onclick="switchSub(this,'ext',${s.id})">📣 Externa (Cliente)</button></div>` }
+            else { h += `<div class="sub-tabs"><button class="sub-tab active-int">🔒 Interna (Equipo)</button><button class="sub-tab" style="opacity:.4;cursor:default">📣 Externa — N/A</button></div>` }
+            h += `<div id="int${s.id}" class="comm-panel active">${renderCards(s.int)}</div>`;
+            if (hasExt) { h += `<div id="ext${s.id}" class="comm-panel">${renderCards(s.ext)}</div>` }
+            panel.innerHTML = h; contentEl.appendChild(panel);
+        });
+        function renderCards(arr) {
+            if (!arr || !arr.length) return '<p style="color:var(--txt-l);font-size:13px;padding:20px">Sin comunicaciones en esta categoría.</p>';
+            return arr.map(c => {
+                if (c.ch === 'auto') return `<div class="auto"><span>⚡</span><span>${c.msg}</span></div>`;
+                const chMap = { slack: 'Slack', email: 'Email', sms: 'SMS', wa: 'WhatsApp' };
+                let card = `<div class="card"><div class="card-h"><div class="card-left"><span class="ch ch-${c.ch}">${chMap[c.ch] || c.ch}</span><span class="time">⏱ ${c.time}</span></div><span class="urg ${c.urg}">${c.urgTxt}</span></div><div class="card-b">`;
+                if (c.subj) card += `<div class="subj">📌 Asunto: ${c.subj}</div>`;
+                card += `<div class="lbl">${c.ch === 'sms' ? 'Texto SMS' : c.ch === 'wa' ? 'Mensaje WhatsApp' : c.ch === 'email' ? 'Cuerpo del Email' : 'Mensaje ' + chMap[c.ch]}</div><div class="msg">${c.msg}</div></div></div>`;
+                return card
+            }).join('')
+        }
+        function switchSub(btn, type, id) { const parent = btn.parentElement; parent.querySelectorAll('.sub-tab').forEach(b => { b.classList.remove('active-int', 'active-ext') }); btn.classList.add(type === 'int' ? 'active-int' : 'active-ext'); document.getElementById('int' + id).classList.toggle('active', type === 'int'); const ext = document.getElementById('ext' + id); if (ext) ext.classList.toggle('active', type === 'ext') }
+    </script>
+</body>
+
+</html>

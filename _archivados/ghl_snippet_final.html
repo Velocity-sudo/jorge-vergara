@@ -1,0 +1,1387 @@
+<!-- 
+  ═══════════════════════════════════════════════════════════════════
+  GHL SNIPPET FINAL — JORGE VERGARA / LUGO INSURANCE & ADVISORS
+  ═══════════════════════════════════════════════════════════════════
+  
+  INSTRUCCIONES:
+  1. Copia TODO este código en un elemento "Custom Code / HTML" en GHL
+  2. Reemplaza estos placeholders:
+     [VIDEO_URL_AQUI]       → URL del iframe del VSL (YouTube, Vimeo, etc.)
+     [CALENDAR_URL_AQUI]    → URL del calendario GHL (/widget/booking/...)
+     [WHATSAPP_URL_AQUI]    → Link de WhatsApp con mensaje pre-cargado
+     [LOGO_URL]             → URL del logo de Lugo Insurance
+  3. El formulario es visual — sustituir por el Form nativo de GHL 
+     dentro del contenedor #ghl-form-placeholder si se prefiere
+-->
+
+<style>
+    /* ══════════════════════════════════════════════════════
+       DESIGN TOKENS — Brand Manual Jorge Vergara v2.0
+       Azul + Blanco con secciones alternadas
+       ══════════════════════════════════════════════════════ */
+    :root {
+        /* ── Primarios ── */
+        --jv-navy: #0B1D32;
+        --jv-navy-alt: #1D3249;
+        --jv-white: #FFFFFF;
+        --jv-off-white: #F5F7FA;
+        --jv-text: #485264;
+        --jv-text-light: #6B7B8D;
+        --jv-text-soft: #9BA8B7;
+
+        /* ── Secciones Blancas (texto oscuro) ── */
+        --jv-text-on-white: #1A2A3A;
+        --jv-text-light-on-white: #4A5568;
+        --jv-text-soft-on-white: #718096;
+
+        /* ── Acento Dorado (CTAs) ── */
+        --jv-gold: #D4A853;
+        --jv-gold-light: #E6CF9B;
+        --jv-gold-deep: #B8862D;
+        --jv-gold-gradient: linear-gradient(135deg, #D4A853 0%, #B8862D 100%);
+        --jv-gold-glow: 0 4px 20px rgba(212, 168, 83, 0.35);
+
+        /* ── Funcionales ── */
+        --jv-success: #2D8B5E;
+        --jv-danger: #D64545;
+
+        /* ── Overlays ── */
+        --jv-overlay: rgba(11, 29, 50, 0.55);
+
+        /* ── Layout ── */
+        --jv-radius: 20px;
+        --jv-radius-pill: 60px;
+        --jv-max-w: 540px;
+        --jv-transition: all 0.3s ease;
+        --jv-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       RESET & BASE — Mobile-First
+       ══════════════════════════════════════════════════════ */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    #jv-landing * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #jv-landing {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        background: var(--jv-white);
+        color: var(--jv-text-on-white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 90px;
+    }
+
+    #jv-landing img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    #jv-landing a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    #jv-landing ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    /* ── Container ── */
+    .jv-container {
+        max-width: var(--jv-max-w);
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* ── Typography ── */
+    #jv-landing h1,
+    #jv-landing h2,
+    #jv-landing h3 {
+        color: var(--jv-navy);
+        line-height: 1.2;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+
+    #jv-landing h1 {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+
+    #jv-landing h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    #jv-landing h3 {
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+    }
+
+    #jv-landing p {
+        color: var(--jv-text-light-on-white);
+        margin-bottom: 16px;
+        font-size: 1rem;
+    }
+
+    .jv-text-gold {
+        color: var(--jv-gold) !important;
+    }
+
+    .jv-text-center {
+        text-align: center;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       COMPONENTS — Brand Manual Components
+       ══════════════════════════════════════════════════════ */
+
+    /* ── Eyebrow Badge ── */
+    .jv-eyebrow {
+        display: inline-block;
+        padding: 6px 16px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        border-radius: 40px;
+        background: rgba(212, 168, 83, 0.12);
+        border: 1px solid rgba(212, 168, 83, 0.3);
+        color: var(--jv-gold);
+        margin-bottom: 16px;
+    }
+
+    /* ── CTA Button — Dorado Premium ── */
+    .jv-btn {
+        display: block;
+        width: 100%;
+        padding: 18px 32px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        border: none;
+        border-radius: var(--jv-radius-pill);
+        cursor: pointer;
+        transition: var(--jv-transition);
+        text-align: center;
+        background: var(--jv-gold-gradient);
+        color: #fff;
+        box-shadow: var(--jv-gold-glow);
+    }
+
+    .jv-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px rgba(212, 168, 83, 0.45);
+        filter: brightness(1.08);
+    }
+
+    .jv-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .jv-btn-navy {
+        background: var(--jv-navy-alt);
+        box-shadow: 0 4px 20px rgba(29, 50, 73, 0.3);
+    }
+
+    .jv-btn-navy:hover {
+        box-shadow: 0 8px 32px rgba(29, 50, 73, 0.45);
+    }
+
+    /* ── Glass Card ── */
+    .jv-card {
+        background: var(--jv-white);
+        border: 1px solid rgba(11, 29, 50, 0.08);
+        border-radius: var(--jv-radius);
+        padding: 32px 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 24px rgba(11, 29, 50, 0.06);
+        transition: var(--jv-transition);
+    }
+
+    .jv-card:hover {
+        border-color: rgba(212, 168, 83, 0.3);
+        box-shadow: 0 8px 32px rgba(11, 29, 50, 0.1);
+    }
+
+    .jv-card-gold {
+        border-color: rgba(212, 168, 83, 0.35);
+        background: linear-gradient(135deg, rgba(212, 168, 83, 0.06), rgba(184, 134, 45, 0.02));
+    }
+
+    /* Cards dentro de secciones oscuras */
+    .jv-section-dark .jv-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: none;
+    }
+
+    /* ── Sections ── */
+    .jv-section {
+        padding: 48px 0;
+    }
+
+    /* Secciones con fondo azul oscuro */
+    .jv-section-dark {
+        background: var(--jv-navy);
+        color: var(--jv-white);
+        padding: 48px 0;
+    }
+
+    .jv-section-dark h1,
+    .jv-section-dark h2,
+    .jv-section-dark h3,
+    .jv-section-dark .jv-card h2,
+    .jv-section-dark .jv-card h3,
+    .jv-section-dark .jv-pain-item h3 {
+        color: var(--jv-white) !important;
+    }
+
+    .jv-section-dark p,
+    .jv-section-dark .jv-card p,
+    .jv-section-dark .jv-pain-item p,
+    .jv-section-dark li,
+    .jv-section-dark div {
+        color: #E2E8F0 !important;
+        /* Force high contrast */
+    }
+
+    .jv-section-dark .jv-trust-line {
+        color: #CBD5E0 !important;
+    }
+
+    .jv-section-dark .jv-check-list li {
+        color: #E2E8F0 !important;
+    }
+
+    .jv-section-dark .jv-check-list li strong {
+        color: var(--jv-white) !important;
+    }
+
+    /* FAQ Dark Mode Overrides */
+    .jv-section-dark .jv-faq-item {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .jv-section-dark .jv-faq-q {
+        color: var(--jv-white) !important;
+    }
+
+    .jv-section-dark .jv-faq-q:hover {
+        color: var(--jv-gold) !important;
+    }
+
+    .jv-section-dark .jv-faq-a {
+        color: #CBD5E0 !important;
+    }
+
+    .jv-section-alt {
+        background: var(--jv-off-white);
+    }
+
+    .jv-divider {
+        width: 60px;
+        height: 3px;
+        background: var(--jv-gold-gradient);
+        border-radius: 2px;
+        margin: 0 auto 24px;
+    }
+
+    /* ── Micro-copy ── */
+    .jv-micro {
+        font-size: 0.8rem;
+        color: var(--jv-text-soft);
+        margin-top: 12px;
+    }
+
+    .jv-trust-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        color: var(--jv-text-soft-on-white);
+        margin-top: 12px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════ */
+    .jv-hero {
+        text-align: center;
+        background: var(--jv-navy);
+        padding: 48px 20px 32px;
+    }
+
+    .jv-hero h1 {
+        background: linear-gradient(135deg, #FFFFFF, #D4A853);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .jv-hero p.jv-hero-sub {
+        color: #CBD5E0;
+    }
+
+    .jv-hero .jv-trust-line {
+        color: var(--jv-text-soft);
+    }
+
+    .jv-hero-sub {
+        font-size: 1.05rem;
+        color: var(--jv-text-light);
+        margin-bottom: 24px;
+        max-width: 460px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ── Social Proof Pill ── */
+    .jv-proof-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        background: rgba(212, 168, 83, 0.1);
+        border: 1px solid rgba(212, 168, 83, 0.25);
+        border-radius: var(--jv-radius-pill);
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+    }
+
+    .jv-proof-pill strong {
+        color: var(--jv-gold);
+        font-weight: 700;
+    }
+
+    /* ── Video Container ── */
+    .jv-video-wrap {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        border: 2px solid rgba(212, 168, 83, 0.2);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        background: #000;
+        width: 100%;
+        display: block;
+        min-height: 200px;
+        /* Force visibility */
+    }
+
+    .jv-video-ratio {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
+
+    .jv-video-ratio iframe,
+    .jv-video-ratio img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .jv-video-ratio img {
+        object-fit: cover;
+    }
+
+    .jv-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 72px;
+        height: 72px;
+        background: rgba(212, 168, 83, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(212, 168, 83, 0.5);
+        cursor: pointer;
+        transition: var(--jv-transition);
+        z-index: 2;
+    }
+
+    .jv-play-btn:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .jv-play-btn svg {
+        margin-left: 4px;
+    }
+
+    /* ── Calendar Mockup ── */
+    .jv-cal-mock {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: var(--jv-transition);
+    }
+
+    .jv-cal-mock:hover {
+        border-color: rgba(212, 168, 83, 0.3);
+    }
+
+    .jv-cal-header {
+        font-weight: 700;
+        color: var(--jv-white);
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+
+    .jv-cal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .jv-cal-date {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px 6px;
+        transition: var(--jv-transition);
+    }
+
+    .jv-cal-date.active {
+        background: var(--jv-gold-gradient);
+        border-color: transparent;
+        color: #fff;
+    }
+
+    .jv-cal-date-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        opacity: 0.7;
+    }
+
+    .jv-cal-date-num {
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-top: 2px;
+    }
+
+    .jv-cal-slots {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        opacity: 0.35;
+        filter: blur(2px);
+    }
+
+    .jv-cal-slot {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+
+    .jv-cal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(11, 29, 50, 0.6);
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .jv-cal-cta {
+        padding: 14px 28px;
+        background: var(--jv-gold-gradient);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: var(--jv-radius-pill);
+        box-shadow: var(--jv-gold-glow);
+        animation: jvPulse 2.5s infinite;
+    }
+
+    @keyframes jvPulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.06);
+        }
+    }
+
+    .jv-cal-scarcity {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--jv-gold-light);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       STATS — Authority Numbers
+       ══════════════════════════════════════════════════════ */
+    .jv-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 24px 0;
+    }
+
+    .jv-stat {
+        text-align: center;
+        padding: 16px 8px;
+        border: 1px solid rgba(11, 29, 50, 0.08);
+        border-radius: 14px;
+        background: var(--jv-off-white);
+    }
+
+    .jv-section-dark .jv-stat {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .jv-stat-num {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #D4A853, #E6CF9B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .jv-stat-label {
+        font-size: 0.7rem;
+        color: var(--jv-text-soft-on-white);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       PAIN POINTS (Errors Section)
+       ══════════════════════════════════════════════════════ */
+    .jv-pain-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .jv-pain-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .jv-pain-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(214, 69, 69, 0.12);
+        color: var(--jv-danger);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    .jv-pain-item h3 {
+        color: var(--jv-navy);
+    }
+
+    .jv-section-dark .jv-pain-item h3 {
+        color: var(--jv-white);
+    }
+
+    .jv-pain-item p {
+        font-size: 0.92rem;
+        margin-bottom: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       PROCESS (3 Steps)
+       ══════════════════════════════════════════════════════ */
+    .jv-step {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .jv-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .jv-step-num {
+        width: 38px;
+        height: 38px;
+        background: var(--jv-gold-gradient);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .jv-step strong {
+        color: var(--jv-navy);
+        font-weight: 700;
+    }
+
+    .jv-step p {
+        font-size: 0.92rem;
+        margin-bottom: 0;
+        margin-top: 4px;
+    }
+
+    /* ── Step connector line ── */
+    .jv-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 18px;
+        top: 42px;
+        width: 2px;
+        height: calc(100% - 18px);
+        background: linear-gradient(to bottom, rgba(212, 168, 83, 0.4), rgba(212, 168, 83, 0.08));
+    }
+
+    /* ══════════════════════════════════════════════════════
+       TESTIMONIAL
+       ══════════════════════════════════════════════════════ */
+    .jv-testimonial {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .jv-testimonial-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 2px solid rgba(212, 168, 83, 0.4);
+    }
+
+    .jv-testimonial-text {
+        font-size: 0.95rem;
+        color: var(--jv-navy);
+        font-style: italic;
+        line-height: 1.5;
+        margin-bottom: 6px;
+    }
+
+    .jv-testimonial-name {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--jv-gold);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       TARGET AUDIENCE
+       ══════════════════════════════════════════════════════ */
+    .jv-check-list li {
+        margin-bottom: 12px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 0.95rem;
+        color: var(--jv-text-light-on-white);
+    }
+
+    .jv-check-icon {
+        color: var(--jv-success);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    .jv-x-icon {
+        color: var(--jv-danger);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    .jv-check-list li strong {
+        color: var(--jv-navy);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════════════════════ */
+    .jv-faq-item {
+        border-bottom: 1px solid rgba(11, 29, 50, 0.08);
+        padding: 14px 0;
+    }
+
+    .jv-faq-item:last-child {
+        border-bottom: none;
+    }
+
+    .jv-faq-q {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        color: var(--jv-navy);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: left;
+        cursor: pointer;
+        padding: 4px 0;
+        transition: color 0.2s;
+    }
+
+    .jv-faq-q:hover {
+        color: var(--jv-gold);
+    }
+
+    .jv-faq-icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+        color: var(--jv-gold);
+        flex-shrink: 0;
+        margin-left: 12px;
+    }
+
+    .jv-faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        font-size: 0.9rem;
+        color: var(--jv-text-light-on-white);
+        line-height: 1.6;
+    }
+
+    .jv-faq-item.active .jv-faq-a {
+        max-height: 250px;
+        padding-top: 8px;
+    }
+
+    .jv-faq-item.active .jv-faq-icon {
+        transform: rotate(45deg);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FINAL CTA SECTION
+       ══════════════════════════════════════════════════════ */
+    .jv-final-cta {
+        background: var(--jv-navy);
+        border: none;
+        border-radius: var(--jv-radius);
+        padding: 40px 24px;
+        text-align: center;
+    }
+
+    .jv-final-cta p {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .jv-final-cta .jv-trust-line {
+        color: var(--jv-text-soft);
+    }
+
+    .jv-final-cta h2 {
+        background: linear-gradient(135deg, #FFFFFF, #D4A853);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       STICKY BAR
+       ══════════════════════════════════════════════════════ */
+    .jv-sticky {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(11, 29, 50, 0.1);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+        z-index: 9999;
+        display: none;
+    }
+
+    .jv-sticky.visible {
+        display: block;
+        animation: jvSlideUp 0.35s ease;
+    }
+
+    @keyframes jvSlideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .jv-sticky .jv-btn {
+        max-width: var(--jv-max-w);
+        margin: 0 auto;
+        padding: 14px 24px;
+        font-size: 0.8rem;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ */
+    .jv-footer {
+        padding: 32px 20px 100px;
+        text-align: center;
+        font-size: 0.72rem;
+        color: rgba(11, 29, 50, 0.35);
+    }
+
+    .jv-footer a {
+        color: rgba(11, 29, 50, 0.35);
+        text-decoration: underline;
+    }
+
+    .jv-footer a:hover {
+        color: var(--jv-gold);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       RESPONSIVE — Desktop
+       ══════════════════════════════════════════════════════ */
+    @media (min-width: 768px) {
+        #jv-landing h1 {
+            font-size: 2.8rem;
+        }
+
+        #jv-landing h2 {
+            font-size: 2rem;
+        }
+
+        .jv-container {
+            max-width: 640px;
+        }
+
+        .jv-section {
+            padding: 64px 0;
+        }
+
+        .jv-section-dark {
+            padding: 64px 0;
+        }
+
+        .jv-hero {
+            padding: 64px 20px 40px;
+        }
+
+        .jv-stat-num {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<div id="jv-landing">
+
+    <!-- ═══════════════ STICKY CTA BAR ═══════════════ -->
+    <div class="jv-sticky" id="jv-sticky-bar">
+        <a href="[CALENDAR_URL_AQUI]" class="jv-btn js-cta-track" id="sticky-cta">
+            Agendar Mi Consulta Gratis
+        </a>
+    </div>
+
+    <!-- ═══════════════ 1. HERO ═══════════════ -->
+    <section class="jv-hero">
+        <div class="jv-container">
+            <!-- Eyebrow -->
+            <div class="jv-eyebrow">Temporada de Impuestos 2026</div>
+
+            <!-- Headline -->
+            <h1>Te ayudo a hacer tus impuestos de forma legal para evitar errores que te cuesten <span
+                    class="jv-text-gold">miles de dólares</span></h1>
+
+            <!-- Subheadline -->
+            <p class="jv-hero-sub">El IRS no perdona errores. Entiende cómo funciona el sistema para proteger tu dinero.
+            </p>
+
+            <!-- Social Proof Pill -->
+            <div class="jv-proof-pill">
+                <strong>+$1,365,000</strong> ahorrados para familias latinas
+            </div>
+
+            <!-- BSL / Video -->
+            <!-- BSL / Video -->
+            <div class="jv-video-wrap" id="jv-vsl-container">
+                <div class="jv-video-ratio">
+                    <img src="vsl_preview.png" alt="Jorge Vergara — Consulta Fiscal Gratuita" id="jv-vsl-thumb">
+                    <div class="jv-play-btn" id="jv-play-trigger">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+                            <path d="M5 3l14 9-14 9V3z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Mockup -->
+            <a href="[CALENDAR_URL_AQUI]" class="js-cta-track" id="main-cal-trigger" style="display:block;">
+                <div class="jv-cal-mock">
+                    <div class="jv-cal-header">Selecciona fecha para tu Consulta</div>
+                    <div class="jv-cal-grid">
+                        <div class="jv-cal-date">
+                            <div class="jv-cal-date-label">Hoy</div>
+                            <div class="jv-cal-date-num" id="jv-cal-d1"></div>
+                        </div>
+                        <div class="jv-cal-date active">
+                            <div class="jv-cal-date-label">Mañana</div>
+                            <div class="jv-cal-date-num" id="jv-cal-d2"></div>
+                        </div>
+                        <div class="jv-cal-date">
+                            <div class="jv-cal-date-label" id="jv-cal-l3"></div>
+                            <div class="jv-cal-date-num" id="jv-cal-d3"></div>
+                        </div>
+                    </div>
+                    <div class="jv-cal-slots">
+                        <div class="jv-cal-slot">10:00 AM</div>
+                        <div class="jv-cal-slot">10:30 AM</div>
+                        <div class="jv-cal-slot">11:00 AM</div>
+                    </div>
+                    <div class="jv-cal-overlay">
+                        <div class="jv-cal-cta">Agendar Mi Consulta Gratis</div>
+                        <div class="jv-cal-scarcity">⏰ Cupos limitados esta semana</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Trust micro-copy -->
+            <div class="jv-trust-line">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Consulta 100% Gratuita · Sin Compromiso · Datos Seguros
+            </div>
+        </div>
+    </section>
+
+    <div class="jv-container">
+
+        <!-- ═══════════════ 2. AUTHORITY — Stats + Testimonial ═══════════════ -->
+        <section class="jv-section jv-text-center">
+            <div class="jv-divider"></div>
+            <h2>Más de <span class="jv-text-gold">5,000 familias</span> confían en nosotros</h2>
+
+            <!-- Testimonial Card -->
+            <div class="jv-card" style="margin-bottom: 24px;">
+                <div class="jv-testimonial">
+                    <img src="testimonial_avatar.png" alt="Cliente Feliz" class="jv-testimonial-avatar">
+                    <div>
+                        <p class="jv-testimonial-text">"Antes vivía con miedo a las cartas del IRS. Desde que trabajo
+                            con Jorge, tengo paz mental total."</p>
+                        <span class="jv-testimonial-name">— Carlos M., Jacksonville FL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authority Stats (exact numbers) -->
+            <div class="jv-stats">
+                <div class="jv-stat">
+                    <span class="jv-stat-num">5,000+</span>
+                    <span class="jv-stat-label">Familias</span>
+                </div>
+                <div class="jv-stat">
+                    <span class="jv-stat-num">&gt;90%</span>
+                    <span class="jv-stat-label">Retención</span>
+                </div>
+                <div class="jv-stat">
+                    <span class="jv-stat-num">$1.36M</span>
+                    <span class="jv-stat-label">Ahorrados</span>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- /jv-container -->
+
+    <!-- ═══════════════ 3. PAIN POINTS — The Errors ═══════════════ -->
+    <section class="jv-section jv-section-dark">
+        <div class="jv-container">
+            <div class="jv-text-center">
+                <div class="jv-divider"></div>
+                <h2>Errores que te cuestan <span class="jv-text-gold">miles de dólares</span></h2>
+                <p style="margin-bottom: 28px;">Lo peligroso es que se sienten como "decisiones normales".</p>
+            </div>
+
+            <div class="jv-card">
+                <div class="jv-pain-item">
+                    <div class="jv-pain-icon">!</div>
+                    <div>
+                        <h3>Elegir por "barato"</h3>
+                        <p>Quien cobra muy poco trabaja por volumen. No revisa, solo mete datos. Los errores los pagas
+                            tú, no ellos.</p>
+                    </div>
+                </div>
+                <div class="jv-pain-item">
+                    <div class="jv-pain-icon">!</div>
+                    <div>
+                        <h3>Mezclar tipos de ingreso</h3>
+                        <p>Tratar un 1099 o un Negocio igual que un W2 es la forma más rápida de perder deducciones o
+                            causar una auditoría.</p>
+                    </div>
+                </div>
+                <div class="jv-pain-item">
+                    <div class="jv-pain-icon">!</div>
+                    <div>
+                        <h3>Firmar sin entender</h3>
+                        <p>"No sabía" no es defensa legal. Tu firma es tu responsabilidad. Debes entender qué estás
+                            declarando.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="[CALENDAR_URL_AQUI]" class="jv-btn js-cta-track">Revisar Mi Caso Gratis</a>
+            <div class="jv-trust-line">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                </svg>
+                Consulta sin costo · Respuesta en menos de 24 horas
+            </div>
+        </div>
+    </section>
+
+    <div class="jv-container">
+
+        <!-- ═══════════════ 4. PROCESS — 3 Steps ═══════════════ -->
+        <section class="jv-section">
+
+            <div class="jv-text-center">
+                <div class="jv-divider"></div>
+                <h2>3 pasos para declarar <span class="jv-text-gold">con tranquilidad</span></h2>
+            </div>
+
+            <div class="jv-card" style="margin-top: 8px;">
+                <div class="jv-step">
+                    <div class="jv-step-num">1</div>
+                    <div>
+                        <strong>Entender tu situación</strong>
+                        <p>Analizamos tu año fiscal antes de llenar cualquier formulario.</p>
+                    </div>
+                </div>
+                <div class="jv-step">
+                    <div class="jv-step-num">2</div>
+                    <div>
+                        <strong>Clasificar tus ingresos</strong>
+                        <p>Separamos personal de negocio para maximizar deducciones legales.</p>
+                    </div>
+                </div>
+                <div class="jv-step">
+                    <div class="jv-step-num">3</div>
+                    <div>
+                        <strong>Presentación blindada</strong>
+                        <p>Firmas con la seguridad de que todo cuadra ante los ojos del IRS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="[CALENDAR_URL_AQUI]" class="jv-btn js-cta-track">Agendar Mi Consulta Gratis</a>
+            <div class="jv-trust-line">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Datos 100% Seguros y Confidenciales
+            </div>
+        </section>
+
+        <!-- ═══════════════ 5. COMMITMENT SECTION ═══════════════ -->
+        <section class="jv-section jv-section-dark jv-text-center">
+            <div class="jv-card jv-card-gold">
+                <div class="jv-eyebrow" style="margin-bottom: 16px;">NUESTRO COMPROMISO</div>
+                <h2 style="margin-bottom: 12px;">Legalidad y Orden <span class="jv-text-gold">Garantizados</span></h2>
+                <p style="font-size: 1.05rem; color: #E2E8F0; margin-bottom: 6px; font-weight: 500;">
+                    "Nos comprometemos a hacer tus impuestos legalmente. Para que pagues lo justo y evites errores que
+                    te pueden costar miles de dólares."
+                </p>
+                <p class="jv-micro" style="margin-top: 8px;">Tu tranquilidad y cumplimiento con el IRS son nuestra
+                    prioridad.</p>
+            </div>
+        </section>
+
+        <!-- ═══════════════ 6. FOR WHO / NOT FOR WHO ═══════════════ -->
+        <section class="jv-section">
+            <div class="jv-text-center">
+                <div class="jv-divider"></div>
+                <h2>¿Es para ti?</h2>
+            </div>
+
+            <!-- YES -->
+            <div class="jv-card" style="margin-bottom: 16px;">
+                <ul class="jv-check-list">
+                    <li><span class="jv-check-icon">✅</span>
+                        <div><strong>W2, 1099 o mixto</strong> — Tienes ingresos y quieres optimizar.</div>
+                    </li>
+                    <li><span class="jv-check-icon">✅</span>
+                        <div><strong>Familias con dependientes</strong> — Maximizamos créditos fiscales.</div>
+                    </li>
+                    <li><span class="jv-check-icon">✅</span>
+                        <div><strong>Evitar errores</strong> — Quieres dormir tranquilo ante el IRS.</div>
+                    </li>
+                    <li><span class="jv-check-icon">✅</span>
+                        <div><strong>Claridad total</strong> — Saber exactamente qué debes antes de enviar.</div>
+                    </li>
+                    <li><span class="jv-check-icon">✅</span>
+                        <div><strong>Pagar lo justo</strong> — Sin atajos, todo legal y organizado.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- NO -->
+            <div class="jv-card" style="background: rgba(214, 69, 69, 0.05); border-color: rgba(214, 69, 69, 0.15);">
+                <p
+                    style="color: var(--jv-text-soft-on-white); font-weight: 600; font-size: 0.85rem; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em;">
+                    No es para ti si...</p>
+                <ul class="jv-check-list">
+                    <li><span class="jv-x-icon">❌</span>
+                        <div>Solo buscas "gratis" sin intención de declarar bien.</div>
+                    </li>
+                    <li><span class="jv-x-icon">❌</span>
+                        <div>No quieres dar información básica real.</div>
+                    </li>
+                    <li><span class="jv-x-icon">❌</span>
+                        <div>Buscas atajos ilegales o promesas falsas.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <a href="[CALENDAR_URL_AQUI]" class="jv-btn js-cta-track">Sí, Es Para Mí → Agendar</a>
+            </div>
+        </section>
+
+        <!-- ═══════════════ 7. FAQ ═══════════════ -->
+        <section class="jv-section jv-section-dark">
+            <div class="jv-text-center">
+                <div class="jv-divider"></div>
+                <h2>Preguntas Frecuentes</h2>
+            </div>
+
+            <div class="jv-card" style="padding: 8px 24px;">
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Cuánto cuesta la consulta? <span class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">La consulta inicial es 100% gratuita. Revisamos tu caso y te damos un
+                        diagnóstico claro antes de hablar de cualquier precio.</div>
+                </div>
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Cuánto puedo ahorrar? <span class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">Depende de tu caso. No prometemos números sin ver tus documentos, pero
+                        buscamos cada deducción legal disponible. Nuestros clientes han ahorrado más de $1,365,000 en
+                        total.</div>
+                </div>
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Trabajan con W2 y 1099? <span class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">Sí. Trabajamos con empleados, contratistas independientes y dueños de negocio.
+                        Cada caso recibe un análisis particular.</div>
+                </div>
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Qué necesitan para revisar mi caso? <span
+                            class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">Información básica sobre tus ingresos, gastos (si aplica) y situación
+                        familiar. En la llamada te guiamos paso a paso.</div>
+                </div>
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Y si ya declaré este año? <span class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">Podemos revisar declaraciones pasadas y hacer enmiendas si encontramos errores
+                        u oportunidades perdidas.</div>
+                </div>
+                <div class="jv-faq-item">
+                    <button class="jv-faq-q">¿Es 100% legal? <span class="jv-faq-icon">+</span></button>
+                    <div class="jv-faq-a">Absolutamente. Seguimos estrictamente las regulaciones del IRS. Optimizamos
+                        dentro de la ley, nunca evadimos.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ 8. FINAL CTA ═══════════════ -->
+        <section class="jv-section">
+            <div class="jv-final-cta">
+                <div class="jv-eyebrow" style="margin-bottom: 14px;">Última Oportunidad</div>
+                <h2>¿Listo para pagar lo justo <br>en tus impuestos?</h2>
+                <p style="color: var(--jv-white); font-size: 1rem; opacity: 0.85; margin-bottom: 24px;">
+                    Agenda tu consulta gratuita y descubre si puedes mejorar tu situación fiscal este año.
+                </p>
+
+                <a href="[CALENDAR_URL_AQUI]" class="jv-btn js-cta-track" style="margin-bottom: 12px;">
+                    Agendar Mi Consulta Gratis
+                </a>
+
+                <div class="jv-trust-line">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Sin compromiso · Cupos limitados
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <a href="[WHATSAPP_URL_AQUI]"
+                        style="font-size: 0.88rem; color: var(--jv-gold); text-decoration: underline; font-weight: 600;">
+                        💬 Prefiero hablar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="jv-footer">
+        <p>© 2026 Jorge Vergara · Lugo Insurance & Advisors. Todos los derechos reservados.</p>
+        <p style="margin-top: 6px;">Este sitio no es parte de Meta ni Facebook Inc. Resultados no garantizados. Depende
+            de tu situación fiscal individual.</p>
+        <p style="margin-top: 8px;">
+            <a href="#">Privacidad</a> · <a href="#">Términos</a> · <a href="#">Contacto</a>
+        </p>
+    </footer>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ════════════════════════════════════════════
+        // 1. DYNAMIC CALENDAR DATES (always current)
+        // ════════════════════════════════════════════
+        const today = new Date();
+        const days = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB'];
+
+        const d1 = document.getElementById('jv-cal-d1');
+        const d2 = document.getElementById('jv-cal-d2');
+        const d3 = document.getElementById('jv-cal-d3');
+        const l3 = document.getElementById('jv-cal-l3');
+
+        if (d1) d1.textContent = today.getDate();
+        const tom = new Date(today); tom.setDate(tom.getDate() + 1);
+        if (d2) d2.textContent = tom.getDate();
+        const day3 = new Date(today); day3.setDate(day3.getDate() + 2);
+        if (d3) d3.textContent = day3.getDate();
+        if (l3) l3.textContent = days[day3.getDay()];
+
+        // ════════════════════════════════════════════
+        // 2. STICKY BAR — Appears on scroll past calendar
+        // ════════════════════════════════════════════
+        const stickyBar = document.getElementById('jv-sticky-bar');
+        const calTrigger = document.getElementById('main-cal-trigger');
+
+        if (calTrigger && stickyBar) {
+            const observer = new IntersectionObserver(([entry]) => {
+                if (!entry.isIntersecting) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            }, { threshold: 0.1 });
+            observer.observe(calTrigger);
+        }
+
+        // ════════════════════════════════════════════
+        // 3. VIDEO PLAY — Replace thumbnail with iframe
+        // ════════════════════════════════════════════
+        const playBtn = document.getElementById('jv-play-trigger');
+        const vslThumb = document.getElementById('jv-vsl-thumb');
+        const vslContainer = document.querySelector('.jv-video-ratio');
+
+        if (playBtn && vslContainer) {
+            playBtn.addEventListener('click', () => {
+                // Replace with your VSL iframe
+                vslContainer.innerHTML = '<iframe src="[VIDEO_URL_AQUI]" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
+            });
+        }
+
+        // ════════════════════════════════════════════
+        // 4. FAQ ACCORDION
+        // ════════════════════════════════════════════
+        const faqItems = document.querySelectorAll('.jv-faq-item');
+        faqItems.forEach(item => {
+            const q = item.querySelector('.jv-faq-q');
+            if (q) {
+                q.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(other => other.classList.remove('active'));
+                    if (!isActive) item.classList.add('active');
+                });
+            }
+        });
+
+        // ════════════════════════════════════════════
+        // 5. UTM PASSTHROUGH — Propagate UTMs to all CTAs
+        // ════════════════════════════════════════════
+        const params = window.location.search;
+        if (params) {
+            document.querySelectorAll('.js-cta-track').forEach(link => {
+                if (link.href) {
+                    const sep = link.href.includes('?') ? '&' : '?';
+                    link.href = link.href + sep + params.substring(1);
+                }
+            });
+        }
+
+        // ════════════════════════════════════════════
+        // 6. CTA CLICK TRACKING — For GHL Analytics
+        // ════════════════════════════════════════════
+        document.querySelectorAll('.js-cta-track').forEach(cta => {
+            cta.addEventListener('click', () => {
+                // Fire GHL/Facebook/GA events
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Schedule');
+                }
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'cta_click', {
+                        event_category: 'conversion',
+                        event_label: cta.textContent.trim()
+                    });
+                }
+                console.log('[JV Tracking] CTA Click:', cta.textContent.trim());
+            });
+        });
+    });
+</script>

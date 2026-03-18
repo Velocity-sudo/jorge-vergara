@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones Internas — Pipeline Jorge Vergara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002B49;
+            --teal: #1AE5ED;
+            --teal-dark: #0FA5AB;
+            --slack-purple: #4A154B;
+            --slack-light: #F3E8F3;
+            --gmail-red: #EA4335;
+            --gmail-light: #FDECEA;
+            --sms-green: #25D366;
+            --sms-light: #E7F9EE;
+            --alert-orange: #F59E0B;
+            --alert-light: #FEF3C7;
+            --alert-red: #EF4444;
+            --alert-red-light: #FEE2E2;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --bg: #F1F5F9;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+            --code-bg: #F8FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 44px 40px;
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(26, 229, 237, .1) 0%, transparent 70%);
+        }
+
+        .header .pill {
+            display: inline-block;
+            background: rgba(26, 229, 237, .12);
+            color: var(--teal);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(26, 229, 237, .2);
+            margin-bottom: 14px;
+        }
+
+        .header h1 {
+            color: var(--white);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 14px;
+            max-width: 600px;
+        }
+
+        /* ── LEGEND ── */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            background: var(--white);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        /* ── GHL CONTEXT ── */
+        .ghl-context {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 36px;
+        }
+
+        .ghl-context h3 {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+        }
+
+        .field {
+            font-size: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .field strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* ── STAGE SECTION ── */
+        .stage-section {
+            margin-bottom: 40px;
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .stage-number {
+            width: 40px;
+            height: 40px;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .stage-info h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .stage-info p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ── NOTIFICATION CARD ── */
+        .notif {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .notif-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .notif-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notif-channel {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 5px;
+        }
+
+        .notif-channel.slack {
+            background: var(--slack-light);
+            color: var(--slack-purple);
+        }
+
+        .notif-channel.email {
+            background: var(--gmail-light);
+            color: var(--gmail-red);
+        }
+
+        .notif-channel.sms {
+            background: var(--sms-light);
+            color: #128C7E;
+        }
+
+        .notif-time {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-light);
+            background: var(--code-bg);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .notif-urgency {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .urgency-normal {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .urgency-warning {
+            background: var(--alert-light);
+            color: #92400E;
+        }
+
+        .urgency-critical {
+            background: var(--alert-red-light);
+            color: #991B1B;
+        }
+
+        .notif-body {
+            padding: 18px 20px;
+        }
+
+        /* specific channel styling */
+        .notif-body.slack-body {
+            background: #FAFBFD;
+        }
+
+        .notif-body.email-body {
+            background: #FFFCFC;
+        }
+
+        .notif-body.sms-body {
+            background: #F7FDF9;
+        }
+
+        .msg-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .msg-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 18px;
+            font-size: 13px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .msg-block .merge {
+            color: var(--teal-dark);
+            font-weight: 700;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 12px;
+        }
+
+        .msg-block .bold {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .msg-block .link {
+            color: #3B82F6;
+            text-decoration: underline;
+        }
+
+        /* Email specific */
+        .email-subject {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gmail-red);
+            margin-bottom: 8px;
+        }
+
+        .email-subject span {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ── AUTO ACTION ── */
+        .auto-action {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px 16px;
+            margin: 16px 20px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #EDE9FE;
+            color: #5B21B6;
+            border: 1px solid #C4B5FD;
+        }
+
+        .footer-note {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                padding: 16px 12px 60px;
+            }
+
+            .header {
+                padding: 28px 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notif-header {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="pill">Notificaciones Internas GHL</div>
+            <h1>Copy Exacto por Canal y Etapa</h1>
+            <p>Textos listos para implementar en los workflows de GoHighLevel. Cada notificación incluye merge fields y
+                links de acción directa.</p>
+        </header>
+
+        <!-- LEGEND -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--slack-purple);"></div>
+                Slack
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--gmail-red);"></div>
+                Email (Gmail)
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--sms-green);"></div>
+                SMS Interno
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #8B5CF6;"></div>
+                Acción Automática GHL
+            </div>
+        </div>
+
+        <!-- GHL MERGE FIELDS -->
+        <div class="ghl-context">
+            <h3>📋 Merge Fields de GHL usados en las notificaciones</h3>
+            <div class="field-grid">
+                <div class="field"><strong>Nombre:</strong> {{contact.first_name}}</div>
+                <div class="field"><strong>Apellido:</strong> {{contact.last_name}}</div>
+                <div class="field"><strong>Teléfono:</strong> {{contact.phone}}</div>
+                <div class="field"><strong>Email:</strong> {{contact.email}}</div>
+                <div class="field"><strong>Fuente:</strong> {{contact.source}}</div>
+                <div class="field"><strong>Fecha:</strong> {{contact.date_created}}</div>
+                <div class="field"><strong>Link GHL:</strong> {{contact.contact_link}}</div>
+                <div class="field"><strong>Oportunidad:</strong> {{opportunity.name}}</div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ETAPA 0: ABANDONÓ ENCUESTA -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="stage-section">
+            <div class="stage-header">
+                <div class="stage-number">0</div>
+                <div class="stage-info">
+                    <h2>Abandonó Encuesta</h2>
+                    <p>Persona hizo clic pero NO completó el Survey. Lead tibio — hay que rescatarlo rápido.</p>
+                </div>
+            </div>
+
+            <!-- 0H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 0H — Inmediato</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">⚡ URGENTE</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">🔴 <span class="bold">ENCUESTA ABANDONADA</span>
+
+                        <span class="bold"><span class="merge">{{contact.first_name}}
+                                {{contact.last_name}}</span></span> empezó la encuesta pero NO la terminó.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        📧 <span class="merge">{{contact.email}}</span>
+                        📅 Registrado: <span class="merge">{{contact.date_created}}</span>
+
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        ⚡ <span class="bold">Llámalo AHORA mientras aún está en el teléfono.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 24H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 24H</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">⚠️ Recordatorio</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">⚠️ <span class="bold">Recordatorio — Encuesta abandonada sin llamar</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> abandonó la encuesta
+                        hace 24h y <span class="bold">aún no se ha contactado.</span>
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Hay que llamarlo hoy o se pierde.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 48H — Email -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel email">Email</span>
+                        <span class="notif-time">⏱ 48H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Escalamiento</span>
+                </div>
+                <div class="notif-body email-body">
+                    <div class="email-subject">📌 Asunto: <span>⚠️ Lead sin contactar hace 48h — {{contact.first_name}}
+                            {{contact.last_name}}</span></div>
+                    <div class="msg-label">Cuerpo del Email</div>
+                    <div class="msg-block"><span class="bold">Lead sin contactar — Encuesta abandonada</span>
+
+                        Hola Jefferson,
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> abandonó la encuesta
+                        hace <span class="bold">48 horas</span> y sigue sin ser contactado.
+
+                        <span class="bold">Datos del contacto:</span>
+                        • Teléfono: <span class="merge">{{contact.phone}}</span>
+                        • Email: <span class="merge">{{contact.email}}</span>
+                        • Fuente: <span class="merge">{{contact.source}}</span>
+
+                        <span class="bold">👉 Ver contacto:</span> <span class="link">{{contact.contact_link}}</span>
+
+                        Si no se llama hoy, este lead se moverá automáticamente a "No Sigue" en 48h.
+
+                        — Notificación automática GHL
+                    </div>
+                </div>
+            </div>
+
+            <!-- 96H — Auto -->
+            <div class="auto-action">
+                <span>⚡</span>
+                <span><strong>96H — Acción Automática:</strong> Si no se ha contactado → mover oportunidad a <strong>"No
+                        Sigue"</strong> automáticamente. Tag: <code>[Status] Inacción - Abandono</code></span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ETAPA 1: NUEVO LEAD -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="stage-section">
+            <div class="stage-header">
+                <div class="stage-number">1</div>
+                <div class="stage-info">
+                    <h2>Nuevo Lead</h2>
+                    <p>Persona completó la encuesta. Lead caliente — Jefferson tiene 15-20 minutos para llamar.</p>
+                </div>
+            </div>
+
+            <!-- 0H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 0H — Inmediato</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🔥 LLAMAR YA</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">🔥 <span class="bold">NUEVO LEAD — ¡LLAMAR EN 15 MIN!</span>
+
+                        <span class="bold"><span class="merge">{{contact.first_name}}
+                                {{contact.last_name}}</span></span> acaba de completar la encuesta de taxes.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        📧 <span class="merge">{{contact.email}}</span>
+                        🏷 Fuente: <span class="merge">{{contact.source}}</span>
+
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        ⏱ <span class="bold">Tienes 15-20 minutos para llamarlo.</span> Confirma datos del survey +
+                        explica los 3 pasos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 2H</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">⚠️ Sin llamar</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">⚠️ <span class="bold">2 HORAS y aún no llamas a este lead</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> completó la encuesta
+                        hace 2 horas.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Cada hora que pasa reduce la probabilidad de contacto. Llámalo ahora.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 4H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Riesgo de pérdida</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">🚨 <span class="bold">4 HORAS SIN LLAMAR — Lead en riesgo</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> — nadie lo ha llamado en
+                        4 horas.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        <span class="bold">Si no se llama hoy, la probabilidad de cierre baja un 80%.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 24H — Email -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel email">Email</span>
+                        <span class="notif-time">⏱ 24H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Escalamiento</span>
+                </div>
+                <div class="notif-body email-body">
+                    <div class="email-subject">📌 Asunto: <span>🚨 Lead de 24h SIN LLAMAR — {{contact.first_name}}
+                            {{contact.last_name}}</span></div>
+                    <div class="msg-label">Cuerpo del Email</div>
+                    <div class="msg-block"><span class="bold">⚠️ Lead sin primer contacto — 24 horas</span>
+
+                        Hola Jefferson,
+
+                        Han pasado <span class="bold">24 horas</span> desde que <span
+                            class="merge">{{contact.first_name}} {{contact.last_name}}</span> completó la encuesta y aún
+                        no tiene primera llamada registrada.
+
+                        <span class="bold">Datos:</span>
+                        • Teléfono: <span class="merge">{{contact.phone}}</span>
+                        • Email: <span class="merge">{{contact.email}}</span>
+                        • Fuente: <span class="merge">{{contact.source}}</span>
+                        • Registrado: <span class="merge">{{contact.date_created}}</span>
+
+                        <span class="bold">👉 Ver contacto:</span> <span class="link">{{contact.contact_link}}</span>
+
+                        Este lead se irá a inacción automáticamente si no se llama antes de las 96h.
+
+                        — Notificación automática GHL
+                    </div>
+                </div>
+            </div>
+
+            <!-- 48H — SMS -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel sms">SMS Interno</span>
+                        <span class="notif-time">⏱ 48H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Último aviso</span>
+                </div>
+                <div class="notif-body sms-body">
+                    <div class="msg-label">SMS a Jefferson y/o Jorge</div>
+                    <div class="msg-block">🚨 LEAD SIN LLAMAR 48H: <span class="merge">{{contact.first_name}}
+                            {{contact.last_name}}</span> — Tel: <span class="merge">{{contact.phone}}</span>. Llámalo
+                        hoy o se va a inacción. Ver: <span class="link">{{contact.contact_link}}</span></div>
+                </div>
+            </div>
+
+            <!-- 96H — Auto -->
+            <div class="auto-action">
+                <span>⚡</span>
+                <span><strong>96H — Acción Automática:</strong> Mover oportunidad a <strong>"No Sigue"</strong>. Tag:
+                    <code>[Status] Inacción - Sin Llamada 1</code>. Notificación final a Slack: "Se perdió a
+                    {{contact.first_name}} por inacción."</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ETAPA 2: LLAMADA 1 (Primera llamada hecha, sin respuesta) -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="stage-section">
+            <div class="stage-header">
+                <div class="stage-number">2</div>
+                <div class="stage-info">
+                    <h2>Llamada 1 — Hecha, sin respuesta</h2>
+                    <p>Se hizo la primera llamada pero no contestó. Hay que reintentar al día siguiente.</p>
+                </div>
+            </div>
+
+            <!-- 24H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 24H</span>
+                    </div>
+                    <span class="notif-urgency urgency-normal">📞 2do Intento</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">📞 <span class="bold">LLAMADA #2 — Toca reintentar</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> no contestó la primera
+                        llamada ayer.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Llámalo hoy por segunda vez. Si contesta → confirma datos + envía link del sistema seguro.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 48H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 48H</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">⚠️ Sin 2da llamada</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">⚠️ <span class="bold">Aún no se ha hecho la 2da llamada</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> lleva 48h desde la
+                        primera llamada sin segundo intento.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Hay que llamarlo hoy. Si no se hace, el lead se irá a inacción.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 72H — Email -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel email">Email</span>
+                        <span class="notif-time">⏱ 72H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Escalamiento</span>
+                </div>
+                <div class="notif-body email-body">
+                    <div class="email-subject">📌 Asunto: <span>⚠️ 2da llamada pendiente — {{contact.first_name}}
+                            {{contact.last_name}} (72h)</span></div>
+                    <div class="msg-label">Cuerpo del Email</div>
+                    <div class="msg-block">Hola Jefferson,
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> no contestó la 1ra
+                        llamada y han pasado <span class="bold">72 horas sin segundo intento.</span>
+
+                        • Teléfono: <span class="merge">{{contact.phone}}</span>
+                        • Email: <span class="merge">{{contact.email}}</span>
+
+                        <span class="bold">👉 Ver contacto:</span> <span class="link">{{contact.contact_link}}</span>
+
+                        Si no se hace la 2da llamada en las próximas 24h, el lead se moverá a inacción automáticamente.
+
+                        — Notificación automática GHL
+                    </div>
+                </div>
+            </div>
+
+            <div class="auto-action">
+                <span>⚡</span>
+                <span><strong>96H — Acción Automática:</strong> Mover a <strong>"No Sigue"</strong>. Tag:
+                    <code>[Status] Inacción - Sin Llamada 2</code></span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ETAPA 3: LLAMADA 2 -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="stage-section">
+            <div class="stage-header">
+                <div class="stage-number">3</div>
+                <div class="stage-info">
+                    <h2>Llamada 2 — Hecha, sin respuesta</h2>
+                    <p>Segundo intento fallido. Toca la tercera y última llamada + SMS al cliente.</p>
+                </div>
+            </div>
+
+            <!-- 24H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 24H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🔴 3er y ÚLTIMO Intento</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">🔴 <span class="bold">LLAMADA #3 — Último intento</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> no ha contestado las 2
+                        llamadas anteriores. Esta es la <span class="bold">tercera y última.</span>
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        <span class="bold">Si no contesta → enviar SMS final al cliente y marcar como "No Sigue".</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 48H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 48H</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">⚠️ Sin 3ra llamada</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">⚠️ <span class="bold">Última llamada pendiente</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> — 2 llamadas hechas, la
+                        3ra y última aún no se hace.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Llámalo hoy. Si no contesta → SMS y cerrar como "No Sigue".
+                    </div>
+                </div>
+            </div>
+
+            <!-- 72H — Email -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel email">Email</span>
+                        <span class="notif-time">⏱ 72H</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Escalamiento Final</span>
+                </div>
+                <div class="notif-body email-body">
+                    <div class="email-subject">📌 Asunto: <span>🚨 ÚLTIMA LLAMADA PENDIENTE — {{contact.first_name}}
+                            {{contact.last_name}}</span></div>
+                    <div class="msg-label">Cuerpo del Email</div>
+                    <div class="msg-block">Hola Jefferson,
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> lleva <span
+                            class="bold">2 llamadas sin respuesta</span> y han pasado 72h sin el tercer intento.
+
+                        • Teléfono: <span class="merge">{{contact.phone}}</span>
+                        • Email: <span class="merge">{{contact.email}}</span>
+
+                        <span class="bold">👉 Ver contacto:</span> <span class="link">{{contact.contact_link}}</span>
+
+                        <span class="bold">Haz la 3ra llamada HOY.</span> Si no contesta, se enviará el SMS final al
+                        cliente y se cerrará como "No Sigue" automáticamente en 24h.
+
+                        — Notificación automática GHL
+                    </div>
+                </div>
+            </div>
+
+            <div class="auto-action">
+                <span>⚡</span>
+                <span><strong>96H — Acción Automática:</strong> Enviar <strong>SMS final al CLIENTE</strong> (ver
+                    sección de comunicación externa). Mover a <strong>"No Sigue"</strong>. Tag:
+                    <code>[Status] No Contesta - 3 Llamadas</code>. <strong>Terminal — sin nutrición.</strong></span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ETAPA 4: LLAMADA 3 — Contestó / No Contestó -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="stage-section">
+            <div class="stage-header">
+                <div class="stage-number">4</div>
+                <div class="stage-info">
+                    <h2>Llamada Exitosa — Link Enviado ✅</h2>
+                    <p>El cliente contestó. Se confirmaron datos, se explicó el proceso y se envió el link al sistema
+                        seguro. Ahora monitorear la subida de documentos.</p>
+                </div>
+            </div>
+
+            <!-- 0H — Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 0H — Al marcar llamada exitosa</span>
+                    </div>
+                    <span class="notif-urgency urgency-normal" style="background: #D1FAE5; color: #065F46;">✅
+                        Contactado</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack (Confirmación)</div>
+                    <div class="msg-block">✅ <span class="bold">CONTACTO EXITOSO — Link enviado</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> contestó y recibió el
+                        link del sistema seguro.
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        🏷 Movido a: <span class="bold">Pendiente por Documentos</span>
+
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Siguiente paso: monitorear que suba sus documentos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seguimiento Docs — 72H Slack -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel slack">Slack</span>
+                        <span class="notif-time">⏱ 72H sin subir docs</span>
+                    </div>
+                    <span class="notif-urgency urgency-warning">📄 Docs pendientes</span>
+                </div>
+                <div class="notif-body slack-body">
+                    <div class="msg-label">Mensaje Slack</div>
+                    <div class="msg-block">📄 <span class="bold">3 DÍAS — Cliente no ha subido documentos</span>
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> recibió el link del
+                        sistema seguro hace 3 días pero <span class="bold">aún no sube documentos.</span>
+
+                        📞 <span class="merge">{{contact.phone}}</span>
+                        👉 <span class="link">{{contact.contact_link}}</span>
+
+                        Hay que llamarle para recordarle que suba sus documentos. Preguntarle si necesita ayuda con el
+                        sistema.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 días — Email -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel email">Email</span>
+                        <span class="notif-time">⏱ 7 Días sin docs</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Follow-up urgente</span>
+                </div>
+                <div class="notif-body email-body">
+                    <div class="email-subject">📌 Asunto: <span>📄 {{contact.first_name}} {{contact.last_name}} — 7 días
+                            sin subir documentos</span></div>
+                    <div class="msg-label">Cuerpo del Email</div>
+                    <div class="msg-block">Hola Jefferson,
+
+                        <span class="merge">{{contact.first_name}} {{contact.last_name}}</span> fue contactado
+                        exitosamente y recibió acceso al sistema seguro, pero lleva <span class="bold">7 días sin subir
+                            documentos.</span>
+
+                        <span class="bold">Datos:</span>
+                        • Teléfono: <span class="merge">{{contact.phone}}</span>
+                        • Email: <span class="merge">{{contact.email}}</span>
+
+                        <span class="bold">👉 Ver contacto:</span> <span class="link">{{contact.contact_link}}</span>
+
+                        <span class="bold">Hacer llamada de seguimiento.</span> Preguntarle si tuvo problemas para
+                        acceder al sistema o si necesita ayuda para subir los documentos.
+
+                        Recuerda: la fecha límite del IRS es el <span class="bold">15 de abril</span>.
+
+                        — Notificación automática GHL
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14 días — SMS -->
+            <div class="notif">
+                <div class="notif-header">
+                    <div class="notif-left">
+                        <span class="notif-channel sms">SMS Interno</span>
+                        <span class="notif-time">⏱ 14 Días sin docs</span>
+                    </div>
+                    <span class="notif-urgency urgency-critical">🚨 Deadline</span>
+                </div>
+                <div class="notif-body sms-body">
+                    <div class="msg-label">SMS a Jefferson</div>
+                    <div class="msg-block">📄 DOCS URGENTE: <span class="merge">{{contact.first_name}}
+                            {{contact.last_name}}</span> lleva 14 días sin subir docs. Tel: <span
+                            class="merge">{{contact.phone}}</span>. Se acerca el 15 de abril. Último follow-up → <span
+                            class="link">{{contact.contact_link}}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- RESUMEN DE CADENCIA POR ETAPA -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div style="background: var(--navy); border-radius: 16px; padding: 32px; margin-top: 20px;">
+            <h2 style="font-size: 18px; font-weight: 800; color: var(--teal); margin-bottom: 20px;">📊 Resumen de
+                Cadencia por Etapa</h2>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #CBD5E1;">
+                <thead>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,.1);">
+                        <th style="text-align: left; padding: 10px; color: var(--teal); font-weight: 700;">Etapa</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">0H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">2H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">4H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">24H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">48H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">72H</th>
+                        <th style="text-align: center; padding: 10px; color: var(--teal);">96H</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,.06);">
+                        <td style="padding: 10px; font-weight: 600;">0. Abandonó Encuesta</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">📧</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">⚡</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,.06);">
+                        <td style="padding: 10px; font-weight: 600;">1. Nuevo Lead</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">📧</td>
+                        <td style="text-align: center; padding: 10px;">📲</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">⚡</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,.06);">
+                        <td style="padding: 10px; font-weight: 600;">2. Llamada 1</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">📧</td>
+                        <td style="text-align: center; padding: 10px;">⚡</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,.06);">
+                        <td style="padding: 10px; font-weight: 600;">3. Llamada 2</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">📧</td>
+                        <td style="text-align: center; padding: 10px;">⚡</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; font-weight: 600;">4. Docs Pendientes</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                        <td style="text-align: center; padding: 10px;">🟣</td>
+                        <td style="text-align: center; padding: 10px;">—</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; gap: 16px; margin-top: 16px; font-size: 11px; color: #94A3B8;">
+                <span>🟣 = Slack</span>
+                <span>📧 = Email</span>
+                <span>📲 = SMS</span>
+                <span>⚡ = Acción Auto (mover a No Sigue)</span>
+            </div>
+        </div>
+
+        <p class="footer-note" style="margin-top: 40px;">Notificaciones internas diseñadas por Antigravity para Lucho
+            Branding × Jorge Vergara — Febrero 2026</p>
+
+    </div>
+</body>
+
+</html>

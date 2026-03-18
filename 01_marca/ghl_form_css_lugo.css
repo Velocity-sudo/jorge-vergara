@@ -1,0 +1,117 @@
+/* --- LUGO INSURANCE & ADVISORS: GHL PREMIUM FORM --- */
+
+/* 1. Resetear el fondo para que quede limpio en el Pop-Up */
+#_builder-form,
+.form-builder--v2,
+form {
+    background-color: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 2. Etiquetas (Labels de arriba: Nombre, Correo, etc) */
+label,
+.label-text,
+.form-control-label {
+    color: #002B49 !important;
+    /* Azul Marino Corporativo (Escudo) */
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    margin-bottom: 6px !important;
+    text-transform: none !important;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif !important;
+}
+
+/* 3. Las cajitas para escribir (Inputs) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+.form-control {
+    background-color: #F8FAFC !important;
+    /* Gris claro sutil */
+    border: 1.5px solid #E2E8F0 !important;
+    color: #1E293B !important;
+    border-radius: 8px !important;
+    padding: 14px 16px !important;
+    font-size: 15px !important;
+    width: 100% !important;
+    height: auto !important;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 4. Efecto Foco (Al darle clic al input) */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+.form-control:focus {
+    border-color: #00C4CC !important;
+    /* Cian Neón (Corazón) */
+    box-shadow: 0 0 0 3px rgba(0, 196, 204, 0.2) !important;
+    background-color: #FFFFFF !important;
+    outline: none !important;
+}
+
+/* 5. Placeholder y textos menores */
+::placeholder {
+    color: #94A3B8 !important;
+    font-weight: 500 !important;
+}
+
+/* 6. Cajita de confirmación (Checkbox) y su texto */
+input[type="checkbox"] {
+    accent-color: #00C4CC !important;
+    /* Cian */
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer !important;
+    margin-top: 4px !important;
+}
+
+.checkbox-label span,
+.terms-text,
+.cb-label-text {
+    color: #64748B !important;
+    font-size: 13px !important;
+}
+
+/* 7. BOTÓN PRINCIPAL (Cian Neón Glow y Texto Oscuro) */
+button.btn,
+button[type="submit"],
+.form-btn {
+    background-color: #D4AF37 !important;
+    color: #002B49 !important;
+    /* Texto Navy para máximo contraste */
+    font-weight: 800 !important;
+    font-size: 18px !important;
+    padding: 20px 30px !important;
+    border-radius: 50px !important;
+    /* Botón Píldora */
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border: none !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    cursor: pointer !important;
+
+    /* Efecto Glow Base */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 8. Botón al acercar el ratón (Hover) - GLOW RADIACTIVO */
+button.btn:hover,
+button[type="submit"]:hover,
+.form-btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    background-color: #F2C94C !important;
+    /* Cian más brillante */
+    color: #001A2C !important;
+
+    /* Efecto Glow Intensificado */
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.8),
+        0 0 60px rgba(212, 175, 55, 0.4),
+        inset 0 0 10px rgba(255, 255, 255, 0.4) !important;
+}

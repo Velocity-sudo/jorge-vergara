@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Vergara - Tax Optimization USA</title>
+    <!-- Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASE (LIGHT THEME) --- */
+        :root {
+            --bg-body: #FFFFFF;
+            --bg-subtle: #F6F9FC;
+            --bg-card: #FFFFFF;
+
+            --text-main: #1D3249;
+            /* Navy */
+            --text-body: #4A5568;
+            --text-light: #718096;
+
+            --brand-navy: #1D3249;
+            --brand-gold: #D4AF37;
+            --brand-gold-hover: #B59020;
+
+            --spacing-sm: 16px;
+            --spacing-md: 32px;
+            --spacing-lg: 64px;
+
+            --border-radius: 16px;
+            --shadow-soft: 0 4px 20px rgba(29, 50, 73, 0.08);
+            --shadow-hover: 0 10px 30px rgba(29, 50, 73, 0.12);
+
+            --container-width: 520px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            padding-bottom: 90px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-navy {
+            color: var(--brand-navy);
+        }
+
+        .text-gold {
+            color: var(--brand-gold);
+        }
+
+        .section {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .section-subtle {
+            background-color: var(--bg-subtle);
+        }
+
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+
+        .mt-4 {
+            margin-top: 32px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3 {
+            color: var(--text-main);
+            line-height: 1.25;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text-body);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0) 100%);
+            padding: 0 4px;
+            border-radius: 4px;
+            color: var(--brand-navy);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #D4AF37 0%, #B59020 100%);
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .btn-navy {
+            background: var(--brand-navy);
+            box-shadow: 0 8px 20px rgba(29, 50, 73, 0.2);
+        }
+
+        .btn-small {
+            padding: 12px 20px;
+            font-size: 16px;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: var(--text-body);
+            margin-bottom: 24px;
+            padding: 0 10px;
+        }
+
+        .video-container {
+            position: relative;
+            background: #000;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 4px solid #FFFFFF;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- CALENDAR DUMMY COMPONENT --- */
+        .calendar-mockup {
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cal-header {
+            font-weight: 700;
+            color: var(--brand-navy);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .cal-date {
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 12px 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cal-date.active {
+            background: var(--brand-navy);
+            color: #fff;
+            border-color: var(--brand-navy);
+        }
+
+        .cal-date div:first-child {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .cal-date div:last-child {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cal-time-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            opacity: 0.5;
+            filter: blur(1px);
+        }
+
+        .cal-slot {
+            background: var(--bg-subtle);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var (--brand-navy);
+        }
+
+        /* Overlay to force click */
+        .cal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .cal-btn {
+            background: var(--brand-gold);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- STATS / AUTHORITY --- */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            display: block;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--brand-navy);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* --- LISTS & CARDS --- */
+        .feature-item {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .icon-box.red {
+            background: rgba(255, 68, 68, 0.1);
+            color: #D32F2F;
+        }
+
+        .step-card {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: var(--bg-subtle);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .step-badge {
+            width: 32px;
+            height: 32px;
+            background: var(--brand-navy);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* --- STICKY CTA --- */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #FFFFFF;
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: none;
+            /* Hidden strictly until scroll */
+        }
+
+        .sticky-bar.visible {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                --container-width: 680px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero text-center">
+        <div class="container">
+            <!-- New Directive Headline -->
+            <h1 class="text-navy">Te ayudo a hacer tus impuestos de forma legal y organizada, para evitar errores que te
+                pueden costar <span class="highlight">miles de dólares</span>.</h1>
+            <p class="hero-sub">El IRS no perdona errores, pero premia el orden. Entiende cómo funciona el sistema para
+                proteger tu dinero.</p>
+
+            <!-- VSL PREVIEW IMAGE (GENERATED) -->
+            <div class="video-wrapper" style="cursor: pointer; position: relative;">
+                <img src="vsl_preview.png" alt="Tax Strategy Webinar"
+                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+
+                <!-- Play Button Overlay -->
+                <div
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(212, 175, 55, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(0,0,0,0.5);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+                        <path d="M5 3l14 9-14 9V3z" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- DUMMY CALENDAR WIDGET (Click triggers Link) -->
+            <a href="[GHL_BASE_URL_AQUI]/go/call" class="js-track text-decoration-none"
+                style="display: block; color: inherit;">
+                <div class="calendar-mockup" id="main-cta-trigger">
+                    <div class="cal-header">Selecciona fecha para tu Asesoría</div>
+
+                    <div class="cal-grid">
+                        <div class="cal-date">
+                            <div>HOY</div>
+                            <div>27</div>
+                        </div>
+                        <div class="cal-date active">
+                            <div>MAÑ</div>
+                            <div>28</div>
+                        </div>
+                        <div class="cal-date">
+                            <div>MIE</div>
+                            <div>29</div>
+                        </div>
+                    </div>
+
+                    <div class="cal-time-slots">
+                        <div class="cal-slot">10:00 AM</div>
+                        <div class="cal-slot">10:30 AM</div>
+                        <div class="cal-slot">11:00 AM</div>
+                    </div>
+
+                    <div class="cal-overlay">
+                        <div class="cal-btn">Agendar mi Llamada</div>
+                        <small style="margin-top: 8px; color: #1D3249; font-weight: 600;">Cupos limitados por
+                            temporada</small>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- 1. AUTHORITY & TESTIMONIAL (Redesigned) -->
+    <section class="section section-subtle text-center" style="padding-top: 40px; padding-bottom: 40px;">
+        <div class="container">
+            <h2 class="text-navy" style="margin-bottom: 24px;">Más de 5,000 clientes satisfechos</h2>
+
+            <!-- Testimonial Card -->
+            <div
+                style="background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 32px; display: flex; align-items: center; gap: 20px; text-align: left; max-width: 480px; margin-left: auto; margin-right: auto;">
+                <img src="testimonial_avatar.png" alt="Cliente Feliz"
+                    style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--brand-gold);">
+                <div>
+                    <p style="font-size: 15px; margin-bottom: 4px; font-style: italic; color: var(--text-main);">"Antes
+                        vivía con miedo a las cartas del IRS. Desde que trabajo con Jorge, tengo paz mental total."</p>
+                    <small style="font-weight: 700; color: var(--brand-navy);">- Carlos M.</small>
+                </div>
+            </div>
+
+            <!-- Jorge's Image (Centered) -->
+            <!-- Placeholder for Jorge's specific photo if user wants to swap, currently using Logo/Photo placeholder but ensuring centering -->
+            <img src="[LOGO_O_FOTO_URL_AQUI]" alt="Jorge Vergara"
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: top center; margin-bottom: 16px; border: 3px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-num">+5K</span>
+                    <span class="stat-label">Familias</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">90%</span>
+                    <span class="stat-label">Retención</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">100+</span>
+                    <span class="stat-label">Horas Cert.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ERRORS SECTION (The Risks) -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center text-navy">Errores que te cuestan <br><span class="highlight">miles de dólares</span>
+            </h2>
+            <p class="text-center mb-2">Lo peligroso es que se sienten como "decisiones normales".</p>
+
+            <div style="margin-top: 32px;">
+                <div class="feature-item">
+                    <div class="icon-box red">!</div>
+                    <div>
+                        <h3>Elegir por "Barato"</h3>
+                        <p style="margin-bottom:0; font-size:15px;">Quien cobra muy poco trabaja por volumen. No revisa,
+                            solo mete datos. Y los errores los pagas tú, no ellos.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box red">!</div>
+                    <div>
+                        <h3>Mezclar tipos de Ingreso</h3>
+                        <p style="margin-bottom:0; font-size:15px;">Tratar un 1099 o un Negocio igual que un W2 es la
+                            forma más rápida de perder deducciones o causar una auditoría.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box red">!</div>
+                    <div>
+                        <h3>Firmar sin Entender</h3>
+                        <p style="margin-bottom:0; font-size:15px;">"No sabía" no es defensa legal. Tu firma es tu
+                            responsabilidad. Debes entender qué estás declarando.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="[GHL_BASE_URL_AQUI]/go/call" class="btn btn-navy js-track">Agendar mi Llamada</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PROCESS SECTION (The Solution) -->
+    <section class="section section-subtle">
+        <div class="container">
+            <h2 class="text-center text-navy">Proceso de 3 Pasos para <br>presentar con claridad</h2>
+
+            <div style="margin-top: 32px;">
+                <div class="step-card">
+                    <div class="step-badge">1</div>
+                    <div>
+                        <strong>Entender tu Situación</strong>
+                        <p style="margin: 4px 0 0 0; font-size: 15px;">Analizamos tu año fiscal antes de llenar
+                            cualquier formulario.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-badge">2</div>
+                    <div>
+                        <strong>Clasificar Ingresos</strong>
+                        <p style="margin: 4px 0 0 0; font-size: 15px;">Separamos personal de negocio para maximizar
+                            deducciones legales.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-badge">3</div>
+                    <div>
+                        <strong>Presentación Blindada</strong>
+                        <p style="margin: 4px 0 0 0; font-size: 15px;">Firmas con la seguridad de que todo cuadra ante
+                            los ojos del IRS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <a href="[GHL_BASE_URL_AQUI]/go/call" class="btn js-track">
+                    Agendar mi Llamada
+                </a>
+                <p class="trust-line" style="justify-content: center;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Datos 100% Seguros y Confidenciales
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA -->
+    <div class="sticky-bar" id="sticky-bar">
+        <a href="[GHL_BASE_URL_AQUI]/go/call" class="btn btn-small js-track">
+            Agendar mi Llamada
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll intersection for Sticky Bar
+            const observer = new IntersectionObserver(([e]) => {
+                const bar = document.getElementById('sticky-bar');
+                if (!e.isIntersecting) {
+                    bar.classList.add('visible');
+                } else {
+                    bar.classList.remove('visible');
+                }
+            }, { threshold: 0.1 });
+
+            // Watch the "Calendar Mockup" trigger area
+            observer.observe(document.getElementById('main-cta-trigger'));
+
+            // UTM Tracker
+            const params = window.location.search;
+            if (params) {
+                document.querySelectorAll('.js-track').forEach(link => {
+                    const separator = link.href.includes('?') ? '&' : '?';
+                    link.href = link.href + separator + params.substring(1);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Infraestructura GHL y Ads - Lugo Insurance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand-navy: #002B49;
+            --brand-teal: #1AE5ED;
+            --brand-teal-dark: #0FA5AB;
+            --brand-gold: #D6A848;
+            --brand-gold-light: #E8C373;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --bg-light: #F8FAFC;
+            --shadow-soft: 0 10px 30px rgba(0, 43, 73, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 43, 73, 0.12);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: var(--brand-navy);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(26, 229, 237, 0.1));
+            pointer-events: none;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: rgba(26, 229, 237, 0.15);
+            color: var(--brand-teal);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(26, 229, 237, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 18px;
+            margin: 0;
+            max-width: 600px;
+        }
+
+        /* SECTIONS / CARDS */
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--brand-teal);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .step-number {
+            background: var(--brand-gold);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 24px;
+            color: var(--brand-navy);
+            margin: 0;
+            font-weight: 800;
+        }
+
+        /* LISTS & TABLES */
+        .item-row {
+            display: flex;
+            margin-bottom: 15px;
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .item-label {
+            width: 200px;
+            font-weight: 700;
+            color: var(--brand-navy);
+            flex-shrink: 0;
+        }
+
+        .item-data {
+            color: var(--text-dark);
+            flex-grow: 1;
+        }
+
+        .item-data strong {
+            color: var(--brand-teal-dark);
+        }
+
+        /* COMMS FLOW */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .flow-step {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--brand-teal);
+            border-radius: 50%;
+        }
+
+        .flow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: 100%;
+            background: #E2E8F0;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--brand-navy);
+            margin-bottom: 4px;
+        }
+
+        .flow-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* TAGS PUSH */
+        .tag-badge {
+            background: #E2E8F0;
+            color: var(--text-dark);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: monospace;
+            font-weight: 600;
+            margin-right: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .tag-badge.action {
+            background: rgba(214, 168, 72, 0.15);
+            /* Gold */
+            color: #b08226;
+        }
+
+        .tag-badge.milestone {
+            background: rgba(26, 229, 237, 0.15);
+            /* Teal */
+            color: var(--brand-teal-dark);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .step-card {
+                padding: 25px;
+            }
+
+            .item-row {
+                flex-direction: column;
+            }
+
+            .item-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="tag-pill">GoHighLevel + Meta Ads Masterplan</div>
+            <h1>Arquitectura Técnica y Operativa</h1>
+            <p>Plan paso a paso para el ecosistema de prospección, seguimiento y cierre de Lugo Insurance & Advisors.
+            </p>
+        </header>
+
+        <!-- STEP 1: EVENTOS Y PIXEL -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2 class="step-title">Eventos Meta (Facebook Pixel) y Seguimiento</h2>
+            </div>
+            <p style="margin-top: 0; color: var(--text-light); margin-bottom: 20px;">
+                Cómo enseñarle al algoritmo de Meta qué está funcionando para optimizar las campañas de conversión.
+            </p>
+
+            <div class="item-row">
+                <div class="item-label">1. Llegada a Landing</div>
+                <div class="item-data">
+                    Evento Estándar: <strong>PageView</strong><br>
+                    <em>Propósito:</em> Crear audiencias de retargeting para aquellos que visitaron pero no dejaron sus
+                    datos.
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-label">2. Envío Form Registro</div>
+                <div class="item-data">
+                    Evento Estándar: <strong>Lead</strong><br>
+                    <em>Propósito:</em> Señal principal de optimización para las campañas de la Fase 1. El algoritmo
+                    buscará más personas propensas a dejar su correo.
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-label">3. Llegada a VSL</div>
+                <div class="item-data">
+                    Evento Estándar: <strong>ViewContent</strong> (GHL page load)<br>
+                    <em>Propósito:</em> Medir el % de Drop-off (Caída) entre el registro y los que cargan el video.
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-label">4. Envío de Encuesta</div>
+                <div class="item-data">
+                    Evento Custom: <strong>SubmitApplication</strong><br>
+                    <em>Propósito:</em> Optimizar para calidad de lead (Fase 2 de escalado publicitario).
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-label">5. Cita Agendada (Calendar)</div>
+                <div class="item-data">
+                    Evento Estándar: <strong>Schedule</strong><br>
+                    <em>Propósito:</em> El objetivo final "Santo Grial" del ecosistema publicitario. Entrenar al pixel
+                    con los clientes de mayor impacto.
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: WORKFLOWS, ETIQUETAS Y PIPELINE -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2 class="step-title">Workflows, Etiquetas (Tags) y Pipeline en GHL</h2>
+            </div>
+            <p style="margin-top: 0; color: var(--text-light); margin-bottom: 20px;">
+                Estructura detallada de las automatizaciones necesarias. Cada acción del usuario dispara un Workflow
+                específico que asigna etiquetas y mueve al prospecto en el Pipeline.
+            </p>
+
+            <h3 style="color: var(--brand-navy); margin-top: 0; font-size: 18px;">Pipeline: "Lugo Insurance Pipeline"
+            </h3>
+            <p style="font-size: 14px; margin-bottom: 15px;">Pipeline donde se moverán visualmente las tarjetas
+                "Opportunities" (Prospectos).</p>
+            <div
+                style="background: var(--bg-light); border: 1px solid #E2E8F0; padding: 15px; border-radius: 8px; margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 10px;">
+                <span
+                    style="background: white; border: 1px solid #CBD5E1; padding: 5px 10px; border-radius: 4px; font-weight: 600; font-size: 13px;">1.
+                    Lead Entrante (Registrado)</span>
+                <span style="color: #94A3B8;">→</span>
+                <span
+                    style="background: white; border: 1px solid #CBD5E1; padding: 5px 10px; border-radius: 4px; font-weight: 600; font-size: 13px;">2.
+                    Cita Agendada</span>
+                <span style="color: #94A3B8;">→</span>
+                <span
+                    style="background: white; border: 1px solid #CBD5E1; padding: 5px 10px; border-radius: 4px; font-weight: 600; font-size: 13px;">3.
+                    No-Show / Reagendamiento</span>
+                <span style="color: #94A3B8;">→</span>
+                <span
+                    style="background: white; border: 1px solid #CBD5E1; padding: 5px 10px; border-radius: 4px; font-weight: 600; font-size: 13px;">4.
+                    Presentación (Realizada)</span>
+                <span style="color: #94A3B8;">→</span>
+                <span
+                    style="background: white; border: 1px solid #CBD5E1; padding: 5px 10px; border-radius: 4px; font-weight: 600; font-size: 13px;">5.
+                    Cierre (WON / LOST)</span>
+            </div>
+
+            <h3 style="color: var(--brand-navy); font-size: 18px;">Creación de Workflows (Automatizaciones)</h3>
+
+            <div class="item-row">
+                <div class="item-label" style="display: flex; flex-direction: column;">
+                    <span>WF 1: Nuevo Registro</span>
+                    <span style="font-size: 12px; font-weight: normal; margin-top: 5px;">(Inicio del funnel)</span>
+                </div>
+                <div class="item-data">
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Trigger:</strong> Formulario de Registro enviado (Paso 1).</li>
+                        <li><strong>Etiquetas Aplicadas:</strong> <code>Fuente: Meta Ads</code>,
+                            <code>Registrado a VSL</code>.</li>
+                        <li><strong>Pipeline:</strong> Crear oportunidad en "1. Lead Entrante".</li>
+                        <li><strong>Acción Interna:</strong> Ninguna visible (silencioso para el equipo).</li>
+                        <li><strong>Acción Externa:</strong> Inicia Secuencia Email/SMS "Nurture VSL" (Ver Paso 3).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-label" style="display: flex; flex-direction: column;">
+                    <span>WF 2: Cita Confirmada</span>
+                    <span style="font-size: 12px; font-weight: normal; margin-top: 5px;">(Santo Grial)</span>
+                </div>
+                <div class="item-data">
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Trigger:</strong> Cita Agendada en Calendario y Encuesta diligenciada.</li>
+                        <li><strong>Etiquetas Aplicadas:</strong> Remover <code>Registrado a VSL</code>, Añadir
+                            <code>Cita Agendada</code>.</li>
+                        <li><strong>Pipeline:</strong> Mover oportunidad a "2. Cita Agendada".</li>
+                        <li><strong>Acción en WF:</strong> Eliminar al lead del "WF 1" (para que dejen de llegarle
+                            correos pidiendo que agende).</li>
+                        <li><strong>Acción Interna/Externa:</strong> Inicia Secuencia de "Show-Up" (Ver Pasos 3 y 4).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-label" style="display: flex; flex-direction: column;">
+                    <span>WF 3: No-Show</span>
+                    <span style="font-size: 12px; font-weight: normal; margin-top: 5px;">(Faltó a cita)</span>
+                </div>
+                <div class="item-data">
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Trigger:</strong> Estatus de cita cambiado a "No-Show".</li>
+                        <li><strong>Etiquetas Aplicadas:</strong> Añadir <code>Alerta: No-Show</code>.</li>
+                        <li><strong>Pipeline:</strong> Mover a "3. No-Show / Reagendamiento".</li>
+                        <li><strong>Acción Externa:</strong> Enviar cadena de recuperación ("Noté que no pudiste
+                            conectarte... re-agenda aquí").</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: EXTERNAL COMMUNICATIONS -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h2 class="step-title">Comunicación Externa (Seguimientos al Cliente)</h2>
+            </div>
+
+            <p style="margin-top: 0; color: var(--text-light); margin-bottom: 20px;">
+                Cómo atacaremos al prospecto en sus 2 estados más críticos: Cuando registran y no agendan, y cuando
+                agendan para que asistan.
+            </p>
+
+            <h3 style="color: var(--brand-navy); font-size: 16px;">Flujo 1: "Nurture de Agendamiento" (Duración: 5 a 7
+                Días)</h3>
+            <p style="font-size: 14px;"><strong>Meta:</strong> Convencer a la persona que dejó sus datos pero no pasó su
+                tarjeta/no agendó tras ver el VSL.</p>
+            <table
+                style="width: 100%; text-align: left; border-collapse: collapse; margin-bottom: 25px; font-size: 14px;">
+                <tr style="border-bottom: 2px solid #E2E8F0; background-color: #F8FAFC;">
+                    <th style="padding: 10px; color: var(--brand-navy);">Momento</th>
+                    <th style="padding: 10px; color: var(--brand-navy);">Canal</th>
+                    <th style="padding: 10px; color: var(--brand-navy);">Directriz / Estructura del Mensaje</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 12px 10px; font-weight: 600;">Inmediato (Minuto 0)</td>
+                    <td style="padding: 12px 10px;">Email + WhatsApp</td>
+                    <td style="padding: 12px 10px;">Entrega prometida del Video (VSL). "Felicidades, aquí tienes acceso
+                        directo al material." Incluye botón visible abajo: "¿Listo para empezar? Agenda aquí".</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 12px 10px; font-weight: 600;">+ 30 Minutos</td>
+                    <td style="padding: 12px 10px;">WhatsApp Automático</td>
+                    <td style="padding: 12px 10px;"><em>"Hola [Nombre], soy asistente de Jorge. Vi que te registraste
+                            para ver el modelo de pólizas indexadas. ¿Pudiste verlo completo o tuviste problemas
+                            técnicos?"</em> (Mensaje corto y conversacional).</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 12px 10px; font-weight: 600;">Día 1 (+24h)</td>
+                    <td style="padding: 12px 10px;">Email</td>
+                    <td style="padding: 12px 10px;">Identificación del Dolor: Abordar por qué perder dinero en impuestos
+                        es grave. "Si te sentiste reflejado en el video... nuestro equipo puede crear tu plan en 15
+                        mins. Agenda abajo."</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 12px 10px; font-weight: 600;">Día 2</td>
+                    <td style="padding: 12px 10px;">Email + SMS</td>
+                    <td style="padding: 12px 10px;">Prueba Social: Caso de éxito. "Mira cómo el negocio de [Cliente X]
+                        ahorró y diversificó usando esta misma estrategia. Si ellos pudieron, tu negocio también.
+                        Reserva hoy."</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #E2E8F0;">
+                    <td style="padding: 12px 10px; font-weight: 600;">Día 4</td>
+                    <td style="padding: 12px 10px;">Email</td>
+                    <td style="padding: 12px 10px;">Romper Ojebeciones Lógicas (FAQ). "¿Piensas que no aplicas porque
+                        ganas poco o porque no eres ciudadano? Lee esto. No pierdes nada con tener nuestra sesión de
+                        análisis gratis."</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 10px; font-weight: 600;">Día 7</td>
+                    <td style="padding: 12px 10px;">Email + WhatsApp</td>
+                    <td style="padding: 12px 10px;">Empuje Final de Urgencia "Soft". "Este es mi último mensaje sobre el
+                        video. Los cupos para el análisis gratuito de este mes casi se llenan. Click aquí para reservar
+                        la última ranura semanal."</td>
+                </tr>
+            </table>
+
+            <h3 style="color: var(--brand-navy); font-size: 16px;">Flujo 2: "Anti No-Show" (Asistencia a Llamada)</h3>
+            <p style="font-size: 14px;"><strong>Meta:</strong> Reducir inasistencias. Desde que agendan hasta la
+                videollamada.</p>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-title">Inmediato al Agendar (Email + WhatsApp)</div>
+                    <div class="flow-desc">"¡Cita confirmada! Por favor agrégala a tu calendario. Evaluaremos si tu
+                        perfil entra en la regulación del IRS." [Adjuntar botones de Google Calendar].</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-title">24 Horas Antes (WhatsApp + Email)</div>
+                    <div class="flow-desc">Micro-compromiso: "Nos vemos mañana a las [Hora]. Por favor ten a mano un
+                        bloc de notas o datos básicos de tus ingresos para nuestro análisis rápido financiero."</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-title">1 Hora Antes (WhatsApp directo del Closer)</div>
+                    <div class="flow-desc">"Hola [Nombre], te escribo para confirmar que estoy revisando tus respuestas
+                        de la encuesta y nos vemos en 60 minutos en Zoom. Asegúrate de estar en una computadora o lugar
+                        libre de ruido exterior."</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-title">5 Minutos Antes (SMS)</div>
+                    <div class="flow-desc">"[ALERTA DE REUNIÓN] La sala ya está abierta, te espero aquí: [Link de
+                        Zoom]".</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: INTERNAL COMMUNICATIONS & TASKS -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h2 class="step-title">Comunicación y Tareas Internas (Equipo de Jorge)</h2>
+            </div>
+
+            <p style="margin-top: 0; color: var(--text-light); margin-bottom: 20px;">
+                Rutinas a realizar por el dueño del sistema, el "Closer" o un Setter telefónico.
+            </p>
+
+            <div class="item-row">
+                <div class="item-label" style="color: var(--brand-navy);">☎️ Call-Banking (Opcional - Día 1 al Día 3)
+                </div>
+                <div class="item-data">
+                    <p style="margin-top:0;">Si queremos ser agresivos y aumentar conversiones, el equipo NO DEBE
+                        ESPERAR a que agenden solos.</p>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                        <li><strong>Tarea Asignada:</strong> Si un lead tiene la etiqueta <code>Registrado a VSL</code>
+                            por más de 24 horas, GHL crea una "Tarea Manual" (Task) al asesor.</li>
+                        <li><strong>Acción Interna:</strong> Llamada telefónica directa ("Ringles Voicemail" o llamada
+                            en vivo).</li>
+                        <li><strong>Guion Interno:</strong> <em>"Hola Jorge, te vi en nuestra web ayer pero no pudiste
+                                apartar el espacio. Te llamo rápido de la oficina de Jorge Vergara para ver en qué
+                                estado legal/financiero te encuentras ahora mismo..."</em> -> Agendar a la fuerza en la
+                            llamada.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-label" style="color: var(--brand-gold);">🔥 High-Intent: Nueva Cita</div>
+                <div class="item-data">
+                    <strong>1. Push Notification App de GHL:</strong> "[Urgente] Tienes una Nueva Cita con [Nombre] el
+                    [Día/Hora]."<br>
+                    <strong>2. Correo de Dossier al Comercial:</strong> GHL envía de manera interna un resumen al equipo
+                    de ventas con: Nombre, Respuestas de la Encuesta y Email para que el Closer estudie el perfil antes
+                    de la sesión.
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-label" style="color: #E11D48;">🚨 Alerta Anti-Retrasos (Sala de Ventas)</div>
+                <div class="item-data">
+                    <strong>15 min antes del Zoom:</strong> Mensaje de texto (SMS) directo al celular del vendedor
+                    asignado: <em>"Reunión con [Cliente] a las [Hora]. No llegues tarde. Link de su ficha: [Link del
+                        contacto]"</em>.
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 5: DASHBOARD & METRICS -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h2 class="step-title">Dashboard Inicial GHL (Métricas de Tablero)</h2>
+            </div>
+            <p style="margin-top: 0; color: var(--text-light); margin-bottom: 20px;">
+                ¿Qué debe ver Jorge al abrir la aplicación todos los días en la pestaña principal?
+            </p>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div
+                    style="background: var(--bg-light); border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--brand-navy);">Métrica 1</div>
+                    <div style="color: var(--text-light); font-size: 14px; font-weight: 600;">Total Leads Nuevos
+                        (<br>Costo por Lead)</div>
+                </div>
+                <div
+                    style="background: var(--bg-light); border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--brand-teal-dark);">Métrica 2</div>
+                    <div style="color: var(--text-light); font-size: 14px; font-weight: 600;">Llamadas Agendadas
+                        (<br>Conversion Rate)</div>
+                </div>
+                <div
+                    style="background: var(--bg-light); border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--brand-gold);">Métrica 3</div>
+                    <div style="color: var(--text-light); font-size: 14px; font-weight: 600;">Show-Up Rate (<br>% de
+                        asistencias)</div>
+                </div>
+                <div
+                    style="background: var(--bg-light); border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: #10B981;">Métrica 4</div>
+                    <div style="color: var(--text-light); font-size: 14px; font-weight: 600;">Ingresos Cerrados (<br>ROI
+                        Retorno de Ads)</div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--brand-navy); font-size: 16px;">Recomendación Final: "Funnel Funnel"</h3>
+            <p style="color: var(--text-dark); font-size: 15px; margin: 0;">
+                Se sugiere configurar las visualizaciones de "Funnel Chart" dentro de GHL donde Jorge pueda ver la forma
+                de un embudo (Triángulo invertido) que comience en <em>"1.000 Registros &gt; 100 Agendados &gt; 60
+                    Asistieron &gt; 15 Cerrados"</em>. Esto facilita encontrar "cuellos de botella" y re-apuntar las
+                campañas publicitarias si vemos que la caída ocurre en una parte débil de la cadena.
+            </p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

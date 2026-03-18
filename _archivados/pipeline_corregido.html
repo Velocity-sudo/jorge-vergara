@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Corregido — Jorge Vergara Taxes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002B49;
+            --teal: #1AE5ED;
+            --teal-dark: #0FA5AB;
+            --gold: #D6A848;
+            --gold-light: #F5E6C4;
+            --red: #EF4444;
+            --red-light: #FEE2E2;
+            --green: #10B981;
+            --green-light: #D1FAE5;
+            --blue: #3B82F6;
+            --blue-light: #DBEAFE;
+            --orange: #F59E0B;
+            --orange-light: #FEF3C7;
+            --purple: #8B5CF6;
+            --purple-light: #EDE9FE;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --bg: #F1F5F9;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 48px 44px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -40px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(26, 229, 237, .12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header .pill {
+            display: inline-block;
+            background: rgba(26, 229, 237, .12);
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(26, 229, 237, .25);
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 16px;
+            max-width: 600px;
+        }
+
+        /* ── LEYENDA ── */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+            background: var(--white);
+            padding: 20px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* ── PIPELINE VISUAL ── */
+        .pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        /* Línea vertical central */
+        .pipeline::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 40px;
+            bottom: 60px;
+            width: 3px;
+            background: linear-gradient(180deg, var(--teal), var(--blue), var(--gold), var(--green), var(--purple), var(--red));
+            border-radius: 3px;
+        }
+
+        /* ── STAGE CARD ── */
+        .stage {
+            position: relative;
+            margin-left: 64px;
+            margin-bottom: 8px;
+        }
+
+        .stage-dot {
+            position: absolute;
+            left: -44px;
+            top: 28px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--border), 0 2px 8px rgba(0, 0, 0, .1);
+            z-index: 2;
+        }
+
+        .stage-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px 28px 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0, 43, 73, .04);
+            transition: all .25s ease;
+        }
+
+        .stage-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 43, 73, .08);
+            transform: translateY(-2px);
+        }
+
+        .stage-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .stage-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .stage-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        /* ── ACTIONS INSIDE STAGE ── */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .action .icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .action-internal {
+            background: var(--orange-light);
+            color: #92400E;
+        }
+
+        .action-external {
+            background: var(--blue-light);
+            color: #1E40AF;
+        }
+
+        .action-auto {
+            background: var(--purple-light);
+            color: #5B21B6;
+        }
+
+        .action-condition {
+            background: #FFF7ED;
+            color: #9A3412;
+            border: 1px dashed #FDBA74;
+        }
+
+        /* ── CONNECTOR ARROW ── */
+        .connector {
+            margin-left: 0;
+            padding: 8px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .connector .arrow {
+            font-size: 18px;
+            color: var(--teal-dark);
+        }
+
+        /* ── BRANCH ── */
+        .branch-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-left: 64px;
+            margin-bottom: 8px;
+        }
+
+        .branch-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 22px;
+            border: 2px solid;
+        }
+
+        .branch-card.win {
+            border-color: var(--green);
+        }
+
+        .branch-card.lose {
+            border-color: var(--red);
+        }
+
+        .branch-card.alt {
+            border-color: var(--orange);
+        }
+
+        .branch-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .branch-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ── TAGS SECTION ── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .tag-teal {
+            background: rgba(26, 229, 237, .12);
+            color: var(--teal-dark);
+        }
+
+        .tag-gold {
+            background: rgba(214, 168, 72, .15);
+            color: #92400E;
+        }
+
+        .tag-red {
+            background: rgba(239, 68, 68, .12);
+            color: #991B1B;
+        }
+
+        .tag-green {
+            background: rgba(16, 185, 129, .12);
+            color: #065F46;
+        }
+
+        /* ── CALL TRACKER ── */
+        .call-track {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0 4px;
+        }
+
+        .call-bubble {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            background: var(--white);
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .call-bubble.active {
+            border-color: var(--teal);
+            background: rgba(26, 229, 237, .06);
+            color: var(--teal-dark);
+        }
+
+        .call-bubble .num {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        /* ── DOCS TRACKER ── */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .doc-chip {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-align: center;
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .doc-chip.missing {
+            background: var(--red-light);
+            border-color: #FECACA;
+            color: #991B1B;
+        }
+
+        .doc-chip.done {
+            background: var(--green-light);
+            border-color: #A7F3D0;
+            color: #065F46;
+        }
+
+        /* ── FOOTER NOTE ── */
+        .footer-note {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                padding: 20px 12px 60px;
+            }
+
+            .header {
+                padding: 28px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .stage {
+                margin-left: 48px;
+            }
+
+            .branch-container {
+                grid-template-columns: 1fr;
+                margin-left: 48px;
+            }
+
+            .pipeline::before {
+                left: 24px;
+            }
+
+            .stage-dot {
+                left: -36px;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .call-track {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="pill">Pipeline GHL Corregido</div>
+            <h1>Jorge Vergara — Tax Prep 2026</h1>
+            <p>Flujo operativo real basado en la reunión de revisión. Cada etapa refleja lo que verdaderamente pasa en
+                el
+                proceso de ventas de Jorge.</p>
+        </header>
+
+        <!-- LEYENDA -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--orange-light); border: 1px solid #FDBA74;"></div>
+                Acción Interna (Equipo)
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--blue-light); border: 1px solid #93C5FD;"></div>
+                Comunicación al Cliente
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--purple-light); border: 1px solid #C4B5FD;"></div>
+                Automatización GHL
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #FFF7ED; border: 1px dashed #FDBA74; border-radius: 3px;">
+                </div>
+                Condición / Decisión
+            </div>
+        </div>
+
+        <!-- PIPELINE -->
+        <div class="pipeline">
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 1: NUEVO LEAD -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--teal);"></div>
+                <div class="stage-card">
+                    <span class="stage-label" style="background: rgba(26,229,237,.12); color: var(--teal-dark);">Etapa
+                        1 — GHL</span>
+                    <h2 class="stage-title">Nuevo Lead</h2>
+                    <p class="stage-subtitle">Persona completa el Survey (encuesta). Entra automáticamente como nueva
+                        oportunidad.</p>
+                    <div class="actions">
+                        <div class="action action-auto">
+                            <span class="icon">⚡</span>
+                            <span><strong>Auto:</strong> Se crea oportunidad + tags + valor asignado al lead (workflow
+                                existente de Jorge)</span>
+                        </div>
+                        <div class="action action-internal">
+                            <span class="icon">🔔</span>
+                            <span><strong>Alerta interna SMS</strong> a Jefferson + Jorge: "Nueva encuesta
+                                completada"</span>
+                        </div>
+                        <div class="action action-internal">
+                            <span class="icon">⏱️</span>
+                            <span><strong>SLA:</strong> Jefferson debe llamar en <strong>15-20 minutos</strong></span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-teal">Fuente: Meta Ads</span>
+                        <span class="tag tag-teal">Survey Completado</span>
+                        <span class="tag tag-gold">Valor: $XX</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector"><span class="arrow">↓</span> Jefferson llama</div>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 2: PRIMER CONTACTO -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--blue);"></div>
+                <div class="stage-card">
+                    <span class="stage-label" style="background: var(--blue-light); color: #1E40AF;">Etapa 2 —
+                        Seguimiento Interno</span>
+                    <h2 class="stage-title">Primer Contacto</h2>
+                    <p class="stage-subtitle">Jefferson llama para confirmar datos del survey, explicar el proceso de 3
+                        pasos y calificar al lead. Se registran hasta 3 intentos de llamada.</p>
+
+                    <!-- CALL TRACKER -->
+                    <p
+                        style="font-size: 12px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px;">
+                        Registro de llamadas</p>
+                    <div class="call-track">
+                        <div class="call-bubble active">
+                            <span class="num">1</span> Llamada 1
+                        </div>
+                        <div class="call-bubble">
+                            <span class="num">2</span> Llamada 2
+                        </div>
+                        <div class="call-bubble">
+                            <span class="num">3</span> Llamada 3
+                        </div>
+                        <div class="call-bubble" style="border-color: var(--orange); color: var(--orange);">
+                            📲 SMS
+                        </div>
+                    </div>
+
+                    <div class="actions" style="margin-top: 14px;">
+                        <div class="action action-internal">
+                            <span class="icon">📋</span>
+                            <span><strong>Recordatorio interno:</strong> Si no se ha llamado en 1h → alerta a
+                                Jefferson. A las 8h → segunda alerta. A las 24h → escalamiento.</span>
+                        </div>
+                        <div class="action action-condition">
+                            <span class="icon">⚖️</span>
+                            <span><strong>¿Contestó?</strong> SÍ → confirma datos, explica proceso, envía link al
+                                sistema seguro → pasa a siguiente etapa. <strong>NO después de 3 llamadas + 1
+                                    SMS</strong> → pasa a "No Sigue".</span>
+                        </div>
+                        <div class="action action-external">
+                            <span class="icon">🔗</span>
+                            <span><strong>Al contestar:</strong> Se envía link de acceso al sistema seguro (software
+                                externo) para crear perfil y subir documentos.</span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-teal">Primer Contacto</span>
+                        <span class="tag tag-gold">Llamada #1/2/3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector"><span class="arrow">↓</span> Contestó + Link enviado</div>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 3: PENDIENTE POR DOCUMENTOS -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--gold);"></div>
+                <div class="stage-card">
+                    <span class="stage-label" style="background: var(--gold-light); color: #92400E;">Etapa 3 — Cuello de
+                        Botella #1</span>
+                    <h2 class="stage-title">Pendiente por Documentos</h2>
+                    <p class="stage-subtitle">El cliente ya tiene acceso al sistema seguro. Debe crear su perfil y subir
+                        todos los documentos requeridos. <strong>Aquí es donde más gente se queda.</strong></p>
+
+                    <!-- DOCS TRACKER (SmartTags) -->
+                    <p
+                        style="font-size: 12px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px;">
+                        SmartTags — Documentos requeridos</p>
+                    <div class="docs-grid">
+                        <div class="doc-chip missing">❌ SSN</div>
+                        <div class="doc-chip missing">❌ W2</div>
+                        <div class="doc-chip done">✅ 1099</div>
+                        <div class="doc-chip missing">❌ 1095-A</div>
+                        <div class="doc-chip done">✅ ID</div>
+                        <div class="doc-chip missing">❌ Pasaporte</div>
+                    </div>
+
+                    <div class="actions" style="margin-top: 14px;">
+                        <div class="action action-auto">
+                            <span class="icon">🤖</span>
+                            <span><strong>Recordatorios automáticos al cliente:</strong> Basados en SmartTags. "Te falta
+                                subir tu W2 y tu 1095-A. Recuerda que tienes hasta el 15 de abril."</span>
+                        </div>
+                        <div class="action action-external">
+                            <span class="icon">📩</span>
+                            <span><strong>Cadencia de urgencia:</strong> Día 3 → recordatorio suave. Día 7 → "aún
+                                estamos esperando". Día 14 → "se acerca la fecha límite". Último push →
+                                "extensión disponible".</span>
+                        </div>
+                        <div class="action action-internal">
+                            <span class="icon">👤</span>
+                            <span><strong>Alerta interna a Jefferson:</strong> "Este contacto lleva X días sin subir
+                                documentos — hacer follow-up manual."</span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-gold">Pendiente Docs</span>
+                        <span class="tag tag-gold">SmartTag: W2</span>
+                        <span class="tag tag-gold">SmartTag: 1099</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector"><span class="arrow">↓</span> Todos los documentos recibidos</div>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 4: PAGO  -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--green);"></div>
+                <div class="stage-card">
+                    <span class="stage-label" style="background: var(--green-light); color: #065F46;">Etapa 4 —
+                        Conversión</span>
+                    <h2 class="stage-title">Pago Procesado</h2>
+                    <p class="stage-subtitle">Jefferson confirma que todos los documentos están completos. Se envía el
+                        acuerdo de servicio + invoice. El cliente paga con tarjeta dentro de la conversación.</p>
+
+                    <div class="actions">
+                        <div class="action action-internal">
+                            <span class="icon">📄</span>
+                            <span><strong>Jefferson:</strong> Confirma documentos completos → envía acuerdo + invoice al
+                                cliente.</span>
+                        </div>
+                        <div class="action action-external">
+                            <span class="icon">💳</span>
+                            <span><strong>Cliente:</strong> Abre invoice dentro de la conversación → coloca tarjeta de
+                                crédito → procesa pago ($247 - $397).</span>
+                        </div>
+                        <div class="action action-auto">
+                            <span class="icon">⚡</span>
+                            <span><strong>Al confirmar pago:</strong> Se mueve automáticamente a "Agendado" +
+                                notificación interna.</span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-green">Pago Confirmado</span>
+                        <span class="tag tag-green">Acuerdo Firmado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector"><span class="arrow">↓</span> Pago confirmado → Se agenda revisión</div>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 5: AGENDADO (REVISIÓN) -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--purple);"></div>
+                <div class="stage-card">
+                    <span class="stage-label" style="background: var(--purple-light); color: #5B21B6;">Etapa 5 —
+                        Revisión Final</span>
+                    <h2 class="stage-title">Agendado — Revisión de Declaración</h2>
+                    <p class="stage-subtitle">Jefferson ya preparó la declaración. Se agenda reunión con Jorge para
+                        <strong>revisar</strong> (no hacer) la declaración, confirmar datos y someter con firma
+                        electrónica.
+                    </p>
+
+                    <div class="actions">
+                        <div class="action action-internal">
+                            <span class="icon">📅</span>
+                            <span><strong>Jefferson:</strong> Prepara la declaración en el sistema externo. Agenda fecha
+                                de revisión con el cliente.</span>
+                        </div>
+                        <div class="action action-external">
+                            <span class="icon">📲</span>
+                            <span><strong>Recordatorios:</strong> 24h antes, 1h antes — "Nos vemos mañana para revisar
+                                tu declaración."</span>
+                        </div>
+                        <div class="action action-condition">
+                            <span class="icon">✍️</span>
+                            <span><strong>En la reunión:</strong> Jorge revisa la declaración con el cliente → confirma
+                                datos → firma electrónica → sometimiento al IRS.</span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-teal">Cita Revisión</span>
+                        <span class="tag tag-teal">Declaración Lista</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector"><span class="arrow">↓</span> Declaración firmada y sometida</div>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!-- ETAPA 6: PROCESADO  -->
+            <!-- ═══════════════════════════════════════════ -->
+            <div class="stage">
+                <div class="stage-dot" style="background: var(--green);"></div>
+                <div class="stage-card" style="border: 2px solid var(--green);">
+                    <span class="stage-label" style="background: var(--green-light); color: #065F46;">Etapa 6 — ✅
+                        Cierre</span>
+                    <h2 class="stage-title">Procesado — Sometido al IRS</h2>
+                    <p class="stage-subtitle">Declaración firmada electrónicamente y sometida al gobierno. Proceso
+                        completado exitosamente. 🎉</p>
+                    <div class="actions">
+                        <div class="action action-auto">
+                            <span class="icon">🏆</span>
+                            <span><strong>Tag:</strong> Cliente Cerrado WON. Oportunidad marcada como ganada.</span>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag tag-green">Cliente Cerrado</span>
+                        <span class="tag tag-green">Declaración Sometida</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- ETAPAS ALTERNATIVAS -->
+        <!-- ═══════════════════════════════════════════ -->
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--navy); margin: 48px 0 20px 64px;">Etapas
+            Alternativas</h2>
+
+        <div class="branch-container">
+            <!-- EXTENSIÓN -->
+            <div class="branch-card alt">
+                <div class="branch-title" style="color: var(--orange);">📅 Extensión</div>
+                <div class="branch-desc">
+                    <strong>Última semana de temporada (7-14 abril).</strong> Ya no se hacen declaraciones completas.
+                    Jorge envía extensión al IRS (6 meses adicionales para declarar). Aplica para personas en "Pendiente
+                    por Documentos" que no completaron a tiempo.
+                </div>
+                <div class="tags" style="border-color: #FED7AA;">
+                    <span class="tag tag-gold">Extensión IRS</span>
+                </div>
+            </div>
+
+            <!-- NO SIGUE -->
+            <div class="branch-card lose">
+                <div class="branch-title" style="color: var(--red);">🚫 No Sigue (LOST)</div>
+                <div class="branch-desc">
+                    <strong>Terminal. No se envía nada más.</strong> Después de 3 llamadas + 1 SMS sin respuesta → se
+                    auto-filtra a Lost. No hay secuencia de nutrición. "Es bien sí o no." Se oculta del pipeline visible
+                    automáticamente.
+                </div>
+                <div class="tags" style="border-color: #FECACA;">
+                    <span class="tag tag-red">No Sigue</span>
+                    <span class="tag tag-red">LOST</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- RESUMEN VISUAL -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div style="margin-top: 48px; background: var(--navy); border-radius: 16px; padding: 32px; color: white;">
+            <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--teal);">📊 Resumen del
+                Pipeline en GHL</h2>
+            <div
+                style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600;">
+                <span
+                    style="background: rgba(26,229,237,.15); color: var(--teal); padding: 8px 16px; border-radius: 8px;">1.
+                    Nuevo Lead</span>
+                <span style="color: #64748B;">→</span>
+                <span
+                    style="background: rgba(59,130,246,.15); color: #93C5FD; padding: 8px 16px; border-radius: 8px;">2.
+                    Primer Contacto</span>
+                <span style="color: #64748B;">→</span>
+                <span
+                    style="background: rgba(214,168,72,.15); color: var(--gold); padding: 8px 16px; border-radius: 8px;">3.
+                    Pendiente Docs</span>
+                <span style="color: #64748B;">→</span>
+                <span
+                    style="background: rgba(16,185,129,.15); color: #6EE7B7; padding: 8px 16px; border-radius: 8px;">4.
+                    Pago</span>
+                <span style="color: #64748B;">→</span>
+                <span
+                    style="background: rgba(139,92,246,.15); color: #C4B5FD; padding: 8px 16px; border-radius: 8px;">5.
+                    Agendado</span>
+                <span style="color: #64748B;">→</span>
+                <span
+                    style="background: rgba(16,185,129,.25); color: #A7F3D0; padding: 8px 16px; border-radius: 8px; border: 1px solid #6EE7B7;">6.
+                    Procesado ✅</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; font-size: 13px;">
+                <span style="background: rgba(245,158,11,.15); color: #FCD34D; padding: 6px 14px; border-radius: 8px;">↳
+                    Extensión</span>
+                <span style="background: rgba(239,68,68,.15); color: #FCA5A5; padding: 6px 14px; border-radius: 8px;">↳
+                    No Sigue</span>
+            </div>
+        </div>
+
+        <div
+            style="margin-top: 32px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px;">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">🔑 Diferencias con
+                lo que teníamos</h3>
+            <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <th style="text-align: left; padding: 10px; color: var(--red); font-weight: 700;">❌ Pipeline
+                        Anterior</th>
+                    <th style="text-align: left; padding: 10px; color: var(--green); font-weight: 700;">✅ Pipeline
+                        Corregido</th>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 10px;">Pre-registro → VSL → Survey → Agenda Zoom → Cierre</td>
+                    <td style="padding: 10px;">VSL → Survey → Llamada 15min → Docs → Pago → Revisión</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 10px;">"Cita" = Presentación de venta</td>
+                    <td style="padding: 10px;">"Cita" = Confirmación de intención (15 min)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 10px;">Sin tracking de llamadas</td>
+                    <td style="padding: 10px;">3 llamadas + 1 SMS registrados</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 10px;">Sin tracking de documentos</td>
+                    <td style="padding: 10px;">SmartTags por documento (W2, 1099, SSN...)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 10px;">Cierre en 1 llamada Zoom</td>
+                    <td style="padding: 10px;">Cierre distribuido: docs → pago → revisión</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">Nurture a todos los Lost</td>
+                    <td style="padding: 10px;">Lost = terminal, sin nutrición</td>
+                </tr>
+            </table>
+        </div>
+
+        <p class="footer-note">Pipeline diseñado por Antigravity para Lucho Branding × Jorge Vergara — Febrero 2026</p>
+
+    </div>
+</body>
+
+</html>

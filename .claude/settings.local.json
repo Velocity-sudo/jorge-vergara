@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "SlashCommand(/ads meta)",
+      "SlashCommand(/ads:*)",
+      "Read(//Users/luchobranding/.claude/skills/ads/references/**)",
+      "Bash(python3 -c \"import weasyprint; print(''weasyprint ok'')\")",
+      "Bash(python3 -c \"import reportlab; print(''''reportlab ok'''')\")",
+      "Bash(python3 -m pip list)",
+      "Bash(python3 -m pip install reportlab --quiet)",
+      "Bash(python3 -c \"import reportlab; print(''ok'')\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

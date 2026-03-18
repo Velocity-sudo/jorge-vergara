@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Ads Semanal — Jorge Vergara Taxes 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1D32;
+            --navy-light: #132A42;
+            --navy-mid: #1D3249;
+            --gold: #D4A853;
+            --gold-light: #E6CF9B;
+            --gold-deep: #B8862D;
+            --white: #F8F5F0;
+            --white-pure: #FFF;
+            --gray: #485264;
+            --gray-mid: #6B7B8D;
+            --gray-soft: #9BA8B7;
+            --green: #2D8B5E;
+            --red: #D64545;
+            --orange: #E8913A;
+            --blue: #3B82C4
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 5% 40px;
+            border-bottom: 1px solid rgba(212, 168, 83, .15)
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: .6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            border-radius: 40px;
+            background: rgba(212, 168, 83, .1);
+            border: 1px solid rgba(212, 168, 83, .25);
+            color: var(--gold);
+            margin-bottom: 20px
+        }
+
+        .header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            margin-bottom: 12px
+        }
+
+        .header h1 span {
+            color: var(--gold)
+        }
+
+        .header p {
+            color: var(--gray-soft);
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto
+        }
+
+        .date-badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 4px 14px;
+            font-size: .7rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: var(--gray-mid)
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 5%
+        }
+
+        .overview {
+            padding: 50px 0 40px
+        }
+
+        .overview h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px
+        }
+
+        .overview-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center
+        }
+
+        .overview-card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 8px
+        }
+
+        .overview-card .number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .overview-card .label {
+            font-size: .75rem;
+            color: var(--gray-soft);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-top: 4px
+        }
+
+        .principle {
+            background: linear-gradient(135deg, rgba(212, 168, 83, .08), rgba(184, 134, 45, .03));
+            border: 1px solid rgba(212, 168, 83, .2);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin: 10px 0 50px;
+            text-align: center
+        }
+
+        .principle .title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 8px
+        }
+
+        .principle p {
+            font-size: .95rem;
+            max-width: 600px;
+            margin: 0 auto
+        }
+
+        .emoji-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 16px;
+            flex-wrap: wrap
+        }
+
+        .emoji-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .85rem
+        }
+
+        .emoji-item .e {
+            font-size: 1.3rem
+        }
+
+        .funnel-visual {
+            margin: 30px 0;
+            text-align: center
+        }
+
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 8px
+        }
+
+        .funnel-box {
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: .8rem;
+            font-weight: 600;
+            min-width: 200px
+        }
+
+        .funnel-box.cold {
+            background: rgba(59, 130, 196, .12);
+            border: 1px solid rgba(59, 130, 196, .25);
+            color: var(--blue)
+        }
+
+        .funnel-box.warm {
+            background: rgba(232, 145, 58, .12);
+            border: 1px solid rgba(232, 145, 58, .25);
+            color: var(--orange)
+        }
+
+        .funnel-box.hot {
+            background: rgba(214, 69, 69, .12);
+            border: 1px solid rgba(214, 69, 69, .25);
+            color: var(--red)
+        }
+
+        .funnel-label {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--gray-soft);
+            min-width: 90px;
+            text-align: right
+        }
+
+        .funnel-arrow {
+            color: var(--gray-mid);
+            font-size: 1rem
+        }
+
+        .funnel-type {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gray-soft);
+            min-width: 90px;
+            text-align: left
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            overflow-x: auto;
+            padding-bottom: 4px
+        }
+
+        .tab-btn {
+            flex-shrink: 0;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 40px;
+            background: transparent;
+            color: var(--gray-soft);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap
+        }
+
+        .tab-btn:hover {
+            border-color: rgba(212, 168, 83, .3);
+            color: var(--gold-light)
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+            color: var(--white-pure);
+            border-color: transparent
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn .4s ease
+        }
+
+        .tab-content.active {
+            display: block
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .week-header h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700
+        }
+
+        .budget-badge {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: .75rem;
+            font-weight: 700;
+            background: rgba(45, 139, 94, .15);
+            border: 1px solid rgba(45, 139, 94, .3);
+            color: var(--green)
+        }
+
+        .week-goal {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px
+        }
+
+        .week-goal .goal-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0
+        }
+
+        .week-goal .goal-text {
+            font-size: .9rem
+        }
+
+        .week-goal .goal-text strong {
+            color: var(--gold)
+        }
+
+        .ad-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 28px;
+            border-radius: 12px;
+            overflow: hidden
+        }
+
+        .ad-table th {
+            background: var(--navy-mid);
+            padding: 12px 16px;
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--gray-soft);
+            text-align: left;
+            font-weight: 600
+        }
+
+        .ad-table td {
+            padding: 14px 16px;
+            font-size: .85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            vertical-align: top
+        }
+
+        .ad-table tr:last-child td {
+            border-bottom: none
+        }
+
+        .ad-table tbody tr {
+            background: rgba(255, 255, 255, .02);
+            transition: background .2s
+        }
+
+        .ad-table tbody tr:hover {
+            background: rgba(255, 255, 255, .05)
+        }
+
+        .badge-video {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .65rem;
+            font-weight: 700;
+            background: rgba(59, 130, 196, .15);
+            border: 1px solid rgba(59, 130, 196, .3);
+            color: var(--blue)
+        }
+
+        .badge-static {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .65rem;
+            font-weight: 700;
+            background: rgba(212, 168, 83, .15);
+            border: 1px solid rgba(212, 168, 83, .3);
+            color: var(--gold)
+        }
+
+        .badge-new {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .6rem;
+            font-weight: 700;
+            background: rgba(45, 139, 94, .15);
+            border: 1px solid rgba(45, 139, 94, .3);
+            color: var(--green);
+            margin-left: 6px
+        }
+
+        .metrics-section {
+            margin-top: 10px;
+            margin-bottom: 28px
+        }
+
+        .metrics-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            padding: 16px
+        }
+
+        .metric-card .name {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gray-soft);
+            margin-bottom: 4px
+        }
+
+        .metric-card .value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--gold)
+        }
+
+        .metric-card .desc {
+            font-size: .75rem;
+            color: var(--gray-mid);
+            margin-top: 4px
+        }
+
+        .decisions {
+            margin-top: 8px
+        }
+
+        .decisions .section-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .decision-card {
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px
+        }
+
+        .decision-card.good {
+            background: rgba(45, 139, 94, .08);
+            border: 1px solid rgba(45, 139, 94, .2)
+        }
+
+        .decision-card.warning {
+            background: rgba(232, 145, 58, .08);
+            border: 1px solid rgba(232, 145, 58, .2)
+        }
+
+        .decision-card.bad {
+            background: rgba(214, 69, 69, .08);
+            border: 1px solid rgba(214, 69, 69, .2)
+        }
+
+        .decision-card .signal {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem
+        }
+
+        .decision-card.good .signal {
+            background: rgba(45, 139, 94, .2)
+        }
+
+        .decision-card.warning .signal {
+            background: rgba(232, 145, 58, .2)
+        }
+
+        .decision-card.bad .signal {
+            background: rgba(214, 69, 69, .2)
+        }
+
+        .decision-card .condition {
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .decision-card.good .condition {
+            color: var(--green)
+        }
+
+        .decision-card.warning .condition {
+            color: var(--orange)
+        }
+
+        .decision-card.bad .condition {
+            color: var(--red)
+        }
+
+        .decision-card .action {
+            font-size: .82rem;
+            color: var(--white)
+        }
+
+        .decision-card .action strong {
+            color: var(--gold)
+        }
+
+        .rules {
+            background: rgba(214, 69, 69, .06);
+            border: 1px solid rgba(214, 69, 69, .15);
+            border-radius: 14px;
+            padding: 24px;
+            margin: 40px 0
+        }
+
+        .rules h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 14px
+        }
+
+        .rules ul {
+            list-style: none
+        }
+
+        .rules li {
+            font-size: .85rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px
+        }
+
+        .rules li:last-child {
+            border-bottom: none
+        }
+
+        .checklist {
+            margin-bottom: 24px
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            cursor: pointer
+        }
+
+        .check-item:last-child {
+            border-bottom: none
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, .15);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem
+        }
+
+        .check-box.checked {
+            background: var(--green);
+            border-color: var(--green);
+            color: white
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 5%;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            margin-top: 40px
+        }
+
+        .footer p {
+            font-size: .75rem;
+            color: var(--gray-mid)
+        }
+
+        .footer .brand {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            color: var(--gold)
+        }
+
+        .equal-note {
+            background: rgba(45, 139, 94, .08);
+            border: 1px solid rgba(45, 139, 94, .2);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            font-size: .82rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px
+        }
+
+        .equal-note strong {
+            color: var(--green)
+        }
+
+        @media(max-width:768px) {
+            .header h1 {
+                font-size: 1.6rem
+            }
+
+            .funnel-step {
+                flex-direction: column;
+                gap: 4px
+            }
+
+            .funnel-label,
+            .funnel-type {
+                text-align: center;
+                min-width: auto
+            }
+
+            .week-header {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .tab-btn {
+                padding: 8px 14px;
+                font-size: .7rem
+            }
+
+            .ad-table th,
+            .ad-table td {
+                padding: 10px
+            }
+        }
+
+        @media(max-width:480px) {
+            .header {
+                padding: 40px 5% 30px
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="eyebrow">Guía de Ejecución</div>
+        <h1>Estrategia de Ads <span>Semana a Semana</span></h1>
+        <p>Cómo combinar los 3 videos + 9 estáticos para maximizar resultados, con métricas claras y decisiones simples.
+        </p>
+        <div class="date-badge">Jorge Vergara — Taxes 2026 — Actualizado 27 Feb 2026</div>
+    </div>
+
+    <div class="container">
+
+        <!-- OVERVIEW -->
+        <div class="overview">
+            <h2>📦 Lo que tenemos</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="icon">🎬</div>
+                    <div class="number">3</div>
+                    <div class="label">Videos Grabados</div>
+                </div>
+                <div class="overview-card">
+                    <div class="icon">🖼️</div>
+                    <div class="number">9</div>
+                    <div class="label">Estáticos Creados</div>
+                </div>
+                <div class="overview-card">
+                    <div class="icon">💰</div>
+                    <div class="number">~$1,400</div>
+                    <div class="label">Presupuesto Mes 1</div>
+                </div>
+                <div class="overview-card">
+                    <div class="icon">📅</div>
+                    <div class="number">4</div>
+                    <div class="label">Semanas del Plan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRINCIPLE -->
+        <div class="principle">
+            <div class="title">🎯 La Regla de Oro</div>
+            <p>Los <strong>videos pescan gente nueva</strong> (tráfico frío). Los <strong>estáticos cierran la
+                    venta</strong> (retargeting). Juntos son un sistema completo.</p>
+            <div class="emoji-row">
+                <div class="emoji-item"><span class="e">🎬</span> Videos → Gente que NO te conoce</div>
+                <div class="emoji-item"><span class="e">🖼️</span> Estáticos → Gente que YA te vio</div>
+            </div>
+        </div>
+
+        <!-- FUNNEL -->
+        <div class="funnel-visual">
+            <div class="funnel-step">
+                <div class="funnel-label">70% presupuesto</div>
+                <div class="funnel-box cold">🔵 COLD — Gente nueva → <strong>VIDEOS</strong></div>
+                <div class="funnel-type">Prospecting</div>
+            </div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step">
+                <div class="funnel-label">20% presupuesto</div>
+                <div class="funnel-box warm">🟡 WARM — Ya te vieron → <strong>ESTÁTICOS</strong></div>
+                <div class="funnel-type">Retargeting</div>
+            </div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step">
+                <div class="funnel-label">10% presupuesto</div>
+                <div class="funnel-box hot">🔴 HOT — Visitaron landing → <strong>ESTÁTICOS</strong></div>
+                <div class="funnel-type">Cierre</div>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs-section">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="showTab('week1',this)">Semana 1</button>
+                <button class="tab-btn" onclick="showTab('week2',this)">Semana 2</button>
+                <button class="tab-btn" onclick="showTab('week3',this)">Semana 3</button>
+                <button class="tab-btn" onclick="showTab('week4',this)">Semana 4+</button>
+            </div>
+
+            <!-- ══ SEMANA 1 ══ -->
+            <div id="week1" class="tab-content active">
+                <div class="week-header">
+                    <h3>Semana 1 — Lanzar y Aprender</h3>
+                    <div class="budget-badge">💰 $33/día (~$230/semana)</div>
+                </div>
+                <div class="week-goal">
+                    <div class="goal-icon">🎯</div>
+                    <div class="goal-text"><strong>Objetivo:</strong> Activar el Pixel, recolectar los primeros datos, y
+                        ver qué ad (video vs estático) funciona mejor en cada segmento. <strong>NO vender aún —
+                            aprender.</strong></div>
+                </div>
+                <div class="equal-note">
+                    <span>⚖️</span>
+                    <div><strong>¿Por qué presupuesto igual?</strong> Para un A/B test limpio, los 3 segmentos arrancan
+                        con el mismo presupuesto. Así sabes cuál gana por mérito, no por inversión. En Semana 2 movemos
+                        el dinero al ganador.</div>
+                </div>
+                <table class="ad-table">
+                    <thead>
+                        <tr>
+                            <th>Campaña</th>
+                            <th>Ad Principal</th>
+                            <th>Ad Variante</th>
+                            <th>$/día</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1099</strong><br><span
+                                    style="font-size:.7rem;color:var(--gray-soft)">Independientes, Uber, DoorDash</span>
+                            </td>
+                            <td><span class="badge-video">VIDEO</span><br>Reel 1099</td>
+                            <td><span class="badge-static">ESTÁTICO</span><br>Error Común (4:5)</td>
+                            <td><strong>$11</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>W2</strong><br><span style="font-size:.7rem;color:var(--gray-soft)">Empleados
+                                    con trabajo fijo</span></td>
+                            <td><span class="badge-video">VIDEO</span><br>Reel W2</td>
+                            <td><span class="badge-static">ESTÁTICO</span><br>Emocional (4:5)</td>
+                            <td><strong>$11</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Empresa</strong><br><span style="font-size:.7rem;color:var(--gray-soft)">Dueños
+                                    de negocio, LLC</span></td>
+                            <td><span class="badge-video">VIDEO</span><br>Reel Empresa</td>
+                            <td><span class="badge-static">ESTÁTICO</span><br>Urgencia (4:5)</td>
+                            <td><strong>$11</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="rules">
+                    <h4>⛔ Reglas de Semana 1 — No romper</h4>
+                    <ul>
+                        <li><span class="r-icon">🚫</span> NO tocar nada los primeros 3-4 días. El algoritmo está
+                            aprendiendo.</li>
+                        <li><span class="r-icon">🚫</span> NO pausar nada hasta tener mínimo 500 impresiones por ad.
+                        </li>
+                        <li><span class="r-icon">🚫</span> NO cambiar presupuesto, copy, ni audiencias.</li>
+                        <li><span class="r-icon">✅</span> SÍ verificar que el Pixel dispara correctamente (Events
+                            Manager).</li>
+                        <li><span class="r-icon">✅</span> SÍ verificar que los leads llegan a GHL con UTMs correctos.
+                        </li>
+                    </ul>
+                </div>
+                <div class="metrics-section">
+                    <div class="metrics-title">📊 Métricas a Revisar (Día 7)</div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="name">CTR (Click-Through Rate)</div>
+                            <div class="value">&gt; 1.5%</div>
+                            <div class="desc">% de personas que hacen click. Si es menor a 1%, el ad no engancha.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Hook Rate (solo videos)</div>
+                            <div class="value">&gt; 25%</div>
+                            <div class="desc">% que ven 3+ segundos del video. Si es bajo, el inicio no atrapa.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">CPL (Costo por Lead)</div>
+                            <div class="value">&lt; $15</div>
+                            <div class="desc">Cuánto te cuesta cada persona que agenda. Menor es mejor.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">CPM (Costo por 1,000 vistas)</div>
+                            <div class="value">$8-20</div>
+                            <div class="desc">Benchmark hispanos USA. Si es mayor a $25, tu audiencia es muy chica.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="decisions">
+                    <div class="section-label">🚦 Qué hacer según los resultados</div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">CTR &gt; 1.5% y CPL &lt; $15</div>
+                            <div class="action">¡Ganador! Anotar cuál ad (video o estático) y cuál segmento. <strong>No
+                                    tocar nada.</strong> Ese ad sigue a Semana 2 con más presupuesto.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">Un segmento tiene mejor CTR que los demás</div>
+                            <div class="action"><strong>Ese segmento recibe más presupuesto en Semana 2.</strong> La
+                                ventaja de arrancar parejos: ahora sabes cuál gana limpiamente.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">CTR entre 1% y 1.5%</div>
+                            <div class="action">Aceptable pero no excelente. <strong>Dejar correr una semana
+                                    más</strong> sin cambios. El algoritmo puede necesitar más data.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card bad">
+                        <div class="signal">🛑</div>
+                        <div>
+                            <div class="condition">CTR &lt; 1% después de 500+ impresiones</div>
+                            <div class="action">Ese ad no engancha. <strong>Pausar ese ad específico</strong> (no toda
+                                la campaña). El otro del par sigue corriendo.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card bad">
+                        <div class="signal">🛑</div>
+                        <div>
+                            <div class="condition">0 leads después de gastar $50+</div>
+                            <div class="action">Posible problema técnico. <strong>Revisar:</strong> ¿El link del landing
+                                funciona? ¿El Pixel dispara? ¿El calendario tiene horarios?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ SEMANA 2 ══ -->
+            <div id="week2" class="tab-content">
+                <div class="week-header">
+                    <h3>Semana 2 — Optimizar + Retargeting</h3>
+                    <div class="budget-badge">💰 $40-50/día (~$315/semana)</div>
+                </div>
+                <div class="week-goal">
+                    <div class="goal-icon">🎯</div>
+                    <div class="goal-text"><strong>Objetivo:</strong> Pausar lo que no funciona, <strong>mover
+                            presupuesto al segmento ganador</strong>, y abrir retargeting warm con estáticos.</div>
+                </div>
+                <div class="equal-note" style="border-color:rgba(212,168,83,.3);background:rgba(212,168,83,.06)">
+                    <span>💡</span>
+                    <div><strong>Ahora SÍ movemos presupuesto.</strong> El segmento con mejor CTR/CPL de Semana 1 recibe
+                        más inversión. El peor segmento se reduce o pausa. Los datos limpios de Semana 1 hacen esta
+                        decisión fácil.</div>
+                </div>
+                <table class="ad-table">
+                    <thead>
+                        <tr>
+                            <th>Capa</th>
+                            <th>Qué corre</th>
+                            <th>Ads activos</th>
+                            <th>$/día</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🔵 Prospecting</strong><br><span
+                                    style="font-size:.7rem;color:var(--gray-soft)">Tráfico frío — gente nueva</span>
+                            </td>
+                            <td>Videos ganadores de S1<br><span style="font-size:.7rem;color:var(--gray-mid)">Pausar el
+                                    peor segmento</span></td>
+                            <td><span class="badge-video">VIDEO</span> Los que tuvieron CTR &gt; 1%<br><span
+                                    style="font-size:.7rem;color:var(--gray-mid)">Segmento ganador →
+                                    $15-20/día</span><br><span style="font-size:.7rem;color:var(--gray-mid)">Segundo
+                                    mejor → $10/día</span></td>
+                            <td><strong>$25-30</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🟡 Retargeting Warm</strong> <span class="badge-new">NUEVO</span><br><span
+                                    style="font-size:.7rem;color:var(--gray-soft)">Gente que ya vio tus videos</span>
+                            </td>
+                            <td>Estáticos con oferta directa</td>
+                            <td><span class="badge-static">ESTÁTICO</span> Error Común (4:5)<br><span
+                                    class="badge-static">ESTÁTICO</span> Urgencia (4:5)<br><span
+                                    class="badge-static">ESTÁTICO</span> Emocional (4:5)</td>
+                            <td><strong>$10-15</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="week-goal" style="border-color:rgba(232,145,58,.3);background:rgba(232,145,58,.05)">
+                    <div class="goal-icon">💡</div>
+                    <div class="goal-text"><strong>¿Por qué estáticos en retargeting?</strong> Estas personas YA vieron
+                        un video de Jorge. Ya lo conocen. No necesitan storytelling — necesitan el <strong>empujón
+                            final</strong>: oferta directa, urgencia, números. Los estáticos hacen eso mejor.</div>
+                </div>
+                <div class="metrics-section">
+                    <div class="metrics-title">📊 Métricas a Revisar (Día 14)</div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="name">Leads Totales</div>
+                            <div class="value">&gt; 15</div>
+                            <div class="desc">Total de personas que agendaron cita en 2 semanas.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">CPL Promedio</div>
+                            <div class="value">&lt; $15</div>
+                            <div class="desc">Si estás arriba de $20, algo no está funcionando.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Show Rate</div>
+                            <div class="value">&gt; 50%</div>
+                            <div class="desc">% que agendaron Y vinieron a la cita. Si es bajo, el follow-up falla.
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Retarget CTR</div>
+                            <div class="value">&gt; 2%</div>
+                            <div class="desc">Retargeting SIEMPRE debe tener CTR más alto que prospecting.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="decisions">
+                    <div class="section-label">🚦 Qué hacer según los resultados</div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">CPL &lt; $12 en alguna campaña</div>
+                            <div class="action"><strong>Escalar ese ad set 20%.</strong> Si gastaba $15/día → subirlo a
+                                $18/día. Nunca aumentar más de 20% a la vez.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">Un segmento domina claramente</div>
+                            <div class="action"><strong>Mover $5/día del peor segmento al mejor.</strong> Concentrar
+                                inversión donde funciona.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">Leads llegan pero NO agendan cita</div>
+                            <div class="action"><strong>Problema en el funnel, no en los ads.</strong> Revisar: ¿El
+                                landing carga rápido? ¿Calendario tiene horarios? ¿VSL se ve en mobile?</div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">Show Rate &lt; 40%</div>
+                            <div class="action"><strong>Problema de follow-up.</strong> Revisar: ¿Workflows de
+                                confirmación activos en GHL? ¿Jefferson llama en los primeros 15 min?</div>
+                        </div>
+                    </div>
+                    <div class="decision-card bad">
+                        <div class="signal">🛑</div>
+                        <div>
+                            <div class="condition">CPL &gt; $25 en todas las campañas</div>
+                            <div class="action"><strong>Pausar TODO.</strong> Revisar sistema completo: copy de ads,
+                                landing page, VSL, y audiencia. No gastar más hasta resolver.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ SEMANA 3 ══ -->
+            <div id="week3" class="tab-content">
+                <div class="week-header">
+                    <h3>Semana 3 — Escalar + Retarget Hot</h3>
+                    <div class="budget-badge">💰 $50-65/día (~$405/semana)</div>
+                </div>
+                <div class="week-goal">
+                    <div class="goal-icon">🎯</div>
+                    <div class="goal-text"><strong>Objetivo:</strong> Escalar ads ganadores, abrir <strong>retargeting
+                            hot</strong> (visitaron landing pero NO agendaron), y buscar las <strong>primeras ventas
+                            cerradas.</strong></div>
+                </div>
+                <table class="ad-table">
+                    <thead>
+                        <tr>
+                            <th>Capa</th>
+                            <th>Qué corre</th>
+                            <th>Ads activos</th>
+                            <th>$/día</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🔵 Prospecting</strong></td>
+                            <td>Video ganador escalado (+20%)</td>
+                            <td><span class="badge-video">VIDEO</span> El mejor<br><span
+                                    class="badge-static">ESTÁTICO</span> Variante nueva como test</td>
+                            <td><strong>$35-40</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🟡 Retargeting Warm</strong></td>
+                            <td>Mantener estáticos</td>
+                            <td><span class="badge-static">ESTÁTICO</span> Error Común + Urgencia</td>
+                            <td><strong>$12-15</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔴 Retargeting Hot</strong> <span class="badge-new">NUEVO</span><br><span
+                                    style="font-size:.7rem;color:var(--gray-soft)">Visitaron landing, no
+                                    agendaron</span></td>
+                            <td>Estáticos con CTA directo</td>
+                            <td><span class="badge-static">ESTÁTICO</span> Urgencia (1:1) → "AGENDA AHORA"<br><span
+                                    class="badge-static">ESTÁTICO</span> Error Común (1:1)</td>
+                            <td><strong>$5-8</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="metrics-section">
+                    <div class="metrics-title">📊 Métricas a Revisar (Día 21)</div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="name">Leads Totales Acumulados</div>
+                            <div class="value">&gt; 40</div>
+                            <div class="desc">Camino a 100 en 90 días. A este punto deberías tener 40+.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Citas Calificadas</div>
+                            <div class="value">&gt; 5</div>
+                            <div class="desc">Personas que SÍ asistieron a la llamada con Jorge/Jefferson.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Ventas Cerradas</div>
+                            <div class="value">&gt; 1</div>
+                            <div class="desc">Primera venta = validación del sistema completo.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">ROAS</div>
+                            <div class="value">&gt; 2x</div>
+                            <div class="desc">Si gastaste $700 y generaste $1,400+ en revenue, vas bien.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="decisions">
+                    <div class="section-label">🚦 Qué hacer según los resultados</div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">Primera venta cerrada + ROAS &gt; 2x</div>
+                            <div class="action"><strong>¡El sistema funciona!</strong> Escalar video ganador +20% cada 3
+                                días. Agregar estados geográficos (GA, NC, AZ).</div>
+                        </div>
+                    </div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">Retarget Hot CTR &gt; 3%</div>
+                            <div class="action">Estáticos de urgencia funcionando. <strong>Subir retarget hot a
+                                    $10/día.</strong></div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">Muchas citas pero 0 ventas</div>
+                            <div class="action"><strong>Problema de cierre, no de ads.</strong> Revisar script de venta,
+                                proceso de 3 pasos, pre-calificación de leads.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">Frequency &gt; 3 en retargeting</div>
+                            <div class="action">Fatiga creativa. <strong>Rotar estáticos</strong> (cambiar Error Común
+                                por Emocional, o crear variante nueva).</div>
+                        </div>
+                    </div>
+                    <div class="decision-card bad">
+                        <div class="signal">🛑</div>
+                        <div>
+                            <div class="condition">ROAS &lt; 1x (gastaste más de lo que generaste)</div>
+                            <div class="action"><strong>Reducir a $20/día.</strong> Analizar: ¿Tráfico? ¿Funnel?
+                                ¿Cierre? Corregir eslabón débil antes de escalar.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ SEMANA 4+ ══ -->
+            <div id="week4" class="tab-content">
+                <div class="week-header">
+                    <h3>Semana 4+ — Escala y Refinamiento</h3>
+                    <div class="budget-badge">💰 $60-80/día (~$455/semana)</div>
+                </div>
+                <div class="week-goal">
+                    <div class="goal-icon">🎯</div>
+                    <div class="goal-text"><strong>Objetivo:</strong> Escalar lo que funciona. Crear audiencias
+                        Lookalike. Refrescar creativos. <strong>Alcanzar primeras 10 ventas cerradas.</strong></div>
+                </div>
+                <table class="ad-table">
+                    <thead>
+                        <tr>
+                            <th>Acción</th>
+                            <th>Detalle</th>
+                            <th>Cuándo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Lookalike 1%</strong></td>
+                            <td>Audiencia similar basada en leads que SÍ agendaron (necesitas 25+ contactos)</td>
+                            <td>Cuando tengas 25+ leads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nuevos Creativos</strong></td>
+                            <td>3-5 ads nuevos usando los hooks que mejor funcionaron</td>
+                            <td>Cada 2 semanas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expansión Geo</strong></td>
+                            <td>Si FL/TX/CA funcionan → agregar GA, NC, AZ, NV, CO</td>
+                            <td>Si ROAS &gt; 3x</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test VSL B</strong></td>
+                            <td>Probar video corto de 7 min como ad de retargeting largo</td>
+                            <td>Semana 5</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="metrics-section">
+                    <div class="metrics-title">📊 Métricas Finales del Mes</div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="name">Leads Totales</div>
+                            <div class="value">&gt; 60</div>
+                            <div class="desc">Si llegas a 60 en un mes, vas camino a 100 en 90 días.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Citas Asistidas</div>
+                            <div class="value">&gt; 10</div>
+                            <div class="desc">Personas que vinieron a la llamada.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">Ventas Cerradas</div>
+                            <div class="value">&gt; 3</div>
+                            <div class="desc">3+ ventas en el primer mes valida el sistema.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="name">ROAS Total</div>
+                            <div class="value">&gt; 3x</div>
+                            <div class="desc">Gastaste ~$1,400. ¿Generaste $4,200+? Si sí, a escalar.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="decisions">
+                    <div class="section-label">🚦 Decisión Final del Mes</div>
+                    <div class="decision-card good">
+                        <div class="signal">✅</div>
+                        <div>
+                            <div class="condition">ROAS &gt; 3x</div>
+                            <div class="action"><strong>ESCALAR.</strong> Presupuesto a $80-100/día. Agregar estados.
+                                Crear Lookalikes.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card warning">
+                        <div class="signal">⚠️</div>
+                        <div>
+                            <div class="condition">ROAS entre 2x y 3x</div>
+                            <div class="action"><strong>MANTENER Y OPTIMIZAR.</strong> Mejorar copy, retargeting,
+                                follow-up de Jefferson.</div>
+                        </div>
+                    </div>
+                    <div class="decision-card bad">
+                        <div class="signal">🛑</div>
+                        <div>
+                            <div class="condition">ROAS &lt; 2x</div>
+                            <div class="action"><strong>PAUSAR Y REVISAR TODO.</strong> Recorrer funnel de principio a
+                                fin. Corregir antes de invertir más.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- tabs-section -->
+
+        <!-- GOLDEN RULES -->
+        <div class="rules" style="background:rgba(212,168,83,.06);border-color:rgba(212,168,83,.15);margin-top:20px">
+            <h4 style="color:var(--gold)">⚡ 8 Reglas que NUNCA se Rompen</h4>
+            <ul>
+                <li><span class="r-icon">1️⃣</span> No tocar campañas los primeros 3-4 días — el algoritmo está
+                    aprendiendo.</li>
+                <li><span class="r-icon">2️⃣</span> Nunca aumentar presupuesto más de 20% a la vez — resetea el
+                    aprendizaje.</li>
+                <li><span class="r-icon">3️⃣</span> Un ad no es perdedor hasta tener 500+ impresiones — paciencia con la
+                    data.</li>
+                <li><span class="r-icon">4️⃣</span> Siempre excluir clientes actuales — no gastes dinero en gente que ya
+                    compró.</li>
+                <li><span class="r-icon">5️⃣</span> Verificar Pixel cada semana — si no funciona, es dinero tirado.</li>
+                <li><span class="r-icon">6️⃣</span> Frequency &gt; 3 = fatiga creativa — cambiar estáticos cuando la
+                    frecuencia sube.</li>
+                <li><span class="r-icon">7️⃣</span> Videos para cold, estáticos para retargeting — respetar el sistema.
+                </li>
+                <li><span class="r-icon">8️⃣</span> ROAS es la ÚNICA métrica que importa al final — todo lo demás es
+                    vanidad.</li>
+            </ul>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div style="margin:40px 0">
+            <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:20px">✅
+                Checklist de Revisión Semanal (cada viernes)</h2>
+            <div class="checklist">
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Abrir Meta Ads Manager → revisar CTR y CPL de cada ad</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Abrir GHL → contar contactos nuevos y de qué fuente vienen (UTM)</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Contar citas agendadas vs. citas asistidas (Show Rate)</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Contar ventas cerradas y calcular revenue generado</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Calcular ROAS: Revenue ÷ Gasto en ads = ?x</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Pausar ads con CTR &lt; 1% después de 500+ impresiones</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Verificar que los workflows de GHL dispararon correctamente</div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"></div>
+                    <div>Anotar: ¿Qué ad tuvo mejor performance? ¿Por qué crees?</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- container -->
+
+    <div class="footer">
+        <p>Documento creado por <span class="brand">Antigravity</span> para <span class="brand">Lucho Branding × Jorge
+                Vergara</span></p>
+        <p style="margin-top:6px">Temporada de Taxes 2026 — Actualizado 27 de Febrero 2026</p>
+    </div>
+
+    <script>
+        function showTab(id, btn) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+        function toggleCheck(el) {
+            const box = el.querySelector('.check-box');
+            box.classList.toggle('checked');
+            if (box.classList.contains('checked')) { box.textContent = '✓'; el.style.opacity = '0.5'; el.style.textDecoration = 'line-through' }
+            else { box.textContent = ''; el.style.opacity = '1'; el.style.textDecoration = 'none' }
+        }
+    </script>
+
+</body>
+
+</html>

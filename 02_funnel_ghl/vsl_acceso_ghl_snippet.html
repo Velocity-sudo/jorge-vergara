@@ -1,0 +1,1116 @@
+<!--
+=========================================================
+JORGE VERGARA / LUGO INSURANCE - VSL PAGE: ACCESO CONSEGUIDO
+=========================================================
+Instrucciones para GoHighLevel:
+1. Esta es la SEGUNDA página del funnel (después del Pre-Registro).
+2. El usuario llega aquí después de dejar sus datos en la página anterior.
+3. El Hero muestra "Acceso Conseguido" con una animación de bienvenida personalizada.
+4. El resto del contenido (VSL video, errores, pasos, encuesta) se mantiene igual.
+5. Añade un elemento "Custom HTML/JS" en GHL y pega todo este código.
+-->
+
+<style>
+    /* ==========================================================================
+       VARIABLES DEL SISTEMA (LUGO INSURANCE BRANDING)
+       ========================================================================== */
+    :root {
+        --brand-navy: #002B49;
+        --brand-navy-light: #0A3A5E;
+        --brand-teal: #00C4CC;
+        --brand-teal-glow: rgba(0, 196, 204, 0.4);
+        --brand-teal-rgb: 0, 196, 204;
+        --brand-gold: #D4AF37;
+        --brand-gold-hover: #F3C94B;
+        --brand-gold-rgb: 212, 175, 55;
+        --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        --text-white: #FFFFFF;
+        --text-muted: #B3C6CD;
+        --text-dark: #1E293B;
+        --text-light: #64748B;
+        --bg-light: #F8FAFC;
+        --bg-white: #FFFFFF;
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.2);
+        --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --radius-lg: 16px;
+    }
+
+    /* ==========================================================================
+       RESET BASE GHL
+       ========================================================================== */
+    .jv-wrapper {
+        font-family: var(--font-primary) !important;
+        color: var(--text-white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        background-color: var(--brand-navy);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .jv-wrapper * {
+        box-sizing: border-box;
+    }
+
+    .jv-container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .jv-text-center {
+        text-align: center;
+    }
+
+    .jv-highlight {
+        color: var(--brand-teal);
+        font-weight: 800;
+    }
+
+    .jv-highlight-gold {
+        color: var(--brand-gold);
+        font-weight: 800;
+    }
+
+    /* ==========================================================================
+       BOTÓN CTA GOLD
+       ========================================================================== */
+    .jv-btn-trigger {
+        background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-hover) 100%);
+        color: var(--brand-navy);
+        font-family: inherit;
+        font-weight: 800;
+        font-size: 20px;
+        padding: 20px 40px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(var(--brand-gold-rgb), 0.4);
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 50;
+        text-decoration: none;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .jv-btn-trigger:hover,
+    .jv-btn-trigger:active,
+    .jv-btn-trigger:focus {
+        background: linear-gradient(135deg, var(--brand-gold-hover) 0%, var(--brand-gold) 100%);
+        box-shadow: 0 6px 20px rgba(var(--brand-gold-rgb), 0.6);
+        outline: none;
+        color: var(--brand-navy);
+    }
+
+    .jv-btn-trigger svg {
+        transition: transform 0.3s ease;
+    }
+
+    .jv-btn-trigger:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* ==========================================================================
+       SECCIONES
+       ========================================================================== */
+    .jv-section {
+        padding: 60px 0;
+    }
+
+    /* ==========================================================================
+       ✅ NUEVO HERO: ACCESO CONSEGUIDO
+       ========================================================================== */
+    .jv-access-hero {
+        padding: 50px 0 60px;
+        background: radial-gradient(circle at center top, rgba(var(--brand-teal-rgb), 0.15), var(--brand-navy) 60%);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Confetti-like particles */
+    .jv-access-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(var(--brand-gold-rgb), 0.08) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Success Badge */
+    .jv-access-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #34D399;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 10px 22px;
+        border-radius: 50px;
+        margin-bottom: 28px;
+        animation: jv-badge-enter 0.6s ease-out;
+    }
+
+    @keyframes jv-badge-enter {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.9);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .jv-access-badge svg {
+        flex-shrink: 0;
+    }
+
+    /* Checkmark Animation */
+    .jv-checkmark-circle {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+        animation: jv-check-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+    }
+
+    @keyframes jv-check-pop {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        50% {
+            transform: scale(1.15);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .jv-checkmark-circle svg {
+        animation: jv-check-draw 0.4s ease-out 0.5s both;
+    }
+
+    @keyframes jv-check-draw {
+        0% {
+            opacity: 0;
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+        }
+
+        100% {
+            opacity: 1;
+            stroke-dashoffset: 0;
+        }
+    }
+
+    /* Welcome Title */
+    .jv-access-title {
+        font-size: 38px;
+        font-weight: 800;
+        color: var(--text-white);
+        line-height: 1.15;
+        margin: 0 auto 16px;
+        max-width: 750px;
+        animation: jv-fade-up 0.6s ease-out 0.3s both;
+    }
+
+    @keyframes jv-fade-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .jv-access-subtitle {
+        font-size: 18px;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 20px;
+        animation: jv-fade-up 0.6s ease-out 0.5s both;
+    }
+
+    /* Steps indicator (Below welcome, before video) */
+    .jv-access-steps {
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+        margin: 30px auto 40px;
+        flex-wrap: wrap;
+        animation: jv-fade-up 0.6s ease-out 0.6s both;
+    }
+
+    .jv-access-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .jv-access-step .step-dot {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
+
+    .jv-access-step .step-dot.done {
+        background: rgba(16, 185, 129, 0.2);
+        color: #34D399;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .jv-access-step .step-dot.current {
+        background: var(--brand-gold);
+        color: var(--brand-navy);
+        box-shadow: 0 0 12px rgba(var(--brand-gold-rgb), 0.4);
+    }
+
+    .jv-access-step .step-dot.pending {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--text-muted);
+    }
+
+    .jv-access-step span {
+        color: var(--text-muted);
+    }
+
+    .jv-access-step span.active-label {
+        color: var(--brand-gold);
+        font-weight: 800;
+    }
+
+    /* Divider Line */
+    .jv-access-divider {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--brand-teal), var(--brand-gold));
+        border-radius: 2px;
+        margin: 0 auto 30px;
+        animation: jv-fade-up 0.6s ease-out 0.4s both;
+    }
+
+    /* Video Container */
+    .jv-video-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        aspect-ratio: 16/9;
+        background: var(--brand-navy-light);
+        border: 2px solid rgba(var(--brand-teal-rgb), 0.3);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(var(--brand-teal-rgb), 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        animation: jv-fade-up 0.6s ease-out 0.7s both;
+    }
+
+    .jv-video-container video,
+    .jv-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .jv-video-poster {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0, 43, 73, 0.3) 0%, rgba(0, 43, 73, 0.7) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: opacity 0.4s ease;
+        cursor: pointer;
+    }
+
+    .jv-video-poster.jv-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .jv-play-btn {
+        width: 80px;
+        height: 80px;
+        background: rgba(var(--brand-gold-rgb), 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(var(--brand-gold-rgb), 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 16px;
+    }
+
+    .jv-play-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 60px rgba(var(--brand-gold-rgb), 0.7);
+    }
+
+    .jv-play-btn svg {
+        margin-left: 4px;
+    }
+
+    .jv-poster-text {
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .jv-security-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 500;
+        animation: jv-fade-up 0.6s ease-out 0.8s both;
+    }
+
+    /* --- STATS BAR --- */
+    .jv-stats-bar {
+        background: var(--brand-navy-light);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 30px 0;
+    }
+
+    .jv-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: center;
+    }
+
+    .jv-stat-item h3 {
+        font-size: 36px;
+        color: var(--brand-gold);
+        margin: 0 0 5px;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--brand-gold) 0%, #FFF 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .jv-stat-item p {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* ==========================================================================
+       LIGHT MODE SECTIONS
+       ========================================================================== */
+    .jv-section-light {
+        background: var(--bg-light) !important;
+        color: var(--text-dark);
+    }
+
+    .jv-section-light h2,
+    .jv-section-light h3 {
+        color: var(--brand-navy);
+    }
+
+    .jv-section-light p,
+    .jv-section-light .jv-text-muted {
+        color: var(--text-light);
+    }
+
+    .jv-section-light .jv-card {
+        background: var(--bg-white);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: var(--shadow-card);
+    }
+
+    .jv-section-light .jv-card:hover {
+        border-color: rgba(0, 196, 204, 0.4);
+    }
+
+    .jv-section-light .jv-card p {
+        color: var(--text-light);
+    }
+
+    .jv-section-light .jv-testimonial-box {
+        background: var(--bg-white);
+        box-shadow: var(--shadow-card);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .jv-section-light .jv-testimonial-box::before {
+        color: rgba(0, 196, 204, 0.15);
+    }
+
+    .jv-section-light .jv-testimonial-text {
+        color: var(--text-dark);
+    }
+
+    .jv-section-light .jv-step-number {
+        background: rgba(0, 196, 204, 0.1);
+        color: var(--brand-teal);
+        box-shadow: inset 0 0 0 2px rgba(0, 196, 204, 0.3);
+    }
+
+    .jv-section-light .jv-step-content h3 {
+        color: var(--brand-navy);
+    }
+
+    .jv-section-light .jv-step-content p {
+        color: var(--text-light);
+    }
+
+    /* --- CARDS GRID --- */
+    .jv-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .jv-card {
+        background: var(--brand-navy-light);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-lg);
+        padding: 30px;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .jv-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 196, 204, 0.3);
+    }
+
+    .jv-card-icon {
+        background: rgba(212, 175, 55, 0.1);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        color: var(--brand-gold);
+    }
+
+    .jv-card h3 {
+        font-size: 20px;
+        color: var(--text-white);
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .jv-card p {
+        color: var(--text-muted);
+        margin: 0;
+        font-size: 15px;
+    }
+
+    /* --- 3 PASOS --- */
+    .jv-steps-container {
+        max-width: 600px;
+        margin: 40px auto 0;
+    }
+
+    .jv-step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        align-items: flex-start;
+    }
+
+    .jv-step-number {
+        background: var(--brand-navy-light);
+        color: var(--brand-teal);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 800;
+        flex-shrink: 0;
+        box-shadow: inset 0 0 0 2px rgba(0, 196, 204, 0.3);
+    }
+
+    .jv-step-content h3 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        color: var(--text-white);
+    }
+
+    .jv-step-content p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 16px;
+    }
+
+    /* --- TESTIMONIAL --- */
+    .jv-testimonial-box {
+        background: var(--brand-navy-light);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        margin-top: 40px;
+    }
+
+    .jv-testimonial-box::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 80px;
+        color: rgba(0, 196, 204, 0.1);
+        font-family: serif;
+        line-height: 1;
+    }
+
+    .jv-testimonial-text {
+        font-size: 20px;
+        color: var(--text-white);
+        font-style: italic;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .jv-testimonial-author {
+        color: var(--brand-gold);
+        font-weight: 700;
+    }
+
+    /* --- SURVEY SECTION --- */
+    .jv-survey-intro {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        text-align: center;
+    }
+
+    .jv-survey-intro h2 {
+        font-size: 32px;
+        color: var(--text-white);
+        margin-bottom: 12px;
+    }
+
+    .jv-survey-intro p {
+        font-size: 17px;
+        color: var(--text-muted);
+        margin-bottom: 0;
+    }
+
+    .jv-survey-steps {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 28px 0;
+        flex-wrap: wrap;
+    }
+
+    .jv-survey-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .jv-survey-step .step-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .jv-survey-step .step-num.active {
+        background: var(--brand-gold);
+        color: var(--brand-navy);
+    }
+
+    .jv-survey-step .step-num.pending {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--text-muted);
+    }
+
+    .jv-survey-trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .jv-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .jv-trust-item svg {
+        flex-shrink: 0;
+        color: var(--brand-teal);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .jv-access-title {
+            font-size: 28px;
+        }
+
+        .jv-access-subtitle {
+            font-size: 16px;
+        }
+
+        .jv-btn-trigger {
+            width: 100%;
+            padding: 18px 20px;
+        }
+
+        .jv-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .jv-step {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .jv-step-content {
+            text-align: center;
+        }
+
+        .jv-access-steps {
+            gap: 16px;
+        }
+
+        .jv-checkmark-circle {
+            width: 60px;
+            height: 60px;
+        }
+    }
+</style>
+
+<!-- Importar Fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<div class="jv-wrapper">
+
+    <!-- ===================== HERO: ACCESO CONSEGUIDO ===================== -->
+    <section class="jv-access-hero">
+        <div class="jv-container jv-text-center">
+
+            <!-- Success Badge -->
+            <div class="jv-access-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Registro Confirmado
+            </div>
+
+            <!-- Animated Checkmark -->
+            <div class="jv-checkmark-circle">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h1 class="jv-access-title">
+                ¡Acceso Conseguido!<br>
+                Tu Video de <span class="jv-highlight-gold">5 Minutos</span> Está Listo
+            </h1>
+
+            <div class="jv-access-divider"></div>
+
+            <p class="jv-access-subtitle">
+                Mira el video completo ahora para descubrir los errores que cuestan <strong>miles de dólares</strong> al
+                declarar impuestos — y cómo evitarlos legalmente.
+            </p>
+
+            <!-- Progress Steps -->
+            <div class="jv-access-steps">
+                <div class="jv-access-step">
+                    <div class="step-dot done">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <span>Te registraste</span>
+                </div>
+                <div class="jv-access-step">
+                    <div class="step-dot current">2</div>
+                    <span class="active-label">Ve el video</span>
+                </div>
+                <div class="jv-access-step">
+                    <div class="step-dot pending">3</div>
+                    <span>Agenda tu llamada</span>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DE VIDEO — YouTube Embed -->
+            <div class="jv-video-container" id="jv-video-wrap">
+                <iframe id="jv-yt-player"
+                    src="https://www.youtube.com/embed/_kTkFI8WKEU?rel=0&modestbranding=1&showinfo=0&controls=1&playsinline=1&enablejsapi=1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="eager" title="Jorge Vergara - Clase de Taxes">
+                </iframe>
+                <!-- Poster overlay con play button -->
+                <div class="jv-video-poster" id="jv-poster" onclick="jvPlayVideo()">
+                    <div class="jv-play-btn">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="#002B49" stroke="none">
+                            <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                        </svg>
+                    </div>
+                    <div class="jv-poster-text">▶ Ver Video Ahora</div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <a href="#survey-section" class="jv-btn-trigger">
+                Iniciar Mi Declaración Ahora
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+
+            <div class="jv-security-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Asesoría 100% Confidencial
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="jv-stats-bar">
+        <div class="jv-container">
+            <div class="jv-stats-grid">
+                <div class="jv-stat-item">
+                    <h3>5k+</h3>
+                    <p>Familias Protegidas</p>
+                </div>
+                <div class="jv-stat-item">
+                    <h3>90%</h3>
+                    <p>Retención de Clientes</p>
+                </div>
+                <div class="jv-stat-item">
+                    <h3>$1.3M</h3>
+                    <p>Ahorros Fiscales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ERRORES QUE CUESTAN (LIGHT) -->
+    <section class="jv-section jv-section-light">
+        <div class="jv-container">
+            <h2 class="jv-text-center" style="font-size: 32px; margin-bottom: 10px;">Errores que cuestan miles de
+                dólares</h2>
+            <p class="jv-text-center" style="margin-bottom: 40px; font-size: 18px;">Lo peligroso es que se sienten como
+                "decisiones normales".</p>
+
+            <div class="jv-cards-grid">
+                <div class="jv-card">
+                    <div class="jv-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>Elegir por "barato"</h3>
+                    <p>Quien cobra muy poco trabaja por volumen. No revisa a detalle. Los errores los pagas tú al final,
+                        no ellos.</p>
+                </div>
+
+                <div class="jv-card">
+                    <div class="jv-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h4l2-9 5 18 3-10h4"></path>
+                        </svg>
+                    </div>
+                    <h3>Mezclar ingresos</h3>
+                    <p>Tratar un negocio igual que un salario W2 es la forma rápida de perder deducciones y causar
+                        auditorías del IRS.</p>
+                </div>
+
+                <div class="jv-card">
+                    <div class="jv-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Firmar sin entender</h3>
+                    <p>"No sabía" no es defensa legal ante una auditoría. Tu firma es tu responsabilidad total ante el
+                        sistema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL (DARK) -->
+    <section class="jv-section" style="padding-top: 40px; padding-bottom: 40px;">
+        <div class="jv-container">
+            <div class="jv-testimonial-box">
+                <p class="jv-testimonial-text">"Antes vivía con miedo a las cartas del IRS y los impuestos. Desde que
+                    trabajo con Jorge, tengo paz mental total y el orden de mis finanzas es impecable."</p>
+                <div class="jv-testimonial-author">— Carlos M., Jacksonville FL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 PASOS (LIGHT) -->
+    <section class="jv-section jv-section-light">
+        <div class="jv-container">
+            <h2 class="jv-text-center" style="font-size: 32px; margin-bottom: 10px;">3 pasos para declarar con
+                tranquilidad</h2>
+            <p class="jv-text-center" style="font-size: 17px;">Un proceso simple, transparente y sin tecnicismos.</p>
+
+            <div class="jv-steps-container">
+                <div class="jv-step">
+                    <div class="jv-step-number">1</div>
+                    <div class="jv-step-content">
+                        <h3>Entender tu situación</h3>
+                        <p>Analizamos tu año fiscal completo antes de llenar cualquier formulario. Buscamos todas las
+                            oportunidades legales a tu favor.</p>
+                    </div>
+                </div>
+
+                <div class="jv-step">
+                    <div class="jv-step-number">2</div>
+                    <div class="jv-step-content">
+                        <h3>Clasificar tus ingresos</h3>
+                        <p>Separamos lo personal del negocio para maximizar deducciones legales y mantener todo en
+                            regla.</p>
+                    </div>
+                </div>
+
+                <div class="jv-step">
+                    <div class="jv-step-number">3</div>
+                    <div class="jv-step-content">
+                        <h3>Presentación Blindada</h3>
+                        <p>Firmas con la seguridad absoluta de que todo cuadra ante los ojos del IRS. Cero sorpresas a
+                            futuro.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jv-text-center" style="margin-top: 50px;">
+                <a href="#survey-section" class="jv-btn-trigger">
+                    Quiero Evitar Esos Errores →
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SURVEY SECTION (DARK con glow) -->
+    <section id="survey-section" class="jv-section"
+        style="background: radial-gradient(circle at center top, rgba(0,196,204,0.1), var(--brand-navy) 60%);">
+        <div class="jv-container">
+
+            <div class="jv-survey-intro">
+                <h2>No dejes que un error te cueste <span class="jv-highlight-gold">miles de dólares</span></h2>
+                <p>Completa esta encuesta rápida para que nuestro equipo pueda analizar tu caso y preparar tu estrategia
+                    fiscal. El siguiente paso es agendar una llamada con un especialista.</p>
+            </div>
+
+            <!-- Pasos visuales -->
+            <div class="jv-survey-steps">
+                <div class="jv-survey-step">
+                    <div class="step-num active">✓</div>
+                    <span>Te registraste</span>
+                </div>
+                <div class="jv-survey-step">
+                    <div class="step-num active">✓</div>
+                    <span>Viste el video</span>
+                </div>
+                <div class="jv-survey-step">
+                    <div class="step-num active">3</div>
+                    <span style="color: var(--brand-gold); font-weight: 800;">Llena la encuesta</span>
+                </div>
+                <div class="jv-survey-step">
+                    <div class="step-num pending">4</div>
+                    <span>Agenda tu llamada</span>
+                </div>
+            </div>
+
+            <!-- Contenedor de la encuesta -->
+            <div
+                style="background: var(--brand-navy-light); border: 2px solid rgba(0, 196, 204, 0.3); border-radius: var(--radius-lg); padding: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); max-width: 700px; margin: 0 auto;">
+                <iframe src="https://api.leadconnectorhq.com/widget/survey/8HpnUgSjIkp4fq9L8omr"
+                    style="border:none;width:100%;" scrolling="no" id="8HpnUgSjIkp4fq9L8omr" title="survey"></iframe>
+                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="jv-survey-trust">
+                <div class="jv-trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    100% Confidencial
+                </div>
+                <div class="jv-trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Solo toma 2 minutos
+                </div>
+                <div class="jv-trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    La temporada de taxes no espera
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== LEGAL FOOTER ===================== -->
+    <div style="
+        text-align: center;
+        padding: 30px 20px;
+        background: #001525;
+        border-top: 1px solid rgba(255,255,255,0.08);
+    ">
+        <p style="
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin: 0;
+            line-height: 2;
+        ">
+            © 2026 Lugo Insurance Advisors. Todos los derechos reservados.
+        </p>
+        <p style="
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            font-size: 12px;
+            margin: 8px 0 0 0;
+        ">
+            <a href="https://lugoinsuranceadvisors.com/untitled-page-page" target="_blank" rel="noopener"
+                style="color: rgba(255,255,255,0.6); text-decoration: underline; text-underline-offset: 3px;">Términos y
+                Condiciones</a>
+            <span style="color: rgba(255,255,255,0.3); margin: 0 8px;">|</span>
+            <a href="https://lugoinsuranceadvisors.com/untitled-page-page" target="_blank" rel="noopener"
+                style="color: rgba(255,255,255,0.6); text-decoration: underline; text-underline-offset: 3px;">Política
+                de Privacidad</a>
+        </p>
+    </div>
+
+</div>
+
+<script>
+    function jvPlayVideo() {
+        var poster = document.getElementById('jv-poster');
+        var ytPlayer = document.getElementById('jv-yt-player');
+        if (poster) poster.classList.add('jv-hidden');
+        if (ytPlayer) {
+            ytPlayer.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'playVideo', args: [] }),
+                '*'
+            );
+        }
+    }
+</script>

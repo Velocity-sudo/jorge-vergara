@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía UTM & Captions — Jorge Vergara Tax Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002B49;
+            --navy-deep: #001A30;
+            --navy-light: #0A3A5E;
+            --teal: #00C4CC;
+            --teal-rgb: 0, 196, 204;
+            --gold: #D4AF37;
+            --gold-rgb: 212, 175, 55;
+            --gold-hover: #F3C94B;
+            --white: #FFFFFF;
+            --muted: #B3C6CD;
+            --bg: #F1F5F9;
+            --border: #E2E8F0;
+            --code-bg: #F8FAFC;
+            --ig-gradient: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            --tt-color: #000000;
+            --yt-color: #FF0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: #1E293B;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 32px 20px 80px;
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 40px 36px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -30px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(var(--teal-rgb), .12) 0%, transparent 70%);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(var(--gold-rgb), .08) 0%, transparent 70%);
+        }
+
+        .header-pill {
+            display: inline-block;
+            background: rgba(var(--teal-rgb), .12);
+            color: var(--teal);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(var(--teal-rgb), .2);
+            margin-bottom: 14px;
+        }
+
+        .header h1 {
+            color: var(--white);
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            color: #94A3B8;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p strong {
+            color: var(--teal);
+        }
+
+        /* SECTION */
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .ig-icon {
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            color: white;
+        }
+
+        .tt-icon {
+            background: #000;
+            color: white;
+        }
+
+        .yt-icon {
+            background: #FF0000;
+            color: white;
+        }
+
+        .dm-icon {
+            background: var(--navy);
+            color: var(--teal);
+        }
+
+        .section-head h2 {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .section-head .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .badge-bio {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .badge-reel {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .badge-dm {
+            background: #EDE9FE;
+            color: #5B21B6;
+        }
+
+        .section-body {
+            padding: 20px 24px;
+        }
+
+        /* LINK BOX */
+        .link-box {
+            background: var(--navy-deep);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .link-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--teal);
+            margin-bottom: 6px;
+        }
+
+        .link-short {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            word-break: break-all;
+        }
+
+        .link-full {
+            font-size: 11px;
+            color: #64748B;
+            margin-top: 6px;
+            word-break: break-all;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(var(--teal-rgb), .15);
+            color: var(--teal);
+            border: 1px solid rgba(var(--teal-rgb), .3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all .2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(var(--teal-rgb), .25);
+        }
+
+        .copy-btn.copied {
+            background: #10B981;
+            color: white;
+            border-color: #10B981;
+        }
+
+        /* CAPTION BOX */
+        .caption-box {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-top: 14px;
+            position: relative;
+        }
+
+        .caption-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+
+        .caption-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #1E293B;
+        }
+
+        .caption-text .hl {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* INSTRUCTIONS */
+        .instruction {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        .instruction:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step-num {
+            width: 26px;
+            height: 26px;
+            background: var(--navy);
+            color: var(--teal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 13px;
+            color: #475569;
+            padding-top: 3px;
+        }
+
+        .step-text strong {
+            color: var(--navy);
+        }
+
+        /* ALERT */
+        .alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 14px 0;
+        }
+
+        .alert-info {
+            background: #DBEAFE;
+            color: #1E40AF;
+            border: 1px solid #93C5FD;
+        }
+
+        .alert-warn {
+            background: #FEF3C7;
+            color: #92400E;
+            border: 1px solid #FCD34D;
+        }
+
+        .alert-ok {
+            background: #D1FAE5;
+            color: #065F46;
+            border: 1px solid #6EE7B7;
+        }
+
+        /* DIVIDER */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 16px 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 12px;
+            color: #94A3B8;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 12px 10px 60px;
+            }
+
+            .header {
+                padding: 28px 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .link-short {
+                font-size: 15px;
+            }
+
+            .copy-btn {
+                position: static;
+                margin-top: 10px;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-pill">📋 Guía de Implementación</div>
+            <h1>🔗 Links UTM & Captions por Plataforma</h1>
+            <p>Links acortados listos para copiar y pegar en cada red social. <strong>Página destino: Registro →
+                    VSL</strong></p>
+        </header>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- INSTAGRAM BIO -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="section">
+            <div class="section-head">
+                <div class="section-icon ig-icon">📸</div>
+                <div>
+                    <h2>Instagram — Bio</h2>
+                </div>
+                <span class="badge badge-bio">LINK EN BIO</span>
+            </div>
+            <div class="section-body">
+                <div class="caption-box" style="margin-top:0; margin-bottom:14px;">
+                    <div class="caption-label">✏️ TEXTO PARA LA BIO DE INSTAGRAM</div>
+                    <div class="caption-text" id="bio-ig" style="white-space:pre-line;">📊 Te ayudo a hacer tus taxes de forma legal
+💰 Paga solo lo necesario al IRS
+👇 Clase gratis para evitar errores al presentar tus impuestos</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;" onclick="copyText('bio-ig', this)">📋 Copiar bio</button>
+                </div>
+
+                <div class="link-box">
+                    <div class="link-label">🔗 Link acortado (copiar este)</div>
+                    <div class="link-short" id="link-ig-bio">https://is.gd/FGiqTp</div>
+                    <div class="link-full">Original:
+                        https://lugoinsuranceadvisors.com/registro-page?utm_source=instagram&utm_medium=bio&utm_campaign=taxes_organico
+                    </div>
+                    <button class="copy-btn" onclick="copyLink('link-ig-bio', this)">📋 Copiar</button>
+                </div>
+
+                <div class="caption-label">📝 INSTRUCCIONES</div>
+                <div class="instruction">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Ir a <strong>Instagram → Editar perfil → Sitio web</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Pegar el link acortado: <strong>https://is.gd/FGiqTp</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Guardar. Este link trackea que el visitante vino de la <strong>bio de
+                            Instagram</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- INSTAGRAM REELS -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="section">
+            <div class="section-head">
+                <div class="section-icon ig-icon">🎬</div>
+                <div>
+                    <h2>Instagram — Reels (DM Automático)</h2>
+                </div>
+                <span class="badge badge-reel">PALABRA CLAVE</span>
+            </div>
+            <div class="section-body">
+                <div class="link-box">
+                    <div class="link-label">🔗 Link acortado (para el DM automático)</div>
+                    <div class="link-short" id="link-ig-reel">https://is.gd/D4tENr</div>
+                    <div class="link-full">Original:
+                        https://lugoinsuranceadvisors.com/registro-page?utm_source=instagram&utm_medium=reel&utm_campaign=taxes_organico
+                    </div>
+                    <button class="copy-btn" onclick="copyLink('link-ig-reel', this)">📋 Copiar</button>
+                </div>
+
+                <div class="alert alert-info">
+                    💡 <strong>Palabra clave:</strong> La persona comenta <strong>"TAXES"</strong> en el Reel →
+                    GHL/ManyChat le envía DM automático con el link.
+                </div>
+
+                <div class="caption-box">
+                    <div class="caption-label">📝 CAPTION PARA CADA REEL</div>
+                    <div class="caption-text" id="caption-ig-reel">Comenta <span class="hl">TAXES</span> si quieres un
+                        video donde te explico cómo evitar los 3 errores que le cuestan MILES de dólares al IRS a los
+                        trabajadores 1099 💰
+
+                        Guarda este video para que no te pase a ti 👇</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;"
+                        onclick="copyText('caption-ig-reel', this)">📋 Copiar caption</button>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="caption-box" style="background: var(--navy-deep); border-color: rgba(0,196,204,.15);">
+                    <div class="caption-label" style="color: var(--teal);">💬 MENSAJE DM AUTOMÁTICO (GHL / ManyChat)
+                    </div>
+                    <div class="caption-text" style="color: var(--white);" id="dm-msg">¡Hola! 🙌 Aquí tienes la clase
+                        que te prometí:
+
+                        👉 https://is.gd/D4tENr
+
+                        Son solo 5 minutos y vas a ver los 3 errores que le cuestan MILES al IRS a los trabajadores
+                        1099. No te la pierdas.</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;"
+                        onclick="copyText('dm-msg', this)">📋 Copiar mensaje</button>
+                </div>
+
+                <div class="divider"></div>
+                <div class="caption-label">📝 INSTRUCCIONES</div>
+                <div class="instruction">
+                    <div class="step-num">1</div>
+                    <div class="step-text">En <strong>GHL → Automations</strong> (o ManyChat): crear trigger por
+                        <strong>comentario con palabra "TAXES"</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Acción: <strong>Enviar DM automático</strong> con el mensaje de arriba
+                        (incluye el link acortado de Reels)</div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Cada Reel que publiques debe incluir el <strong>caption de arriba</strong> (o
+                        una variación) invitando a comentar "TAXES"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- TIKTOK -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="section">
+            <div class="section-head">
+                <div class="section-icon tt-icon">🎵</div>
+                <div>
+                    <h2>TikTok — Bio</h2>
+                </div>
+                <span class="badge badge-bio">LINK EN BIO</span>
+            </div>
+            <div class="section-body">
+                <div class="caption-box" style="margin-top:0; margin-bottom:14px;">
+                    <div class="caption-label">✏️ TEXTO PARA LA BIO DE TIKTOK</div>
+                    <div class="caption-text" id="bio-tt" style="white-space:pre-line;">📊 Te ayudo a hacer tus taxes de forma legal
+💰 Paga solo lo necesario al IRS
+👇 Clase gratis para evitar errores al presentar tus impuestos</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;" onclick="copyText('bio-tt', this)">📋 Copiar bio</button>
+                </div>
+
+                <div class="link-box">
+                    <div class="link-label">🔗 Link acortado (copiar este)</div>
+                    <div class="link-short" id="link-tt-bio">https://is.gd/eXkiHM</div>
+                    <div class="link-full">Original:
+                        https://lugoinsuranceadvisors.com/registro-page?utm_source=tiktok&utm_medium=bio&utm_campaign=taxes_organico
+                    </div>
+                    <button class="copy-btn" onclick="copyLink('link-tt-bio', this)">📋 Copiar</button>
+                </div>
+
+                <div class="caption-box">
+                    <div class="caption-label">📝 CAPTION PARA CADA VIDEO DE TIKTOK</div>
+                    <div class="caption-text" id="caption-tt">Si trabajas 1099 y quieres evitar los errores que te
+                        cuestan miles al IRS → ve al link de la biografía 👆 Clase gratis de 5 minutos que te puede
+                        ahorrar miles en taxes.</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;"
+                        onclick="copyText('caption-tt', this)">📋 Copiar caption</button>
+                </div>
+
+                <div class="divider"></div>
+                <div class="caption-label">📝 INSTRUCCIONES</div>
+                <div class="instruction">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Ir a <strong>TikTok → Perfil → Editar perfil → Sitio web</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Pegar: <strong>https://is.gd/eXkiHM</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">3</div>
+                    <div class="step-text">En cada video, mencionar en el caption: <strong>"Ve al link de la
+                            biografía"</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- YOUTUBE -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="section">
+            <div class="section-head">
+                <div class="section-icon yt-icon">▶️</div>
+                <div>
+                    <h2>YouTube — Descripción / Bio</h2>
+                </div>
+                <span class="badge badge-bio">LINK EN BIO</span>
+            </div>
+            <div class="section-body">
+                <div class="caption-box" style="margin-top:0; margin-bottom:14px;">
+                    <div class="caption-label">✏️ DESCRIPCIÓN PARA EL CANAL DE YOUTUBE</div>
+                    <div class="caption-text" id="bio-yt" style="white-space:pre-line;">📊 Te ayudo a hacer tus taxes de forma legal
+💰 Paga solo lo necesario — evita errores que te cuestan miles al IRS
+👇 Clase gratis de 5 minutos</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;" onclick="copyText('bio-yt', this)">📋 Copiar descripción</button>
+                </div>
+
+                <div class="link-box">
+                    <div class="link-label">🔗 Link acortado (copiar este)</div>
+                    <div class="link-short" id="link-yt-bio">https://is.gd/eJwGXq</div>
+                    <div class="link-full">Original:
+                        https://lugoinsuranceadvisors.com/registro-page?utm_source=youtube&utm_medium=bio&utm_campaign=taxes_organico
+                    </div>
+                    <button class="copy-btn" onclick="copyLink('link-yt-bio', this)">📋 Copiar</button>
+                </div>
+
+                <div class="caption-box">
+                    <div class="caption-label">📝 CAPTION / DESCRIPCIÓN PARA CADA VIDEO</div>
+                    <div class="caption-text" id="caption-yt">¿Trabajas 1099 en Estados Unidos? Ve al link de la
+                        descripción para ver la clase gratis de 5 minutos donde te muestro los 3 errores que te están
+                        costando miles de dólares al IRS 👇
+
+                        🔗 https://is.gd/eJwGXq</div>
+                    <button class="copy-btn" style="position:static; margin-top:12px;"
+                        onclick="copyText('caption-yt', this)">📋 Copiar caption</button>
+                </div>
+
+                <div class="divider"></div>
+                <div class="caption-label">📝 INSTRUCCIONES</div>
+                <div class="instruction">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Ir a <strong>YouTube Studio → Personalización → Info básica → Links</strong>
+                    </div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Agregar link: Título <strong>"Clase Gratis Taxes"</strong> → URL:
+                        <strong>https://is.gd/eJwGXq</strong></div>
+                </div>
+                <div class="instruction">
+                    <div class="step-num">3</div>
+                    <div class="step-text">En cada video, pegar el <strong>caption de arriba</strong> en la descripción,
+                        y en el video decir <strong>"ve al link de la descripción"</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- RESUMEN -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="section">
+            <div class="section-head">
+                <div class="section-icon" style="background: var(--navy); color: var(--gold);">📊</div>
+                <h2>Resumen Rápido</h2>
+            </div>
+            <div class="section-body">
+                <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                    <thead>
+                        <tr style="background:var(--navy); color:var(--white);">
+                            <th style="padding:10px 14px; text-align:left; border-radius:8px 0 0 0;">Plataforma</th>
+                            <th style="padding:10px 14px; text-align:left;">Dónde</th>
+                            <th style="padding:10px 14px; text-align:left;">Link Corto</th>
+                            <th style="padding:10px 14px; text-align:left; border-radius:0 8px 0 0;">CTA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid var(--border);">
+                            <td style="padding:10px 14px; font-weight:700;">📸 Instagram Bio</td>
+                            <td style="padding:10px 14px;">Link en bio</td>
+                            <td style="padding:10px 14px; font-family:monospace; font-size:12px;">is.gd/FGiqTp</td>
+                            <td style="padding:10px 14px;">Link directo</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border); background:#FEFCE8;">
+                            <td style="padding:10px 14px; font-weight:700;">🎬 Instagram Reels</td>
+                            <td style="padding:10px 14px;">DM automático</td>
+                            <td style="padding:10px 14px; font-family:monospace; font-size:12px;">is.gd/D4tENr</td>
+                            <td style="padding:10px 14px; font-weight:700; color:#92400E;">"Comenta TAXES"</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border);">
+                            <td style="padding:10px 14px; font-weight:700;">🎵 TikTok Bio</td>
+                            <td style="padding:10px 14px;">Link en bio</td>
+                            <td style="padding:10px 14px; font-family:monospace; font-size:12px;">is.gd/eXkiHM</td>
+                            <td style="padding:10px 14px;">"Ve al link de la bio"</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px 14px; font-weight:700;">▶️ YouTube</td>
+                            <td style="padding:10px 14px;">Link en descripción</td>
+                            <td style="padding:10px 14px; font-family:monospace; font-size:12px;">is.gd/eJwGXq</td>
+                            <td style="padding:10px 14px;">"Ve al link de la bio"</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warn" style="margin-top:16px;">
+                    ⚠️ <strong>Importante:</strong> Cada plataforma tiene su propio link con UTM diferente. NO mezclar
+                    links entre plataformas — así sabemos exactamente de dónde viene cada lead en GHL.
+                </div>
+
+                <div class="alert alert-ok">
+                    ✅ <strong>Tracking:</strong> Estos UTMs se capturan automáticamente en GHL cuando la persona llena
+                    el formulario. Verás la fuente en el campo <strong>"Source"</strong> del contacto.
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            Guía UTM & Captions — Antigravity × Lucho Branding × Jorge Vergara — Marzo 2026
+        </footer>
+    </div>
+
+    <script>
+        function copyLink(elId, btn) {
+            const text = document.getElementById(elId).textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅ Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function copyText(elId, btn) {
+            const text = document.getElementById(elId).textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅ Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

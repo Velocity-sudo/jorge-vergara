@@ -1,0 +1,780 @@
+<!-- 
+  COPIAR Y PEGAR TODO ESTE CÓDIGO EN UN ELEMENTO "CUSTOM HTML" EN GOHIGHLEVEL 
+  Asegúrate de reemplazar los placeholders:
+  [VIDEO_URL_AQUI]
+  [WHATSAPP_URL_AQUI]
+  [CALENDAR_URL_AQUI]
+  [CASO_1_TITULO], etc.
+-->
+
+<style>
+    :root {
+        /* Colors */
+        --bg-dark: #071428;
+        --bg-dark-alt: #0A1633;
+        --text-main: #F4F7FF;
+        --text-muted: #B0B8C8;
+        --primary: #1E7BFF;
+        --primary-hover: #39B2FF;
+        --accent: #00E5FF;
+        --danger: #FF4D4D;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+        /* Spacing */
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 2rem;
+        --space-lg: 4rem;
+        --space-xl: 6rem;
+
+        /* Typography */
+        --font-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* Reset tweaks for GHL wrapper */
+    .ghl-page-container * {
+        box-sizing: border-box;
+    }
+
+    #jorge-landing-wrapper {
+        background: var(--bg-dark);
+        background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-alt) 100%);
+        color: var(--text-main);
+        font-family: var(--font-base);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+        overflow-x: hidden;
+        padding-bottom: 2rem;
+    }
+
+    #jorge-landing-wrapper img,
+    #jorge-landing-wrapper video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    #jorge-landing-wrapper h1,
+    #jorge-landing-wrapper h2,
+    #jorge-landing-wrapper h3,
+    #jorge-landing-wrapper h4 {
+        line-height: 1.2;
+        font-weight: 700;
+        margin-bottom: var(--space-xs);
+        color: var(--text-main);
+    }
+
+    #jorge-landing-wrapper h1 {
+        font-size: 2.25rem;
+    }
+
+    #jorge-landing-wrapper h2 {
+        font-size: 1.875rem;
+    }
+
+    #jorge-landing-wrapper h3 {
+        font-size: 1.5rem;
+    }
+
+    #jorge-landing-wrapper p {
+        margin-bottom: var(--space-sm);
+        color: var(--text-muted);
+    }
+
+    /* Utilities */
+    .j-container {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 0 var(--space-sm);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-primary {
+        color: var(--primary) !important;
+    }
+
+    .text-accent {
+        color: var(--accent) !important;
+    }
+
+    .font-bold {
+        font-weight: 700;
+    }
+
+    .text-white {
+        color: white !important;
+    }
+
+    .mb-1 {
+        margin-bottom: var(--space-sm);
+    }
+
+    .mb-2 {
+        margin-bottom: var(--space-md);
+    }
+
+    .mt-2 {
+        margin-top: var(--space-md);
+    }
+
+    /* Buttons */
+    .j-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        font-size: 1.125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(30, 123, 255, 0.3);
+    }
+
+    .j-btn-primary {
+        background: var(--primary);
+        color: white !important;
+    }
+
+    .j-btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(30, 123, 255, 0.4);
+    }
+
+    /* Glass Card */
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: var(--space-md);
+        margin-bottom: var(--space-md);
+        box-shadow: var(--glass-shadow);
+    }
+
+    /* Sections */
+    .j-section {
+        padding: var(--space-lg) 0;
+    }
+
+    /* Hero */
+    .hero {
+        padding-top: var(--space-md);
+        padding-bottom: var(--space-md);
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem !important;
+        background: linear-gradient(90deg, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: var(--space-sm);
+    }
+
+    .video-placeholder {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #000;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: var(--space-md) 0;
+        border: 1px solid var(--glass-border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .play-button {
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+    }
+
+    .play-icon {
+        width: 0;
+        height: 0;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 20px solid white;
+        margin-left: 4px;
+    }
+
+    .trust-badges {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-sm);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: var(--space-sm);
+        flex-wrap: wrap;
+    }
+
+    .j-badge {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 12px;
+        border-radius: 99px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Pain Points */
+    .pain-point {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-sm);
+        text-align: left;
+    }
+
+    .pain-icon {
+        color: var(--danger);
+        font-size: 1.25rem;
+        margin-top: 2px;
+    }
+
+    /* Steps */
+    .step {
+        position: relative;
+        padding-left: var(--space-md);
+        margin-bottom: var(--space-md);
+        border-left: 2px solid var(--glass-border);
+    }
+
+    .step:last-child {
+        margin-bottom: 0;
+    }
+
+    .step-number {
+        position: absolute;
+        left: -9px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        background: var(--primary);
+        border-radius: 50%;
+        border: 2px solid var(--bg-dark);
+    }
+
+    /* FAQ */
+    .faq-item {
+        border-bottom: 1px solid var(--glass-border);
+        padding: var(--space-sm) 0;
+    }
+
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: left;
+        cursor: pointer;
+        padding: var(--space-xs) 0;
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 200px;
+        padding-top: var(--space-xs);
+    }
+
+    .faq-item.active .faq-icon {
+        transform: rotate(45deg);
+    }
+
+    /* Sticky CTA */
+    .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: var(--space-sm);
+        background: rgba(7, 20, 40, 0.9);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--glass-border);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sticky-cta .j-btn {
+        max-width: 480px;
+        font-size: 1rem;
+        padding: 0.875rem;
+    }
+
+    /* Disclaimer / Footer */
+    .footer {
+        padding-bottom: 100px;
+        font-size: 0.75rem;
+        text-align: center;
+        color: #666;
+        margin-top: var(--space-lg);
+    }
+
+    .footer a {
+        color: #666;
+    }
+
+    /* Modal */
+    .custom-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .custom-modal.visible {
+        display: flex;
+        opacity: 1;
+    }
+
+    .custom-modal-content {
+        background: var(--bg-dark-alt);
+        width: 90%;
+        max-width: 400px;
+        border-radius: 16px;
+        padding: var(--space-md);
+        position: relative;
+        border: 1px solid var(--glass-border);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: var(--space-sm);
+        text-align: left;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: white;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+    }
+
+    @media (min-width: 768px) {
+        #jorge-landing-wrapper h1 {
+            font-size: 3.5rem !important;
+        }
+
+        .j-container {
+            max-width: 600px;
+        }
+    }
+</style>
+
+<div id="jorge-landing-wrapper">
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta">
+        <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">QUIERO PAGAR MENOS</a>
+    </div>
+
+    <div class="j-container">
+        <!-- 1. HERO -->
+        <section class="hero j-section">
+            <div class="j-badge text-accent mb-1" style="display:inline-block;">Oferta de Temporada</div>
+            <h1>¿Podrías pagar <span class="text-primary">MENOS</span> impuestos este año en 🇺🇸?</h1>
+            <p class="mb-1" style="font-size: 1.1rem; color: #fff;">Te ayudamos a pagar lo justo en taxes y te dejamos
+                un plan para pagar menos los próximos.</p>
+
+            <div class="glass-card mb-2" style="padding: 1rem; border-color: rgba(0, 229, 255, 0.3);">
+                <span class="text-accent font-bold">✅ + $1,365,000</span> <span style="font-size: 0.9rem;">ahorrados
+                    para mis clientes</span>
+            </div>
+
+            <!-- Video Placeholder -->
+            <div class="video-placeholder">
+                <div class="play-button">
+                    <div class="play-icon"></div>
+                </div>
+                <!-- REMOVE PLAY ICON and TEXT above and paste IFRAME here if needed -->
+                <div style="position:absolute; bottom: 10px; color: white; font-size: 0.8rem; opacity: 0.8;">
+                    [VIDEO_URL_AQUI]</div>
+            </div>
+
+            <a href="#apply" class="j-btn j-btn-primary mb-1" data-action="open-modal">QUIERO PAGAR MENOS</a>
+            <p style="font-size: 0.8rem;">Revisión inicial sin costo • Respuesta clara en minutos</p>
+
+            <div class="trust-badges">
+                <span class="j-badge">Latinos en USA</span>
+                <span class="j-badge">W2/1099</span>
+                <span class="j-badge">Familias</span>
+            </div>
+        </section>
+
+        <!-- 2. PAIN POINTS -->
+        <section class="j-section">
+            <h2 class="text-center mb-2">Esto es lo que pasa cuando no optimizas</h2>
+
+            <div class="glass-card">
+                <div class="pain-point">
+                    <span class="pain-icon">⚠️</span>
+                    <div>
+                        <strong>Declaras sin estrategia y pagas de más.</strong>
+                        <p style="font-size: 0.9rem; margin:0;">El sistema está diseñado para que pagues si no conoces
+                            las reglas.</p>
+                    </div>
+                </div>
+                <div class="pain-point">
+                    <span class="pain-icon">❓</span>
+                    <div>
+                        <strong>No sabes qué sí aplica para tu caso.</strong>
+                        <p style="font-size: 0.9rem; margin:0;">Deducciones perdidas son dinero tirado a la basura.</p>
+                    </div>
+                </div>
+                <div class="pain-point">
+                    <span class="pain-icon">💸</span>
+                    <div>
+                        <strong>Un error puede costarte miles.</strong>
+                        <p style="font-size: 0.9rem; margin:0;">O peor, meterte en problemas con el IRS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">QUIERO PAGAR MENOS</a>
+            </div>
+        </section>
+
+        <!-- 3. HOW IT WORKS -->
+        <section class="j-section">
+            <h2 class="text-center mb-2">Cómo funciona</h2>
+            <div class="glass-card">
+                <div class="step">
+                    <div class="step-number"></div>
+                    <h3>1. Aplicación rápida (2 min)</h3>
+                    <p>Contesta unas preguntas simples para entender tu situación fiscal.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number"></div>
+                    <h3>2. Revisión y diagnóstico</h3>
+                    <p>Analizamos tus datos para encontrar oportunidades de ahorro legal.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number"></div>
+                    <h3>3. Declaras con estrategia</h3>
+                    <p>O confirmamos que ya estás bien. Sin sorpresas.</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">REVISAR MI CASO</a>
+            </div>
+        </section>
+
+        <!-- 4. GUARANTEE -->
+        <section class="text-center j-section">
+            <div class="glass-card" style="border-color: var(--accent);">
+                <h2 class="text-accent mb-1">Garantía Condicionada</h2>
+                <p class="font-bold text-main mb-1" style="font-size: 1.1rem;">“Si después de revisar tu caso no
+                    encontramos una mejora clara y legal, no pagas.”</p>
+                <p style="font-size: 0.75rem; opacity: 0.7;">Depende de tu caso. Resultados varían. Cumplimos reglas
+                    IRS.</p>
+            </div>
+            <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">QUIERO PAGAR MENOS</a>
+        </section>
+
+        <!-- 5. SOCIAL PROOF (Placeholders) -->
+        <section class="j-section">
+            <h2 class="text-center mb-2">Resultados Reales</h2>
+
+            <!-- Case Study 1 -->
+            <div class="glass-card">
+                <h4 class="text-primary">[CASO_1_TITULO]</h4>
+                <p style="font-size: 0.9rem;">[CASO_1_RESUMEN]</p>
+                <div class="j-badge text-white"
+                    style="background: rgba(30, 123, 255, 0.2); border:none; display:inline-block; margin-top:5px;">
+                    Resultado: [CASO_1_RESULTADO_GENERAL]</div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div style="display: grid; gap: 1rem;">
+                <div class="glass-card" style="padding: 1rem;">
+                    <p class="mb-1">"[TESTIMONIO_1]"</p>
+                    <small class="text-muted">- Cliente Verificado</small>
+                </div>
+                <div class="glass-card" style="padding: 1rem;">
+                    <p class="mb-1">"[TESTIMONIO_2]"</p>
+                    <small class="text-muted">- Cliente Verificado</small>
+                </div>
+            </div>
+
+            <div class="text-center mt-2">
+                <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">VER SI CALIFICO</a>
+            </div>
+        </section>
+
+        <!-- 6. TARGET AUDIENCE -->
+        <section class="j-section">
+            <h2 class="text-center mb-2">¿Para quién es esto?</h2>
+            <div class="glass-card">
+                <ul style="list-style: none; padding: 0;">
+                    <li class="mb-1">✅ <strong>W2, 1099 o mixto:</strong> Tienes ingresos y quieres optimizar.</li>
+                    <li class="mb-1">✅ <strong>Familias con dependientes:</strong> Maximizamos créditos.</li>
+                    <li class="mb-1">✅ <strong>Evitar errores:</strong> Quieres dormir tranquilo.</li>
+                    <li class="mb-1">✅ <strong>Claridad:</strong> Saber qué pagar antes de enviar.</li>
+                    <li>✅ <strong>Pagar lo justo:</strong> Sin atajos raros, todo legal.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 7. FILTER (NOT FOR YOU) -->
+        <section class="j-section">
+            <h2 class="text-center mb-2" style="color: var(--text-muted);">No es para ti si...</h2>
+            <div class="glass-card" style="background: rgba(255, 77, 77, 0.05); border-color: rgba(255, 77, 77, 0.2);">
+                <ul style="list-style: none; padding: 0;">
+                    <li class="mb-1">❌ Solo buscas "gratis" sin intención de declarar bien.</li>
+                    <li class="mb-1">❌ No quieres dar información básica real.</li>
+                    <li>❌ Buscas atajos ilegales o promesas falsas.</li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <a href="#apply" class="j-btn j-btn-primary" data-action="open-modal">SÍ, ES PARA MÍ</a>
+            </div>
+        </section>
+
+        <!-- 8. FAQ -->
+        <section class="j-section">
+            <h2 class="text-center mb-2">Preguntas Frecuentes</h2>
+
+            <div class="glass-card" style="padding: 0 1rem;">
+                <!-- FAQ Items -->
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuánto cuesta? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Depende de la complejidad de tu caso, pero la revisión inicial es sin costo
+                        para ver si podemos ayudarte.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuánto puedo ahorrar? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Resultados varían. No podemos prometer un número sin ver tus papeles, pero
+                        buscaremos cada deducción legal disponible.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Trabajas con W2 y 1099? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Sí, trabajamos con empleados, contratistas y dueños de negocio.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué necesitas para revisar? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Información básica sobre tus ingresos, gastos (si aplica) y situación
+                        familiar.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Y si ya declaré? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Podemos revisar declaraciones pasadas para ver si hubo errores (Enmiendas).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Es legal? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">100%. Seguimos estrictamente las regulaciones del IRS. Optimizamos, no
+                        evadimos.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. APPLICATION FORM -->
+        <section id="apply" class="j-section">
+            <div class="glass-card" style="border-color: var(--primary);">
+                <div class="text-center mb-2">
+                    <h2>Aplica y revisamos si puedes pagar MENOS</h2>
+                    <p>Llena el formulario para iniciar.</p>
+                </div>
+
+                <form id="application-form">
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-input" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Teléfono (Celular)</label>
+                        <input type="tel" class="form-input" placeholder="(555) 123-4567" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="tu@email.com" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="form-group">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-input">
+                                <option>W2 (Empleado)</option>
+                                <option>1099 (Contratista)</option>
+                                <option>Mixto</option>
+                                <option>Dueño de Negocio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ingresos</label>
+                            <select class="form-input">
+                                <option>Menos de $40k</option>
+                                <option>$40k - $80k</option>
+                                <option>$80k - $150k</option>
+                                <option>Más de $150k</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Tienes dependientes?</label>
+                        <select class="form-input">
+                            <option>Sí</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="j-btn j-btn-primary mt-2" style="width: 100%;">ENVIAR Y
+                        REVISAR</button>
+                    <p class="text-center mt-1" style="font-size: 0.8rem;">Si calificas, te mostramos el siguiente paso.
+                    </p>
+                </form>
+
+                <div class="text-center mt-2">
+                    <a href="[WHATSAPP_URL_AQUI]" class="text-muted"
+                        style="text-decoration: underline; font-size: 0.9rem;">Prefiero hablar por WhatsApp ahora</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. FOOTER -->
+        <footer class="footer">
+            <p>© 2024 Jorge Vergara. Todos los derechos reservados.</p>
+            <p style="opacity: 0.5; margin-top: 5px;">Este sitio no es parte de Meta ni Facebook. Resultados no
+                garantizados.</p>
+            <p style="margin-top: 10px;">
+                <a href="#">Privacidad</a> • <a href="#">Términos</a>
+            </p>
+        </footer>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // FAQ Toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all others
+                faqItems.forEach(other => other.classList.remove('active'));
+
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Modal Logic (Optional if using anchor links mainly)
+        const openButtons = document.querySelectorAll('[data-action="open-modal"]');
+
+        openButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Because we really just want to scroll to #apply on the same page for this simple funnel
+                const applySection = document.querySelector('#apply');
+                if (applySection) {
+                    e.preventDefault();
+                    applySection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form Submission Handling
+        const form = document.getElementById('application-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simulate submission
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Enviando...';
+
+                // Console log for GHL
+                console.log('Form submitted: lead_submit');
+
+                // Try to trigger GHL native tracking if available or custom logic
+                // Assuming this is a custom form, you might need an integrated GHL form instead.
+                // But prompt asked for a custom form design.
+
+                setTimeout(() => {
+                    // Success state
+                    form.innerHTML = `
+                    <div class="text-center">
+                        <h3 class="text-accent mb-1">¡Recibido!</h3>
+                        <p>Te contactaremos en breve si calificas.</p>
+                        <a href="[CALENDAR_URL_AQUI]" class="j-btn j-btn-primary mt-2">Agendar Ahora (Opcional)</a>
+                    </div>
+                `;
+                }, 1000);
+            });
+        }
+    });
+</script>
